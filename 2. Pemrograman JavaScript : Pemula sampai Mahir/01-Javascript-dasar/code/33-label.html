@@ -1,0 +1,18 @@
+<html>
+<head></head>
+<body>
+  <script>
+    loopi:
+      for (let i=1; i<=10; i++) {
+        loopj:
+          for (let j=1; j<=100; j++) {
+            console.log(`Iterasi: ${i} - ${j}`)
+            if (j == 12) {
+              continue loopi
+            }
+          }
+          console.log("-----")
+      }
+  </script>
+</body>
+</html>

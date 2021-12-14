@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* For in: looping property pada object */
+    let player = {
+      name: "Jadon Sancho",
+      number: 25,
+      position: "Attacker"
+    }
+    for (let property in player) {
+      document.writeln(`<p>Player property: ${property}, data: ${player[property]}</p>`)
+    }
+
+    /* For in array */
+    let clubs = ["Manchester United", "Arsenal", "Chelsea", "Tottenham"]
+    for (let index in clubs) {
+      document.writeln(`<p>Club: ${clubs[index]}</p>`)
+    }
+
+    /* For in array object */
+    let players = [
+      {name: "Edinson Cavani", number: 21, position: "Attacker"},
+      {name: "David De Gea", number: 1, position: "Goalkeeper"},
+      {name: "Cristiano Ronaldo", number: 7, position: "Attacker"}
+    ]
+    for (const index in players) {
+      for (const property in players[index]) {
+        console.info(`Players index: ${index}, property: ${property}, data: ${players[index][property]}`)
+      }
+      console.info("-----")
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+<head></head>
+<body>
+  <script>
+
+    /* Operator in */
+    let player = {
+      name: "David De Gea",
+      club: "Manchester United"
+    }
+    if ("club" in player) {
+      document.writeln(`<p>${player.club}</p>`)
+    } else {
+      document.writeln("<p>Properti club not found</p>")
+    }
+
+    /* Operator in undefined */
+    player = {
+      name: "David De Gea",
+      club: "Manchester United",
+      address: undefined
+    }
+    if ("address" in player) {
+      document.writeln(`<p>Address: ${player.address}</p>`)
+    } else {
+      document.writeln(`<p>Properti address not found</p>`)
+    }
+
+    /* Operator in array */
+    let list = [1, null, undefined, 16]
+    let listCheck1 = 0 in list
+    let listCheck2 = 1 in list
+    let listCheck3 = 2 in list
+    let listCheck4 = 3 in list
+    let listCheck9 = 9 in list
+    document.writeln(`<p>${listCheck1}</p>`)
+    document.writeln(`<p>${listCheck2}</p>`)
+    document.writeln(`<p>${listCheck3}</p>`)
+    document.writeln(`<p>${listCheck4}</p>`)
+    document.writeln(`<p>${listCheck9}</p>`)
+  </script>
+</body>
+</html>

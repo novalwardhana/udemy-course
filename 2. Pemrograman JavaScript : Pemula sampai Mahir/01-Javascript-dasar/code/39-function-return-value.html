@@ -1,0 +1,47 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Return value */
+    function composeName(firstName, lastName) {
+      let fullName = `My name ${firstName} ${lastName}`
+      return fullName
+    }
+    let result = composeName("Harry", "Kane")
+    document.writeln(`<p>${result}</p>`)
+
+    /* Return bercabang */
+    function getQualitativeScore(score) {
+      if (score > 85) {
+        return "Perfect"
+      } else if (score > 75) {
+        return "Pretty Good"
+      } else if (score > 60) {
+        return "Good"
+      } else if (score > 45) {
+        return "Not Bad"
+      } else {
+        return "Bad"
+      }
+    }
+    const score = 85
+    let result2 = getQualitativeScore(score)
+    document.writeln(`Your result: ${result2}`)
+
+    /* Menghentikan eksekusi dengan return */
+    function getData(datas, searchValue) {
+      for (const data of datas) {
+        if (data === searchValue) {
+          console.info(`data ${data}`)
+          return true
+        }
+      }
+      return false
+    }
+    let datas = [12, 8, 5, 4, 9, 15, 16, 19, 20, 6, 8]
+    let searchValue = 20
+    let result3 = getData(datas, searchValue)
+    document.writeln(`<p>${result3}</p>`)
+  </script>
+</body>
+</html>

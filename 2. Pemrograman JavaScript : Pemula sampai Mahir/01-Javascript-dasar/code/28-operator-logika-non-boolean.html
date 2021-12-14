@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Operator OR */
+    console.info("" || "Data")
+    console.log(0 || "Right")
+    console.log("" || [])
+    console.log("NULL" || null)
+    console.log(undefined || null)
+    console.log("Noval" || "Wardhana")
+    let person = {
+      firstName: "Jadon",
+      lastName: "sancho"
+    }
+    let namePerson = person.firstName ?? person.lastName
+    console.info(namePerson)
+
+    /* Operator AND */
+    console.info("" && "Data")
+    console.log(0 && "Right")
+    console.log("" && [])
+    console.log("NULL" && null)
+    console.log(undefined && null)
+    console.log("Noval" && "Wardhana")
+  </script>
+</body>
+</html>

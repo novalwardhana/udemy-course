@@ -1,0 +1,34 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    /* Array */
+    let arrayKosong = []
+    let arrayNama = ["Manchester United", "Chelsea", "Arsenal", 25, true]
+    arrayNama.push("Barcelona")
+    arrayNama.push(12.5)
+    arrayNama.push(true)
+    arrayNama.push(1, 4, 9)
+    console.table(arrayNama)
+    console.info(arrayNama[0])
+    console.info(arrayNama[1])
+    console.info(arrayNama[2])
+
+    /* Change element of array */
+    arrayNama[2] = "Liverpool"
+    console.table(arrayNama)
+
+    /* Delete element of array */
+    delete arrayNama[2]
+    console.table(arrayNama)
+
+    /* Array multidimensi */
+    let subArray1 = [true, false, true, false, true]
+    arrayNama.push(subArray1)
+    let subArray2 = ["Jadon Sancho", "Ronaldo", "Cavani"]
+    arrayNama.push(subArray2)
+    console.table(arrayNama)
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* String template */
+    const firstName = "Jadon"
+    const lastName = "Sancho"
+    const template = `Name: ${firstName} ${lastName}`
+    console.info(template)
+
+    /* Expression in string template */
+    const student = "NovalWardhana"
+    const studentValue = 85
+    const studentTemplate = `Name: ${student}, Status Lulus: ${studentValue > 83} `
+    console.info(studentTemplate)
+  
+    /* Multiline string */
+    let multilineString = `
+      Manchester United
+      Chelsea
+      Arsenal
+      Manchester City
+      Liverpool
+      Tottenham
+    `
+    console.info(multilineString)
+    document.writeln("<pre>")
+    document.writeln(multilineString)
+    document.writeln("</pre>")
+  </script>
+</body>
+</html>

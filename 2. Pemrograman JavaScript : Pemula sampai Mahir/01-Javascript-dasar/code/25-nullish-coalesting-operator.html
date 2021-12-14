@@ -1,0 +1,21 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Nullisth coalesting: nilai default jika null atau undefined */
+    let paramater1
+    let data1 = paramater1 ?? "default value"
+    document.writeln(`<p>data1: ${data1}</p>`)
+
+    /* nullisth null */
+    let parameter2 = null
+    let data2 = parameter2 ?? "default value"
+    document.writeln(`<p>data2: ${data2}</p>`)
+
+    /* nullisth not null or undefined */
+    let parameter3 = 25
+    let data3 = parameter3 ?? "default value"
+    document.writeln(`<p>data3: ${data3}</p>`)
+  </script>
+</body>
+</html>

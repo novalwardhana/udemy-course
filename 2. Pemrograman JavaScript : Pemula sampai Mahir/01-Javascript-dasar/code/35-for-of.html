@@ -1,0 +1,29 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* For of in array */
+    const clubs = ["Chelsea", "Arsenal", "Liverpool"]
+    for (const club of clubs) {
+      document.writeln(`<p>Club: ${club}</p>`)
+    }
+
+    /* For of in array object */
+    const players = [
+      {name: "Harry Kane", number: 9, club: "Tottenham"},
+      {name: "Ronaldo", number: 7, club: "Manchester United"},
+      {name: "Son Hyeung Min", number: 7, club: "Tottenham"}
+    ]
+    for (const player of players) {
+      let dataPlayer = JSON.stringify(player)
+      document.writeln(`<p>Player: ${dataPlayer}</p>`)
+    }
+
+    /* For of in string */
+    const names = "Novalita Kusuma Wardhana"
+    for (const name of names) {
+      document.writeln(`<p>${name}</p>`)
+    }
+  </script>
+</body>
+</html>

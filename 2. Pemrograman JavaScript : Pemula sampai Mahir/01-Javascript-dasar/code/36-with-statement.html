@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    /* Tidak direkomendasikan karena membuat kode menjadi ambigu */
+    const person = {
+      firstName: "Novalita",
+      middleName: "Kusuma",
+      lastName: "Wardhana",
+      age: 28
+    }
+
+    const firstName = "Jadon"
+    const lastName = "Sancho"
+
+    with(person) {
+      console.info(person.firstName)
+      console.info(person.middleName)
+      console.info(person.lastName)
+      console.info(person.age)
+    }
+  </script>
+</body>
+</html>

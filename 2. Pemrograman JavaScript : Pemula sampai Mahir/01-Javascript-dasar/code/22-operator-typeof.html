@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* type undefined */
+    let data
+    let typeData = typeof data
+    document.writeln(`<p>${typeData}</p>`)
+
+    /* type object null */
+    data = null
+    typeData = typeof data
+    document.writeln(`<p>${typeData}</p>`)
+
+    /* type object */
+    data = {
+      firstName: "Noval",
+      middleName: "Kusuma",
+      lastName: "Wardhana"
+    }
+    typeData = typeof data
+    document.writeln(`<p>${typeData}</p>`)
+
+    /* type object array */
+    data = [1, 4, 9, 16]
+    typeData = typeof data
+    document.writeln(`<p>${typeData}</p>`)
+
+    /* type number */
+    data = 25.89
+    typeData = typeof data
+    document.writeln(`<p>${typeData}</p>`)
+  </script>
+</body>
+</html>

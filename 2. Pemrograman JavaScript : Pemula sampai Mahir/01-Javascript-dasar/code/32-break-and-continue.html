@@ -1,0 +1,31 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Break: menghentikan loop */
+    let counter = 1
+    while (true) {
+      document.writeln(`<p>Iterasi ke - ${counter}</p>`)
+      counter++
+
+      if (counter >= 12) {
+        break
+      }
+    }
+
+    /* Continue: melewati loop di iterasi tertentu */
+    counter = 0
+    while (true) {
+      if (counter % 2 === 0) {
+        counter++
+        continue
+      }
+      document.writeln(`<p>Iterasi ke - ${counter}</p>`)
+      counter++
+      if (counter >= 12) {
+        break
+      }
+    }
+  </script>
+</body>
+</html>

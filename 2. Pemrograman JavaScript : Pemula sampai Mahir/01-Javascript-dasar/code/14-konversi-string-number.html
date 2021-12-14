@@ -1,0 +1,58 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    const value1 = parseInt("1")
+    const value2 = 2
+    const value3 = parseFloat("3.14")
+    const value4 = Number("2.22")
+    const sum = value1 + value2 + value3 + value4
+    document.writeln(`<p>${sum}</p>`)
+
+    /* parseInt */
+    const value5 = parseInt("1.99")
+    document.writeln(`<p>${value5}</p>`)
+
+    /* parseFloat */
+    const value6 = parseFloat("2.323")
+    document.writeln(`<p>${value6}</p>`)
+
+    /* Number */
+    const value7 = Number("9.54")
+    document.writeln(`<p>${value7}</p>`)
+
+    /* toString */
+    const value8 = Number("1.23").toString() + Number("1.23").toString()
+    document.writeln(`<p>${value8}</p>`)
+
+    /* parseInt with NaN*/
+    const value9 = parseInt("25wrong")
+    const value10 = parseInt("wrong25")
+    document.writeln(`<p>${value9}</p>`)
+    document.writeln(`<p>${value10}</p>`)
+
+    /* parseFloat with NaN */
+    const value11 = parseFloat("2.9wrong")
+    const value12 = parseFloat("wrong2.9")
+    document.writeln(`<p>${value11}</p>`)
+    document.writeln(`<p>${value12}</p>`)
+
+    /* Number with NaN */
+    const value13 = Number("32wrong")
+    const value14 = Number("wrong32")
+    document.writeln(`<p>${value13}</p>`)
+    document.writeln(`<p>${value14}</p>`)
+
+    /* NaN Operation */
+    const value15 = 25
+    const value16 = Number("wrong")
+    const sum2 = value15 + value16
+    document.writeln(`<p>${sum2}</p>`)
+
+    /* isNaN Check */
+    document.writeln(`<p>${isNaN(value15)}</p>`)
+    document.writeln(`<p>${isNaN(value16)}</p>`)
+  </script>
+</body>
+</html>

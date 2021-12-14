@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Falshy */
+    let value = ""
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+    value = 0
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+    value = null
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+    value = undefined
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+
+    /* Truthy */
+    value = "false"
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+    value = []
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+    value = {}
+    if (value) {
+      document.writeln("<p>TRUE</p>")
+    } else {
+      document.writeln("<p>FALSE</p>")
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    const emptyObject = {}
+
+    let object = {}
+
+    /* Menambah atau menghapus */
+    object["name"] = "Jadon Sancho"
+    object["age"] = 25
+    object["address"] = "Manchester"
+    object["example"] = true
+    console.table(object)
+
+    /* Menghapus data */
+    delete object["example"]
+    console.table(object)
+
+    /* Direct Object */
+    directObject = {
+      "full name": "David De Gea",
+      age: 30,
+      address: "Spain"
+    }
+    console.table(directObject)
+    
+    /* Access array element */
+    console.info(`Full name: ${directObject['full name']}`)
+    console.info(`Age: ${directObject.age}`)
+    console.info(`Address: ${directObject.address}`)
+  </script>
+</body>
+</html>
