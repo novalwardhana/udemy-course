@@ -1,0 +1,46 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Function sebagai value */
+    function sayMyName(name) {
+      document.writeln(`<p>Hello ${name}</p>`)
+    }
+    sayMyName("Ronaldo")
+    let newSay = sayMyName
+    newSay("Messi")
+
+    /* Function sebagai parameter */
+    function giveMyName(callback) {
+      callback("Novalita Kusuma Wardhana")
+    }
+    giveMyName(sayMyName)
+    giveMyName(newSay)
+
+    function meanValue(...datas) {
+      let total = 0
+      for (const data of datas) {
+        total += data
+      }
+      let mean = total / datas.length
+      document.writeln(`<p>Mean data: ${mean}</p>`)
+    }
+    function maxValue(...datas) {
+      let maxValue = 0
+      for (const data of datas) {
+        if (maxValue < data) {
+          maxValue = data
+        }
+      }
+      document.writeln(`<p>Max Value: ${maxValue}</p>`)
+    }
+    function statistic(callbackStat, ...datas) {
+      callbackStat(...datas)
+    }
+    let newMean = meanValue
+    let newMax = maxValue
+    statistic(newMean, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30)
+    statistic(newMax, ...[12, 14, 16, 18, 20, 22, 24, 26, 28, 30])
+  </script>
+</body>
+</html>

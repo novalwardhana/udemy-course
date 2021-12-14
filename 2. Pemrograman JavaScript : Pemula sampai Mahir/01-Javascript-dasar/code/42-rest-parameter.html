@@ -1,0 +1,46 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* 
+      Rest parameter: mengirimkan data sebanyak-banyaknya pada satu parameter 
+      Rest parameter harus di posisi paling akhir
+    */
+    function statistic(name, ...datas) {
+      total = 0
+      for (const data of datas) {
+        total += data
+      }
+      let mean = total / datas.length
+      document.writeln(`<p>${name} sum value: ${total}</p>`)
+      document.writeln(`<p>${name} mean value: ${mean}</p>`)
+      document.writeln(`<p>${name} number of data: ${datas.length}</p>`)
+    }
+
+    statistic("Height", 155, 175, 185, 150, 165, 167, 169, 172, 180, 175)
+    statistic("Weight", 50, 59, 49, 55, 56, 70, 85, 45, 60, 58)
+    statistic("Battery", 1000, 1200, 900, 500, 880, 900, 1000, 1200, 980, 990)
+
+    /* 
+      Spread Syntax: Jika data yang dikirim berupa array 
+      Jika parameter sudah terlanjur menggunakan array
+    */
+    const foodPrice = [15000, 16000, 19000, 85000, 4500, 7500, 25000, 15000, 10000, 9600]
+    statistic("Food price", ...foodPrice)
+    const drinkPrice = [5000, 3000, 2500, 4500, 6000, 6500, 7500, 8500]
+    statistic("Drink price", ...drinkPrice)
+
+    /* Argument Objects: tidak perlu menuliskam parameter */
+    function statisticWithArgument() {
+      let total = 0
+      for (const argument of arguments) {
+        total += argument
+      }
+      let mean = total / arguments.length
+      document.writeln(`<p>Argument total: ${total}</p>`)
+      document.writeln(`<p>Argument mean: ${mean}</p>`)
+    }
+    statisticWithArgument(1, 4, 9, 16, 25, 36, 49, 64, 81, 100)
+  </script>
+</body>
+</html>

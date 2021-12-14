@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Nested function */
+    function outer() {
+      function inner() {
+        console.info("Ini inner")
+      }
+      inner()
+      inner()
+    }
+    outer()
+
+    function statistics(...datas) {
+      function mean(...datas) {
+        let total = 0
+        for (const data of datas) {
+          total += data
+        }
+        let result = total / datas.length
+        return result
+      }
+      function min(...datas) {
+        let result = datas[0]
+        for (const data of datas) {
+          if (result > data) {
+            result = data
+          }
+        }
+        return result
+      }
+      function max(...datas) {
+        let result = 0
+        for (const data of datas) {
+          if (result < data) {
+            result = data
+          }
+        }
+        return result
+      }
+      let meanValue = mean(...datas)
+      let minValue = min(...datas)
+      let maxValue = max(...datas)
+      document.writeln(`<p>Mean value ${meanValue}</p>`)
+      document.writeln(`<p>Min value ${minValue}</p>`)
+      document.writeln(`<p>Max value ${maxValue}</p>`)
+    } 
+    statistics(50, 45, 65, 62, 43, 58, 55, 54, 70, 68)
+  </script>
+</body>
+</html>

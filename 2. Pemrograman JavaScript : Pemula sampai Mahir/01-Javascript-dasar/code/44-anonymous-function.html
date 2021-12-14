@@ -1,0 +1,43 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Anonymous function */
+    let sayName = function(name) {
+      document.writeln(`<p>Hello ${name}</p>`)
+    }
+    sayName("Harry Kane")
+    sayName("Son Hyeung Min")
+
+    /* Anonymous function, function sebagai parameter */
+    function giveMeName(callback) {
+      callback("Noval")
+    }
+    giveMeName(sayName)
+    giveMeName(function(name){
+      document.writeln(`<p>Holaa ${name}</p>`)
+    })
+    function statistics(callbackStat, ...datas) {
+      callbackStat(...datas)
+    }
+    statistics(function(...datas){
+      let minValue = datas[0]
+      for (const data of datas) {
+        if (minValue > data) {
+          minValue = data
+        }
+      }
+      document.writeln(`<p>Min value: ${minValue}</p>`)
+    }, 100, 1, 4, 9, 16, 25, 36, 49, 64, 81, 100)
+    statistics(function(...datas){
+      let maxValue = 0
+      for (const data of datas) {
+        if (maxValue < data) {
+          maxValue = data
+        }
+      }
+      document.writeln(`<p>Max value: ${maxValue}</p>`)
+    }, ...[180, 175, 150, 163, 161, 160, 188, 170, 175, 168])
+  </script>
+</body>
+</html>
