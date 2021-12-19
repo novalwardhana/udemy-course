@@ -1,0 +1,36 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* This di dalam gLobal scope */
+    console.info(this)
+    function sample() {
+      console.info(this)
+
+      function sampleOne() {
+        console.info(this)
+      }
+
+      function sampleTwo() {
+        console.info(this)
+      }
+
+      sampleOne()
+      sampleTwo()
+    }
+    sample()
+
+    /* This di dalam object method */
+    const sampleObj = {
+      firstName: "Novalita",
+      middleName: "Kusuma",
+      lastName: "Wardhana",
+      fullName: function(value) {
+        console.info(`${value}, ${this.firstName} ${this.middleName} ${this.lastName}`)
+      }
+    }
+    sampleObj.fullName("Hallo")
+    sampleObj.fullName("Holla")
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Getter and setter: merubah method menjadi property */
+    const club = {
+      firstName: "Machester",
+      lastName: "United",
+      get fullName() {
+        return `${this.firstName} ${this.lastName}`
+      },
+      set fullName(value) {
+        let splitValue = value.split(" ")
+        this.firstName = splitValue[0]
+        this.lastName = splitValue[1]
+      }
+    }
+    console.table(club)
+    console.info(club.fullName)
+
+    club.fullName = "Real Madrid"
+    console.table(club)
+    console.info(club.fullName)
+
+    club.fullName = "AC Milan"
+    console.table(club)
+    console.info(club.fullName)
+
+    const person = {
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      get fullName() {
+        return `${this.firstName} ${this.middleName} ${this.lastName}`
+      },
+      set fullNamePerson(value) {
+        this.firstName = value[0]
+        this.middleName = value[1]
+        this.lastName = value[2]
+      },
+    }
+    console.table(person)
+    
+    person.fullNamePerson = ["Noval", "Kusuma", "Wardhana"]
+    console.table(person)
+    console.info(person.fullName)
+  </script>
+</body>
+</html>

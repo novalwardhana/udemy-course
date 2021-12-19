@@ -1,0 +1,45 @@
+<html>
+<head></head>
+<body>
+  <script>
+  /* 
+    Arrow function di object 
+    Nb: 'this' di arrow function pada object merefer ke windows, tidak merefer ke object tersebut
+  */
+  const person = {
+    name: "Noval Wardhana",
+    sampleOne: (txt) => {
+      console.info(this) // Merefer ke windows
+      console.info(`${txt} ${this.name}`)
+    },
+    samplTwo: function(txt) {
+      console.info(this) // Merefer ke object
+      console.info(`${txt} ${this.name}`)
+    }
+  }
+  person.sampleOne("Hallo")
+  person.samplTwo("Hai")
+
+
+  const statistics = {
+    name: "Statistic Function",
+    standardDeviation: (...datas) => {
+      let sum = 0
+      let count = datas.length
+      for (const data of datas) {
+        sum += data
+      }
+      let mean = sum / count
+      let sumStd = 0
+      for (const data of datas) {
+        sumStd += (data - mean)**2 
+      }
+      let stdDeviation = sumStd / (count - 1)
+      return stdDeviation
+    }
+  }
+  stdDeviation = statistics.standardDeviation(...[8, 9, 5, 4, 6, 9, 7, 8, 6, 9])
+  console.info(`stdDeviation: ${stdDeviation}`)
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Scope: area akses sebuah data */
+
+    /* Variable gLobal scope */
+    let counterGlobal = 0
+    function addCounterGlobal() {
+      counterGlobal++
+    }
+    addCounterGlobal()
+    addCounterGlobal()
+    console.info("CounterGLobal: ", counterGlobal)
+
+    /* Variable local scope */
+    function firstLocalFunction() {
+      let firstLocal = "Hello"
+    }
+    function secondLocalFunction() {
+      let secondLocal = "World"
+    }
+    // console.info(firstLocal) => error undefined
+    // console.info(secondLocal) => error undefined
+
+    /* Nested function scope*/
+    function nestedFunction() {
+      let firstLocal = "Noval Wardhana"
+      let count = 0
+      function firstSubNestedFunction() {
+        console.info(firstLocal)
+      }
+      firstSubNestedFunction()
+      function secondSubNestedFunction() {
+        count++
+      }
+      secondSubNestedFunction()
+      secondSubNestedFunction()
+      secondSubNestedFunction()
+      console.info(count)
+    }
+    nestedFunction()
+  </script>
+</body>
+</html>

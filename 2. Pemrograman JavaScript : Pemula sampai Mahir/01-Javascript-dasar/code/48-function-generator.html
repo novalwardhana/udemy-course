@@ -1,0 +1,64 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    /* Function generator: mengirim return data lebih dari satu 
+       Recursice function termasik lazy   
+    */
+    function* createClubs() {
+      yield "Manchester United"
+      yield "Arsenal"
+      yield "Liverpool"
+    }
+    console.info(createClubs())
+    let clubs = createClubs()
+    for (const club of clubs) {
+      console.info(club)
+    }
+
+    /* Yield multiple */
+    function* createEvenNumber(value) {
+      for (let i = 0; i<= value; i++) {
+        if (i % 2 == 0) {
+          console.info(`Yield ke ${i}`)
+          yield i
+        }
+      }
+    }
+    let evenNumber = createEvenNumber(20)
+    for (let number of evenNumber) {
+      console.info(number)
+    }
+
+    /* Function biasa */
+    function createEvenNumber2(value) {
+      let data = []
+      for (let i = 0; i < value; i++) {
+        if (i % 2 == 0) {
+          console.info(`Yield ke ${i}`)
+          data.push(i)
+        }
+      }
+      return data
+    }
+    let evenNumber2 = createEvenNumber2(20)
+    for (let number2 of evenNumber2) {
+      console.info(number2)
+    }
+
+    /* next value: Memanggil yield selama satu/beberapa kali seklai  */
+    function* createOddNumber(value) {
+      let result = []
+      for (let i = 0; i < value; i++) {
+        if (i % 2 == 0) {
+          yield i
+        }
+      }
+    }
+    let oddNumbers = createOddNumber(30)
+    console.info(oddNumbers.next().value)
+    console.info(oddNumbers.next().value)
+  </script>
+</body>
+</html>

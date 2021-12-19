@@ -1,0 +1,57 @@
+<html>
+<head></head>
+<body>
+  <script>
+
+    /* Closure: melakukan return sebuah function */
+    function createAdder(value) {
+
+      const name = "Novalita Kusuma Wardhana"
+      function add(param) {
+        return param + value
+      }
+
+      return add
+    }
+    adderOne = createAdder(9)
+    console.info(adderOne(25))
+    adderTwo = createAdder(70)
+    console.info(adderTwo(26))
+
+    /* Closure with arrow function */
+    function closureArrow(...datas) {
+
+      const moreThan = (value) => {
+        let result = []
+        for (let data of datas) {
+          if (data > value) {
+            result.push(data)
+          }
+        }
+        return result
+      }
+
+      const lessThan = (value) => {
+        let result = []
+        for (let data of datas) {
+          if (data < value) {
+            result.push(data)
+          }
+        }
+        return result
+      }
+
+      return [moreThan, lessThan]
+    }
+    let newClosureArrow = closureArrow(...[10, 8, 6, 5, 12, 15, 18, 12, 15, 9])
+    for (const fc in newClosureArrow) {
+      let compareValue = 8
+      if (fc == 0) {
+        console.info(`More than ${compareValue}: ${newClosureArrow[fc](compareValue)}`)
+      } else {
+        console.info(`Less than ${compareValue}: ${newClosureArrow[fc](compareValue)}`)
+      }
+    }
+  </script>
+</body>
+</html>

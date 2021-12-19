@@ -1,0 +1,40 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Arrow function */
+    const helloName = (firstName, lastName) => {
+      const result = `Hello ${firstName} ${lastName}`
+      console.info(result)
+    }
+    helloName("Noval", "Wardhana")
+
+    /* Arrow function tanpa block: khusus fungsi sederhana */
+    const hollaName = (firstName, lastName) => console.info(`Holla ${firstName} ${lastName}`)
+    const sumValue = (firstValue, secondValue) => firstValue + secondValue
+    hollaName("Jadon", "Sancho")
+    console.info(sumValue(5, 8))
+
+    /* Arrow function return value */
+    const sumValue2 = (...datas) => {
+      let value = 0
+      for (const data of datas) {
+        value += data
+      }
+      return value
+    }
+    resultSumValue = sumValue2(1, 2, 3, 4, 5, 6)
+    console.info(resultSumValue)
+
+    /* Arrow function tanpa kurung parameter */
+    const sayName = name => console.info(`hello ${name}`)
+    sayName("Tonny Kros")
+
+    /* Arrow function sebagai parameter */
+    function myFunction(callback) {
+      callback("Noval", "Wardhana")
+    }
+    myFunction((firstName, lastName) => console.info(`${firstName} ${lastName}`))
+  </script>
+</body>
+</html>
