@@ -1,0 +1,120 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Destcruturing array: mengambil object spesifik pada array */
+    let [mu, che, ars, ...others] = ["Manchester United", "Chelsea", "Arsenal", "Tottenham", "Liverpool"]
+    console.info(mu)
+    console.info(che)
+    console.info(ars)
+    console.info(others)
+
+    /* Destructuring object: mengambil object spesifik pada object */
+    let player = {
+      playerName: "Juan Matta",
+      playerClub: "Manchester united",
+      playerBio: {
+        age: 21,
+        city: "Manchester"
+      },
+      firstPosition: "Striker",
+      secondPosition: "Midfielder"
+    }
+    let {playerName, playerClub, playerBio, ...playerOthers} = player
+    console.info(`playerName: ${playerName}`)
+    console.info(`playerClub: ${playerClub}`)
+    console.info("playerBio:", playerBio)
+    console.info("playerOthers: ", playerOthers)
+
+    /* Destructuring nested object */
+    let club = {
+      clubName: "Arsenal",
+      clubCity: "London",
+      clubBio: {
+        clubWinner: 15,
+        clubCoach: "Arteta",
+        clubStadium: "Emirates" 
+      }
+    }
+    let {clubName, clubCity, clubBio: {clubWinner, clubCoach, clubStadium} } = club
+    console.info(`clubName: ${clubName}`)
+    console.info(`clubCity: ${clubCity}`)
+    console.info(`clubWinner: ${clubWinner}`)
+    console.info(`clubCoah: ${clubCoach}`)
+    console.info(`clubStadium: ${clubStadium}`)
+
+    /* Destructuring function parameter object */
+    function displayPlayer({playerName, playerClub, playerBio}) {
+      console.info(playerName)
+      console.info(playerClub)
+      console.info(playerBio)
+    }
+    displayPlayer(player)
+    const displayClub = ({clubName, clubCity}) => {
+      console.info(clubName)
+      console.info(clubCity)
+    }
+    displayClub(club)
+
+    /* Desctrucuting function parameter array */
+    let data = [20, 30, 40]
+    const sumData = ([data1, data2, data3]) => {
+      let result = data1 + data2 + data3
+      console.info(result)
+    }
+    sumData(data)
+
+    /* Default value array */
+    let food = ["Sate", "Soto"]
+    let [firstFood, secondFood, lastFood = "Bakso"] = food
+    console.info(`firstFood: ${firstFood}`)
+    console.info(`secondFood: ${secondFood}`)
+    console.info(`lastFood: ${lastFood}`)
+    let drink = ["Es Teh", "Es Jeruk", "Sprite"]
+    let [firstDrink, secondDrink, thirdDrink, fourthDrink = "Fanta"] = drink
+    console.info(`firstDrink: ${firstDrink}`)
+    console.info(`secondDrink: ${secondDrink}`)
+    console.info(`thirdDrink: ${thirdDrink}`)
+    console.info(`fourthDrink: ${fourthDrink}`)
+
+    /* Default value array */
+    let smartphone = {
+      smartphoneName: "Redmi Note 8",
+      smartphonePrice: 2500000
+    }
+    let {smartphoneName, smartphoneBrand = "Xiaomi", smartphonePrice} = smartphone
+    console.info(`smartphoneName: ${smartphoneName}`)
+    console.info(`smartphoneBrand: ${smartphoneBrand}`)
+    console.info(`smartphonePrice: ${smartphonePrice}`)
+    let notebook = {
+      notebookName: "14ARE05",
+      notebookBrand: "Lenovo"
+    }
+    let {notebookName, notebookBrand, notebookPrice=8500000} = notebook
+    console.info(`notebookName: ${notebookName}`)
+    console.info(`notebookBrand: ${notebookBrand}`)
+    console.info(`notebookPrice: ${notebookPrice}`)
+
+    /* 
+      Destructuring object alias,
+      memberi nama alias pada object yang dilakukan destructuring
+    */
+    let motorcycle = {
+      motorcycleName: "CB 150R Exmotion",
+      motorcyclePrice: 35000000
+    }
+    let {motorcycleName:motoName, motorcycleBrand:motoBrand = "Honda", motorcyclePrice:motoPrice = 32500000} = motorcycle
+    console.info(`motoName: ${motoName}`)
+    console.info(`motoBrand: ${motoBrand}`)
+    console.info(`motoPrice: ${motoPrice}`)
+    let film = {
+      filmName: "Spiderman No Way Home",
+      filmBrand: "Marvel"
+    }
+    let {filmName:flName = "Batman", filmBrand:flBrand = "DC", filmRelease:flRelease = 2021} = film
+    console.info(`filmName: ${flName}`)
+    console.info(`filmBrand: ${flBrand}`)
+    console.info(`filmRelease: ${flRelease}`)
+</script>
+</body>
+</html>

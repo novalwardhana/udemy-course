@@ -1,0 +1,22 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Strict mode when use var */
+    function strictModeVar() {
+      'use strict'
+      var name = {
+        firstName: "Noval",
+        middleName: "Kusuma",
+        lastName: "Wardhana"
+      }
+      with (name) {
+        console.info(firstName)
+        console.info(middleName)
+        console.info(lastName)
+      }
+    }
+    strictModeVar()
+  </script>
+</body>
+</html>
