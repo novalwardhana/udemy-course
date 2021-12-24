@@ -1,0 +1,48 @@
+<html>
+<head></head>
+<body>
+  <script>
+    function Person() {
+      this.firstName = ""
+      this.lastName = ""
+      this.sayHello = function(name) {
+        console.info(`Hello ${name}, my name is ${this.firstName} ${this.lastName}`)
+      }
+      this.myName = (name) => {
+        console.info(`Hello ${name}, my name is ${this.firstName} ${this.lastName}`)
+      }
+    }
+    const noval = new Person()
+    noval.firstName = "Novalita"
+    noval.lastName = "Wardhana"
+    noval.sayHello("Zlatan")
+    noval.myName("Rooney")
+
+    function Numerical() {
+      this.datas = null
+      this.moreThan = function(value) {
+        let result = []
+        for (let data of this.datas) {
+          if (data > value) {
+            result.push(data)
+          }
+        }
+        console.info(result)
+      }
+      this.lessThan = (value) => {
+        let result = []
+        for (let data of this.datas) {
+          if (data < value) {
+            result.push(data)
+          }
+        }
+        console.info(result)
+      }
+    }
+    const numerical = new Numerical()
+    numerical.datas = [10, 9, 8, 2, 3, 6, 7, 9, 6, 8]
+    numerical.moreThan(5)
+    numerical.lessThan(4)
+  </script>
+</body>
+</html>

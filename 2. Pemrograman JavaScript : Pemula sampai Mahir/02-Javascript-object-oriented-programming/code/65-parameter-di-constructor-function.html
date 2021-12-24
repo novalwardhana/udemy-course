@@ -1,0 +1,45 @@
+<html>
+<head></head>
+<body>
+  <script>
+    function Person(firstName, lastName) {
+      this.fistName = firstName
+      this.lastName = lastName
+      this.sayName = function(name) {
+        console.info(`Hello ${name}, my name is ${firstName} ${lastName}`)
+      }
+    }
+    const bambang = new Person("Bambang", "Pamungkas")
+    bambang.sayName("Budi")
+    const budi = new Person("Budi", "Sudarsono")
+    budi.sayName("Bambang")
+
+    function Numerical(...datas) {
+      this.datas = datas
+      this.showDatas = () => {
+        console.info(`The data is: ${this.datas}`)
+      }
+      this.sum = () => {
+        let result = 0
+        for (const data of datas) {
+          result += data
+        }
+        console.info(`Sum data is: ${result}`)
+      }
+      this.mean = function() {
+        let sumData = 0
+        for (const data of this.datas) {
+          sumData += data
+        }
+        let lengthData = this.datas.length
+        let meanValue = sumData/lengthData
+        console.info(`Mean data is: ${meanValue}`)
+      }
+    }
+    const numOne = new Numerical(1, 2, 3, 4, 5, 6, 7)
+    numOne.showDatas()
+    numOne.sum()
+    numOne.mean()
+  </script>
+</body>
+</html>

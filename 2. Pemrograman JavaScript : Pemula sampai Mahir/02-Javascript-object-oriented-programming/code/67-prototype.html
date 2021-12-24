@@ -1,0 +1,38 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Prototype */
+    function Person(firstName, lastName) {
+      this.firstName = firstName
+      this.lastName = lastName
+      this.sayMyName = function(name) {
+        console.info(`Hello ${name}, my name is ${this.firstName} ${this.lastName}`)
+      }
+    }
+
+    /* 
+      Prototype inheritence 
+      - Mencari function di objectnya dulu
+      - Jika tidak ada baru mencari di bagian prototype
+    */
+    Person.prototype.club = function(value) {
+      console.info(`${this.firstName} clubs is ${value}`)
+    }
+
+    Person.prototype.price = function(value) {
+      console.info(`${this.firstName} price is ${price}`)
+    }
+
+    const ronaldo = new Person("Cristiano", "Ronaldo")
+    const degea = new Person("David", "Degea")
+    degea.club = function(value) {
+      console.info(`${this.firstName} ${this.lastName} ${value} ${value} forever`)
+    }
+    console.info(ronaldo)
+    console.info(degea)
+    ronaldo.club("Manchester united")
+    degea.club("Manc. United FC")
+  </script>
+</body>
+</html>
