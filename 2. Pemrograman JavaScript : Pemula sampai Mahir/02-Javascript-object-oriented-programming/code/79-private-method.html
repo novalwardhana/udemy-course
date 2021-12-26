@@ -1,0 +1,58 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Private method: menambahkan tanda # sebelum nama method */
+    class Person {
+      say(name) {
+        if (name) {
+          this.#sayWithName(name)
+        } else {
+          this.#sayWithoutName()
+        }
+      }
+
+      #sayWithName(name) {
+        console.info(`Hallo ${name}`)
+      }
+
+      #sayWithoutName() {
+        console.info(`Hallo`)
+      }
+    }
+
+    const personOne = new Person()
+    personOne.say("noval")
+    const personTwo = new Person()
+    personTwo.say()
+
+    /* Me */
+    class Statistic {
+
+      #sumData(...datas) {
+        let result = 0
+        for (const data of datas) {
+          result += data
+        }
+        return result
+      }
+
+      #lengthData(...datas) {
+        return datas.length
+      }
+
+      meanData(...datas) {
+        let sumData = this.#sumData(...datas)
+        let countData = this.#lengthData(...datas)
+        let result = sumData / countData
+        return result
+      }
+    }
+
+    const statsOne = new Statistic()
+    console.info(statsOne.meanData(12, 15, 9, 8, 11))
+    const statsTwo = new Statistic()
+    console.info(statsTwo.meanData(...[7, 8, 12, 15, 4, 3, 8, 9, 6, 15]))
+  </script>
+</body>
+</html>

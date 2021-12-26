@@ -1,0 +1,48 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Private field: Menambahkan tanda # sebelum nama field */
+    class CounterData {
+      #counter = 0
+
+      increament() {
+        this.#counter++
+      }
+
+      decreament() {
+        this.#counter--
+      }
+
+      get() {
+        return this.#counter
+      }
+    }
+    const count = new CounterData()
+    console.info(count)
+    count.decreament()
+    console.info(count.get())
+    count.increament()
+    count.increament()
+    count.increament()
+    console.info(count.get())
+
+    /* Me */
+    class AppendData {
+      #datas = []
+      pushData(value) {
+        this.#datas.push(value)
+      }
+      get Data() {
+        return this.#datas
+      }
+    }
+    const clubs = new AppendData()
+    console.info(clubs)
+    clubs.pushData("Manchester United")
+    clubs.pushData("Arsenal")
+    clubs.pushData("Liverpool")
+    console.info(clubs.Data)
+  </script>
+</body>
+</html>

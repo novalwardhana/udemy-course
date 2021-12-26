@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Udemy */
+    class Shape {
+      paint() {
+        console.info(`Paint shape`)
+      }
+    }
+
+    class Circle extends Shape {
+      paint() {
+        super.paint()
+        console.info(`Paint circle`)
+      }
+    }
+
+    const circle = new Circle()
+    circle.paint()
+
+    /* Me */
+    class PatternParent {
+      generate(number) {
+        for(let i=0; i<number; i++) {
+          let str = ""
+          for (let j=0; j<=i; j++) {
+            str += String("*")
+          }
+          console.info(str + "\n")
+        }
+      }
+    }
+
+    class PatternChild extends PatternParent {
+      generate(number) {
+        super.generate(number)
+        for(let i=0; i <= number; i++) {
+          let str = ""
+          for(let j=1; j<=i; j++) {
+            str += String(j)
+          }
+          console.info(str + "\n")
+        }
+      }
+    }
+
+    const pattern = new PatternChild()
+    pattern.generate(5)
+  </script>
+</body>
+</html>

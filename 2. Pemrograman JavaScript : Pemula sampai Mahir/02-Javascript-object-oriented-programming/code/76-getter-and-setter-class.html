@@ -1,0 +1,80 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Getter dan setter berada di prototype, bukan di instance object */
+    class Person {
+      constructor(firstName, lastName) {
+        this.firstName = firstName
+        this.lastName = lastName
+      }
+
+      get fullName() {
+        let result = `Fullname: ${this.firstName} ${this.lastName}`
+        return result
+      }
+
+      set fullName(names) {
+        let splitNames = names.split(" ")
+        this.firstName = splitNames[0]
+        this.lastName = splitNames[1]
+      }
+    }
+
+    const personOne = new Person("Keylor", "Navas")
+    console.info(personOne.fullName)
+    console.info(personOne)
+    personOne.fullName = "Joe Hart"
+    console.info(personOne.fullName)
+    console.info(personOne)
+
+    /* Me */
+    class Club {
+      constructor(name, nick, country) {
+        this.name = name
+        this.nick = nick
+        this.country = country
+      }
+      get thisName() {
+        return this.name
+      }
+      set thisName(value) {
+        this.name = value
+      }
+      get thisNick() {
+        return this.nick
+      }
+      set thisNick(value) {
+        this.nick = value
+      }
+      get thisCountry() {
+        return this.country
+      }
+      set thisCountry(value) {
+        this.country = value
+      }
+      get allProperty() {
+        let result = {
+          name: this.name,
+          nick: this.nick,
+          country: this.country
+        }
+        return result
+      }
+      set allProperty({name, nick, country}) {
+        this.name = name
+        this.nick = nick
+        this.country = country
+      }
+    }
+    const eplClub = new Club("Tottenham", "Lily white", "England")
+    console.info(eplClub)
+    eplClub.thisName = "Arsenal"
+    eplClub.thisNick = "The gunners"
+    eplClub.thisCountry = "England"
+    console.info(eplClub)
+    eplClub.allProperty = {name: "Real Madrid", nick: "Los Blancos", country: "Spain", ucl: 12}
+    console.info(eplClub.allProperty)
+  </script>
+</body>
+</html>

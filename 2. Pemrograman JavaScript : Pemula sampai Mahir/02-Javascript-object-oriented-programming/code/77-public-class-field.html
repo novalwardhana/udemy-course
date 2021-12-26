@@ -1,0 +1,45 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Udemy */
+    class Customer {
+      firstName
+      lastName
+      balanced = 12
+
+      constructor(firstName, lastName) {
+        this.firstName = firstName
+        this.lastName = lastName
+      }
+
+      sayHello() {
+
+      }
+    }
+
+    const eko = new Customer("Eko", "Khanedy")
+    console.info(eko)
+    const david = new Customer()
+    console.info(david)
+    const evan = new Customer("Evan", "Dhimas")
+    console.info(evan)
+
+    /* Me */
+    class Player {
+      name
+      position
+      number
+      constructor({name, position, number}) {
+        this.name = name
+        this.position = position
+        this.number = number
+      }
+    }
+    const ronaldo = new Player({name: "Ronaldo", position: "Striker", number: 7})
+    console.info(ronaldo)
+    const messi = new Player({name: "Leo Messi", position: "striker", number: 30})
+    console.info(messi)
+  </script>
+</body>
+</html>
