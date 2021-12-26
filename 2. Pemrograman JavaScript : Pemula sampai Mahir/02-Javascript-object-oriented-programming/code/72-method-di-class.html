@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Constructor pada class secara otomatis akan ditambahkan pada instance object */
+    /* Method pada class secara otomatis akan ditambahkan prototype */
+
+    class Person {
+
+      constructor(name) {
+        this.name = name
+        this.sayHello = function() {
+          console.info(`instance object: ${this.name}`)
+        }
+      }
+
+      sayHello2(name) {
+        console.info(`hello ${name} prototype: ${this.name}`)
+      }
+    }
+
+    const noval = new Person("noval")
+    console.info(noval)
+    noval.sayHello()
+    noval.sayHello2("adrie")
+
+    const wardhana = new Person("wardhana")
+    console.info(wardhana)
+    wardhana.sayHello()
+    wardhana.sayHello2("novan")
+  </script>
+</body>
+</html>

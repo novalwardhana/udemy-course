@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Prototype inheritance yang salah */
+    function Employee(name) {
+      this.name = name
+    }
+    function Manager(name) {
+      this.name = name
+    }
+    Manager.prototype = Employee.prototype // Dilarang mereplace prototye
+    Employee.prototype = Manager.prototype // Dilarang mereplace prototye
+
+    Manager.prototype.SayHello = function(name) {
+      console.info(`Hello ${name}, my name is manager ${this.name}`)
+    }
+
+    Employee.prototype.SayHello = function(name) {
+      console.info(`Hello ${name}, my name is employee ${this.name}`)
+    }
+
+    const manager = new Manager("Budi")
+    manager.SayHello("Joko")
+    const employee = new Employee("Eko")
+    employee.SayHello("Joko")
+
+
+    /* Prototype inheritence yang benar */
+    function Club(name, location) {
+      this.name = name
+      this.location = location
+    }
+    function Player(name) {
+      this.name = name
+    }
+    Player.prototype = Object.create(Club.prototype)
+    Club.prototype.Identity = function(guest) {
+      console.info(`Hello ${guest}, name club is ${this.name}, location in ${this.location}`)
+    }
+    Player.prototype.Identity = function(guest) {
+      console.info(`Holla ${guest}, player is ${this.name}`)
+    }
+    const club = new Club("Manchester United", "England")
+    club.Identity("Joe")
+    const player = new Player("Jadon Sancho")
+    player.Identity("Joe")
+    console.info(club)
+    console.info(player)
+  </script>
+</body>
+</html>

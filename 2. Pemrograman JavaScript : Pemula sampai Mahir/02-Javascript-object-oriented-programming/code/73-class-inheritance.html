@@ -1,0 +1,60 @@
+<html>
+<head></head>
+<body>
+  <script>
+
+    /* Simple example */
+    class Employee {
+
+      SayHello(guest) {
+        console.info(`Hello ${guest}, employee name is ${this.name}`)
+      }
+
+    }
+
+    class Manager extends Employee {
+
+      SayHello(guest) {
+        console.info(`Hello ${guest}, manager name is ${this.name}`)
+      }
+
+    }
+
+    const anto = new Employee()
+    anto.name = "Anto"
+    anto.SayHello("joko")
+    console.info(anto)
+
+    const budi = new Manager()
+    budi.name ="Budi"
+    budi.SayHello("joko")
+    console.info(budi)
+
+    /* By me example */
+    class Mathematics {
+      sumData(...datas) {
+        let total = 0
+        for (const data of datas) {
+          total += data
+        }
+        return total
+      }
+      lenData(...datas) {
+        return datas.length
+      }
+    }
+
+    class Statistics extends Mathematics {
+      mean(...datas) {
+        let sum = this.sumData(...datas)
+        let count = this.lenData(...datas)
+        let result = sum / count
+        console.info(`Mean result is: ${result}`)
+      }
+    }
+
+    const stats = new Statistics()
+    stats.mean(10, 4, 5, 7, 3, 6, 9, 9, 8, 10)
+  </script>
+</body>
+</html>

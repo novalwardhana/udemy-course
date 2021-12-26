@@ -1,0 +1,64 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Udemy */
+    class Employee {
+      constructor(firstName) {
+        this.firstName = firstName
+      }
+
+      sayHello(guest) {
+        console.info(`Hello ${guest}, Employee name is ${this.firstName}`)
+      }
+    }
+
+    class Manager extends Employee {
+      constructor(firstName, lastName) {
+        super(firstName) // Harus dipanggil saat parent memiliki constructor
+        this.lastName = lastName
+      }
+
+      sayHello(guest) {
+        console.info(`Hello ${guest}, Manager full name is ${this.firstName} ${this.lastName}`)
+      }
+    }
+
+    const anto = new Employee("Anto")
+    anto.sayHello("Joko")
+    console.info(anto)
+
+    const budi = new Manager("Budi", "Doremi")
+    budi.sayHello("Joko")
+    console.info(budi)
+
+    /* Me */
+    class Circle {
+      constructor(pi) {
+        this.pi = pi
+      }
+      surfaceArea(radius) {
+        let result = this.pi * radius * radius
+        return result
+      }
+    }
+
+    class Tube extends Circle {
+      constructor(pi) {
+        super(pi)
+      }
+      volumeArea(radius, height) {
+        let surfaceArea = this.surfaceArea(radius)
+        let result = surfaceArea * height
+        return result
+      }
+    }
+    const tubeArea = new Tube(3.14)
+    const surfaceArea = tubeArea.surfaceArea(10)
+    console.info(`surface area: ${surfaceArea}`)
+    const volumeArea = tubeArea.volumeArea(10, 5)
+    console.info(`volume Area: ${volumeArea}`)
+    console.info(tubeArea)
+  </script>
+</body>
+</html>
