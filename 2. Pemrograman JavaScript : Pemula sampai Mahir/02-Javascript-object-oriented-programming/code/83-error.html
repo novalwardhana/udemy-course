@@ -1,0 +1,25 @@
+<html>
+<head></head>
+<body>
+  <script>
+    class mathUtils {
+
+      static sumData(...datas) {
+
+        if (datas.length === 0) {
+          throw new Error("Length data is 0")
+        }
+
+        let result = 0
+        for(const data of datas) {
+          result += data
+        }
+        return result
+      }
+
+    }
+    console.info(mathUtils.sumData(...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+    console.info(mathUtils.sumData())
+  </script>
+</body>
+</html>

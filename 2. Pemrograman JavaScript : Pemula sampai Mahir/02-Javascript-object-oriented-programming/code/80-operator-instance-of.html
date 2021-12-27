@@ -1,0 +1,34 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Instance of: untuk cek suatu object terbuat dari suatu class atau tidak */
+    class Employee {
+
+    } 
+    class Manager {
+
+    }
+    const joko = new Employee()
+    const alex = new Manager()
+    console.info(`Joko instanceof Employee: ${joko instanceof Employee}`)
+    console.info(`Joko instanceof Manager: ${joko instanceof Manager}`)
+    console.info(`Alex instanceof Employee: ${alex instanceof Employee}`)
+    console.info(`Alex instanceof Manager: ${alex instanceof Manager}`)
+
+    /* Instance of inheritance */
+    class Club {
+
+    }
+    class Player extends Club {
+
+    }
+    const chelsea = new Club()
+    const kepa = new Player()
+    console.info(`Chelsea instanceof Club: ${chelsea instanceof Club}`)
+    console.info(`Chelsea instanceof Player: ${chelsea instanceof Player}`)
+    console.info(`Kepa instance of Club: ${kepa instanceof Club}`)
+    console.info(`Kepa instance of Player: ${kepa instanceof Player}`)
+  </script>
+</body>
+</html>

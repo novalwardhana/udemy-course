@@ -1,0 +1,54 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Try catch */
+    class statistics {
+      static sumData(...datas) {
+        if (datas.length === 0) {
+          throw new Error("Data tidak boleh kosong")
+        }
+        let result = 0
+        for (const data of datas) {
+          result += data
+        }
+        return result
+      }
+    }
+
+    try {
+      let sum = statistics.sumData()
+    } catch (error) {
+      console.info(`An error occured: ${error.message}`)
+    }
+
+    /* Block code finally: melakukan eksekusi saat kode error maupun tidak */
+    try {
+      let sum = statistics.sumData(9, 8, 6, 10, 15, 12, 13, 18)
+      console.info(`Sum data: ${sum}`)
+    } catch (error) {
+      console.info(`An error occured: ${error.message}`)
+    } finally {
+      console.info(`Block code sudah selesai dijalankan`)
+    }
+
+    /* Try finally */
+    class Counter {
+      #position = 0
+
+      next() {
+        try {
+          return this.#position
+        } finally {
+          this.#position++
+        }
+      }
+
+    }
+    const counterData = new Counter()
+    console.info(counterData.next())
+    console.info(counterData.next())
+    console.info(counterData.next())
+  </script>
+</body>
+</html>

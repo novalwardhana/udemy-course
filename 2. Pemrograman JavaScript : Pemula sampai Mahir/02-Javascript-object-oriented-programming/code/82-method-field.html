@@ -1,0 +1,41 @@
+<html>
+<head></head>
+<body>
+  <script>
+    class mathUtils {
+
+      static sumData(...datas) {
+        let result = 0
+        for(const data of datas) {
+          result += data
+        }
+        return result
+      }
+
+      static countData(...datas) {
+        let result = datas.length
+        return result
+      }
+
+    }
+
+    class statistic extends mathUtils {
+
+      static mean(...datas) {
+        let sumData = mathUtils.sumData(...datas)
+        let countData = mathUtils.countData(...datas)
+        let result = sumData / countData
+        return result
+      }
+
+    }
+
+    let sumData = mathUtils.sumData(1, 4, 9, 16, 25, 36, 49, 64)
+    console.info(`sum data: ${sumData}` )
+    let countData = mathUtils.countData(1, 4, 9, 16, 25, 36, 49, 64)
+    console.info(`count data: ${countData}`)
+    let mean = statistic.mean(1, 4, 9, 16, 25, 36, 49, 64)
+    console.info(`mean: ${mean}`)
+  </script>
+</body>
+</html>

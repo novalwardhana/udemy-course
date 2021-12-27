@@ -1,0 +1,54 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* Static: property yang berada di dalam class */
+    class Configuration {
+      static name = "Golang"
+      static version = "1.8.0"
+      static author = "Google"
+    }
+    const configOne = new Configuration()
+    const configTwo = new Configuration()
+    console.info(configOne)
+    console.info(configTwo)
+    console.info(Configuration.name)
+    console.info(Configuration.version)
+    console.info(Configuration.author)
+
+    /* Mengubah property static */
+    Configuration.name = "Java"
+    Configuration.version = "12"
+    Configuration.author = "Oracle"
+    console.info(Configuration.name)
+    console.info(Configuration.version)
+    console.info(Configuration.author)
+    console.info(configOne)
+    console.info(configTwo)
+
+    /* Me */
+    class Club {
+
+      static name = "Manchester United"
+      static category = "Football"
+      static manager = "Ralf Ragnick"
+
+      getData() {
+        let result = {
+          name: Club.name,
+          category: Club.category,
+          manager: Club.manager
+        }
+        return result
+      }
+    }
+
+    const manchUnited = new Club()
+    console.info(manchUnited.getData())
+    Club.name = "Barcelona"
+    Club.category = "Club Football"
+    Club.manager = "Xavi"
+    console.info(manchUnited.getData())
+  </script>
+</body>
+</html>
