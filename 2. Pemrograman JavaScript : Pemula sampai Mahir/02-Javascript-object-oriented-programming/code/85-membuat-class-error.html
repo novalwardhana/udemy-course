@@ -1,0 +1,50 @@
+<html>
+<head></head>
+<body>
+  <script>
+    class ErrorValidation extends Error {
+      constructor(message, field) {
+        super(message)
+        this.field = field
+      }
+    }
+
+    class Statistic {
+      sumData(...datas) {
+        let result = 0
+        if (datas.length == 0) {
+          throw new ErrorValidation("Data is null", "datas")
+        }
+        for (const data of datas) {
+          result += data
+        }
+        return result
+      }
+    }
+
+    try {
+      let sumOne = new Statistic()
+      console.info(sumOne.sumData())
+    } catch (error) {
+      console.info(`Error message: ${error.message}`)
+      console.info(`Error field: ${error.field}`)
+    }
+
+    try {
+      let sumTwo = new Statistic()
+      console.info(sumTwo.sumData(2, 4, 8, 16, 32, 64, 128, 256, 512, 1024))
+    } catch (error) {
+      console.info(`Error message: ${error.message}`)
+      console.info(`Error field: ${error.field}`)
+    }
+
+    try {
+      let sumThree = new Statistic()
+      console.info(sumThree.sumData())
+    } catch (error) {
+      console.info(`Error message: ${error.message}`)
+      console.info(`Error field: ${error.field}`)
+    }
+  </script>
+</body>
+</html>

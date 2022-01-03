@@ -1,0 +1,43 @@
+<html>
+<head></head>
+<body>
+  <script>
+    const input = "1234567"
+    const inputNumber = Number(input)
+
+    console.info(typeof input)
+    console.info(typeof inputNumber)
+    console.info(inputNumber)
+    console.info(Number("Noval"))
+
+    /* Number properties */
+    console.info(Number.MIN_VALUE)
+    console.info(Number.MAX_VALUE)
+    console.info(Number.MIN_SAFE_INTEGER)
+    console.info(Number.MAX_SAFE_INTEGER)
+    console.info(Number.NaN)
+    console.info(Number.POSITIVE_INFINITY)
+
+    /* Number properties IsNan, IsInteger */
+    const myNUmberOne = 725
+    const myNumberTwo = 8.5
+    console.info("725 is integer: ", Number.isInteger(myNUmberOne))
+    console.info("8.5 is Nan: ", Number.isNaN(myNumberTwo))
+
+
+    /* Number Instance */
+    const numberInstance = new Number()
+    console.info(numberInstance)
+    const myNumberThree = Number("7.18")
+    console.info(`${myNumberThree} in binary: ${myNumberThree.toString(2)}`)
+    console.info(`${myNumberThree} in decimal: ${myNumberThree.toString()}`)
+    console.info(`${myNumberThree} in hexa: ${myNumberThree.toString(6)}`)
+    const myNumberFour = 825326901
+    console.info(`${myNumberFour} in id format: ${myNumberFour.toLocaleString("id-ID")}`)
+    console.info(`${myNumberFour} in th format: ${myNumberFour.toLocaleString("th-TH")}`)
+    const myNumberFive = 7.8924
+    console.info(`${myNumberFive} procession: ${myNumberFive.toPrecision(2)}`)
+    console.info(`${myNumberFive} fixe: ${myNumberFive.toFixed(2)}`)
+  </script>
+</body>
+</html>

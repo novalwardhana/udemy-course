@@ -1,0 +1,110 @@
+<html>
+<head></head>
+<body> 
+  <script>
+    /* 
+      Object freeze & seal
+      freeze: mengunci object agar tidak bisa diubah atau dihapus attributenya
+      seal: mengunci object agar tidak bisa dihapus attributenya
+    */
+    const personOne = {
+      firstName: "Cristiano",
+      lastName: "Ronaldo"
+    }
+    Object.freeze(personOne)
+    delete personOne.firstName
+    personOne.lastName = "Nazario"
+    console.info(`personOne:`, personOne)
+
+    const personTwo = {
+      firstName: "Jadon",
+      lastName: "Sancho"
+    }
+    Object.seal(personTwo)
+    personTwo.firstName = "Harry"
+    personTwo.middleName = "Maguire"
+    personTwo.lastName = "Kane"
+    delete personTwo.firstName
+    delete personTwo.lastName
+    console.info(`personTwo: `, personTwo)
+
+    const city = {
+      name: "Bantul",
+      state: "Yogyakarta"
+    }
+    Object.freeze(city)
+    city.name = "Bandung"
+    city.state = "Jawa Barat"
+    delete city["name"]
+    delete city.state
+    console.info(`city: `, city)
+
+    const city2 = {
+      name: "Sleman",
+      state: "DI Yogyakarta"
+    }
+    Object.seal(city2)
+    city2.name = "Kulon Progo"
+    city2.state = "Jogjaa"
+    delete city2.name
+    delete city2.state
+    console.info(`city2: `, city2)
+
+    /* Object assign: menggabungkan semua attribute dari sebuah object ke object lain */
+    const objectOne = {
+      name: "Sate",
+      price: 7500
+    }
+    const objectTwo = {
+      name: "Soto"
+    }
+    console.info("objectOne: ", objectOne)
+    console.info(`objectTwo: `, objectTwo)
+    Object.assign(objectTwo, objectOne)
+    console.info(`objectTwo after assigned by objectOne: `, objectTwo)
+    const objectThree = {
+      name: "Chelsea",
+      league: "EPL"
+    }
+    const objectFour = {
+      name: "Arsenal"
+    }
+    Object.assign(objectThree, objectFour)
+    console.info(`objectThree: `, objectThree)
+
+    /* Object property names & values */
+    const club = {
+      name: "manchester united",
+      category: "club football",
+      get allValues() {
+        return this.name + " " +  this.category
+      },
+      set allValues(newValue) {
+        this.name = newValue.name
+        this.category = newValue.category
+      }
+    }
+    console.info(`club values: `, Object.values(club))
+    console.info(`club property: `, Object.getOwnPropertyNames(club))
+
+    const club2 = {
+      name: "Chelsea",
+      category: "Football Club",
+      get getName() {
+        return this.name
+      },
+      set setName(value) {
+        this.name = value
+      },
+      get getCategory() {
+        return this.category
+      },
+      set setCategory(value) {
+        this.category = value
+      }
+    }
+    console.info(`club2 values: `, Object.values(club2))
+    console.info(`club2 own properties: `, Object.getOwnPropertyNames(club2))
+  </script>
+</body>
+</html>

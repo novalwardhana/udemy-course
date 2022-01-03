@@ -1,0 +1,117 @@
+<html>
+<head></head>
+<body>
+  <script>
+    {
+      /* Array loop foreEach */
+      const arrayOne = ["Novalita", "Kusuma", "Wardhana"]
+      arrayOne.forEach(function (value, index) {
+        console.info(`arrayOne value: ${value}, index: ${index}`)
+      })
+      arrayOne.forEach((value, index) => {
+        console.info(`arrayOne value: ${value}, index: ${index}`)
+      })
+      arrayOne.forEach(value => console.info(`ArrayOne value: ${value}`))
+      const arrayTwo = [21, 32, 20, 25, 35, 38, 24, 38, 35, 36]
+      let arrayTwoSum = 0
+      arrayTwo.forEach((value, index) => {
+        arrayTwoSum += value
+      })
+      console.info(`arrayTwo: `, arrayTwo)
+      console.info(`arrayTwoSum: `, arrayTwoSum)
+
+      /* Array queue 
+        Konsep FIFO(FIrst in First out), menggunakan method:
+        1. push: menambah data di belakang
+        2. shift: menghapus data dari paling depan
+      */
+      const arrayThree = []
+      arrayThree.push("Ronaldo")
+      arrayThree.push("De Gea")
+      arrayThree.push("Sancho")
+      console.info(arrayThree)
+      console.info(arrayThree.shift(), arrayThree)
+      console.info(arrayThree.shift(), arrayThree)
+      console.info(arrayThree.shift(), arrayThree)
+      console.info(arrayThree.shift(), arrayThree)
+      const arrayFour = []
+      arrayFour.push("Messi")
+      arrayFour.push("Mbappe")
+      arrayFour.push("Neymar")
+      console.info(arrayFour)
+      console.info(arrayFour.shift(), arrayFour)
+      console.info(arrayFour.shift(), arrayFour)
+      console.info(arrayFour.shift(), arrayFour)
+
+      /* Array stack
+        Konsep LIFO(Last in First Out): menggunakan method:
+        1. push: menambah data di belakang
+        2. shidt: menghapus data dari paling belakang
+      */
+     const arrayFive = []
+     arrayFive.push("Manchester United")
+     arrayFive.push("Arsenal")
+     arrayFive.push("Chelsea")
+     console.info(arrayFive)
+     console.info(arrayFive.pop(), arrayFive)
+     console.info(arrayFive.pop(), arrayFive)
+     console.info(arrayFive.pop(), arrayFive)
+     console.info(arrayFive.pop(), arrayFive)
+     const arraySix = []
+     arraySix.push({"food": "Sate", "price": 25000})
+     arraySix.push({"smartphone": "Oppo Reno 6"})
+     arraySix.push({"motor": "Ducati Scramble"})
+     console.info(`arraySix: `, arraySix)
+     console.info(arraySix.pop(), arraySix)
+     console.info(arraySix.pop(), arraySix)
+     console.info(arraySix.pop(), arraySix)
+
+      /* Array search */
+      const arraySeven = [7, 8, 5, 2, 4, 18, 9, 3, 9]
+      console.info(`arraySeven > 8: ${arraySeven.find(value => value > 8)}`)
+      console.info(`arraySeven indexOf > 8: ${arraySeven.findIndex(value => value > 8)}`)
+      console.info(`arraySeven includes 4: ${arraySeven.includes(4)}`)
+      console.info(`arraySeven index of 9: ${arraySeven.indexOf(9)}`)
+      console.info(`arraySeven last index of 9: ${arraySeven.lastIndexOf(9)}`)
+      const arrayEight = [21, 18, 17, 16, 22, 23, 15, 36, 21]
+      console.info(`arrayEight > 22: `, arrayEight.find(value => value > 22))
+      console.info(`arrayEight > 22 index: `, arrayEight.findIndex(value => value > 22))
+      console.info(`arrayEight includes 15: `, arrayEight.includes(15))
+      console.info(`arrayEight indludes 27: `, arrayEight.includes(27))
+      console.info(`arrayEight indexOf 21:`, arrayEight.indexOf(21))
+      console.info(`arrayEight last indexOf 21: `, arrayEight.lastIndexOf(21))
+
+      /* Array filter */
+      const arrayNine = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+      const arrayNineOdd = arrayNine.filter(value => value % 2 == 1)
+      const arrayNineEven = arrayNine.filter(value => value % 2 == 0)
+      console.info(`arrayNine: ${arrayNine}`)
+      console.info(`arrayNineOdd: ${arrayNineOdd}`)
+      console.info(`arrayNineEven: ${arrayNineEven}`)
+      const arrayTen = [1, 4, 9, 16, 25, 36, 49, 64]
+      const arrayTenFilter = arrayTen.filter((value, index) => value % 3 == 0)
+      console.info(`arrayTen: `, arrayTenFilter)
+
+      /* Array transform */
+      const arrayEleven = ["Noval", "Kusuma", "Wardhana"]
+      const arrayElevenMap = arrayEleven.map(value => value.toUpperCase())
+      console.info(arrayElevenMap)
+      const arrayElevenReduce = arrayEleven.reduce((before, value) => 
+        before + " " + value
+      )
+      console.info(arrayElevenReduce)
+      const arrayElevenReduceRight = arrayEleven.reduceRight((before, value) =>
+        before + " " + value
+      )
+      console.info(arrayElevenReduceRight)
+      const arrayTwelve = [1, 5, 25, 125, 625]
+      const arrayTwelveMap = arrayTwelve.map(data => data * 100)
+      console.info(`arrayTwelveMap: `, arrayTwelveMap)
+      const arrayTwelveReduce = arrayTwelve.reduce((before, value) => before * value)
+      console.info(`arrayTwelveReduce`, arrayTwelveReduce)
+      const arrayTwelveReduceRight = arrayTwelve.reduceRight((before, value) => before * value)
+      console.info(`arrayTwelveReduceRight: `, arrayTwelveReduceRight)
+    }
+  </script>
+</body>
+</html>
