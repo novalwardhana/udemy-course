@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* bigInt: angka number yang melebihi NUMBER.MAX_SAFE_INTEGER */
+    const a = BigInt(Number.MAX_SAFE_INTEGER)
+    const b = BigInt(Number.MAX_SAFE_INTEGER * 5)
+    console.info(`a: ${a}`)
+    console.info(`b: ${b}`)
+    const c = a * b
+    console.info(`c: ${c}`)
+    console.info(typeof c)
+  </script>
+</body>
+</html>

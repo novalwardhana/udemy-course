@@ -1,0 +1,22 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* JSON */
+    const player = {
+      firstName: "Cristiano",
+      lastName: "Ronaldo",
+      club: "Manchester United",
+      age: 37,
+      ballon_dor : [
+        2008, 2013, 2016, 2017, 2020
+      ]
+    }
+    console.info(`player: `, player)
+    const playerStr = JSON.stringify(player) 
+    console.info(`player str: `, playerStr)
+    const playerObj = JSON.parse(playerStr)
+    console.info(`playerObj: `, playerObj)
+  </script>
+</body>
+</html>

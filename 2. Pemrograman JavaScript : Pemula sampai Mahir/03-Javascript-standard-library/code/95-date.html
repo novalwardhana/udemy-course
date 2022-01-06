@@ -1,0 +1,64 @@
+<html>
+<head></head>
+<body>
+  <script>
+    {
+      /* Create date */
+      const dateOne = new Date()
+      console.info(`dateOne: `, dateOne)
+
+      const dateTwo = new Date(2022, 01, 06)
+      console.info(`datTwo: `, dateTwo)
+
+      const dateThree = new Date(2022, 01, 06, 20, 51, 59, 123)
+      console.info(`dataThree: `, dateThree)
+
+      const dateFour = new Date(1641477231708)
+      console.info(`dateFour: `, dateFour)
+    }
+
+    {
+      /* Epoch and Unix timestamp */
+      const dateFive = Date.now()
+      console.info(`dateFive: `, dateFive)
+
+      const dateSix = new Date()
+      console.info(`dateSix: `, dateSix.getTime())
+
+      const dateSeven = new Date(2022, 01, 06)
+      console.info(`dateSeven: `, dateSeven.getTime())
+
+      const dateEight = new Date(2022, 01, 06, 22, 30, 59, 123)
+      console.info(`dateEight: `, dateEight.getTime())
+    }
+
+    {
+      /* Date parse */
+      const dateNine = Date.parse("2022-01-06")
+      console.info(`dateNine: `, dateNine)
+
+      const dateTen = new Date(dateNine)
+      console.info(`dateTen: `, dateTen)
+
+      const dateEleven = Date.parse("2022-01-06T22:43:58.12Z")
+      console.info(`dateeleven: `, dateEleven)
+
+      const dateTwlve = new Date(dateEleven)
+      console.info(`dateTwelve: `, dateTwlve)
+    }
+
+    {
+      /* Getter and setters */
+      const dateThirteen = new Date()
+      console.info(`dateThirteen Year: `, dateThirteen.getFullYear())
+      console.info(`dateThirteen Month: `, dateThirteen.getMonth())
+      console.info(`dateThirteen day: `, dateThirteen.getDate())
+      console.info(`dateThirteen hour: `, dateThirteen.getHours())
+      console.info(`dateThirteen minutes: `, dateThirteen.getMinutes())
+      console.info(`dateThirteen second: `, dateThirteen.getSeconds())
+      console.info(`dateThirteen: time offset `, dateThirteen.getTimezoneOffset())
+
+    }
+  </script>
+</body>
+</html>
