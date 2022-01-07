@@ -1,0 +1,27 @@
+<html>
+<head></head>
+<body>
+    <script>
+        console.info(Math)
+        const arrayData = [10, 8, 4, 5, 8, 4, 6, 9, 7, 9]
+        const maxData = Math.max(...arrayData)
+        const minData = Math.min(...arrayData)
+        const sqrtData = arrayData.map(value => Math.sqrt(value))
+        const sqrData = arrayData.map(value => Math.pow(value, 2))
+        console.info(`arrayData: `, arrayData)
+        console.info(`max arrayData: ${maxData}`)
+        console.info(`min arrayData: ${minData}`)
+        console.info(`sqrt arrayData: `, sqrtData)
+        console.info(`sqr arrayData: `, sqrData)
+
+        const numberData = 10.23
+        const numberDataRound = Math.round(numberData)
+        const numberDataFloor = Math.floor(numberData)
+        const numberDataCeil = Math.ceil(numberData)
+        console.info(`numberData: ${numberData}`)
+        console.info(`numberDataRound: ${numberDataRound}`)
+        console.info(`numberDaraFloor: ${numberDataFloor}`)
+        console.info(`numberDataCeil: ${numberDataCeil}`)
+    </script>
+</body>
+</html>
