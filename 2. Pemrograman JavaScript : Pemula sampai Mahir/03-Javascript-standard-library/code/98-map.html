@@ -1,0 +1,42 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /* Map:
+            1. Pertama dibuat tidak memiliki key
+            2. Key bisa tipe data apapun
+            3. Jumlah key bisa diketahui dengan mudah
+            4. Secara default tidak bisa dikonversi ke JSON
+        */
+       const myMapOne = new Map()
+       myMapOne.set("firstName", "Noval")
+       myMapOne.set("middleName", "Kusuma")
+       myMapOne.set("lastName", "Wardhana")
+       console.info(`myMapOne: `, myMapOne)
+       console.info(`myMapOne firstName: `, myMapOne.get("firstName"))
+       console.info(`myMapOne middleName: `, myMapOne.get("middleName"))
+       console.info(`myMapOne lastName: `, myMapOne.get("lastName"))
+       for (const data of myMapOne) {
+           console.info(`${data[0]}: ${data[1]}`)
+       }
+       myMapOne.forEach((value, index) => console.info(`${index}: ${value}`))
+
+       const myMapTwo = new Map()
+       myMapTwo.set("epl", ["Manchester United", "Arsenal", "Chelsea"])
+       myMapTwo.set("league one", ["PSG", "Lille", "Lyon"])
+       myMapTwo.set("la liga", ["Real Madrid", "Villareal", "Barcelona"])
+       myMapTwo.set("test", "Hello world")
+       console.info(`myMapTwo: `, myMapTwo)
+       myMapTwo.delete("test")
+       console.info(`myMapTwo: `, myMapTwo)
+       myMapTwo.forEach((value, index) => {
+           let clubs = ""
+           for (const data of value) {
+               clubs += data
+               clubs += " "
+           }
+           console.info(`${index}: ${clubs}`)
+       })
+    </script>
+</body>
+</html>
