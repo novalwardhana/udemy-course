@@ -1,0 +1,107 @@
+<html>
+<head></head>
+<body>
+    <script>
+        {
+            /* Membuat regex */
+            const regexOne = /[noval]/
+            const regexTwo = new RegExp("[noval]")
+            const regexThree = new RegExp(/[noval]/)
+        }
+
+        {
+            /* Regex exec & test */
+            const regex = /[nov]/
+            console.info(regex.exec("wardhanov"))
+            console.info(regex.test("wardhanov"))
+            console.info(regex.exec("csc"))
+            console.info(regex.test("csc"))
+        }
+
+        {
+            /* Regex modifier 
+                i: pencarian secara incase sensitive
+                g: pencarian dilakukan secara global, setelah ditemukan maka akan berhenti
+                m: pencarian dilakukan secara baris-perbaris
+            */
+            const regexOne = /dhana/ig
+            const regexTwo = new RegExp(/nov/, "ig")
+            //const regexTwo = /nov/ig
+            let testText = "NoVAlita kusuma WardHAna \n novalita kusuma wardhana \n NOvalitakusumaWARDHana"
+            let result
+            while((result = regexOne.exec(testText)) !== null) {
+                console.info(result)
+            }
+            let resultTwo
+            while((resultTwo = regexTwo.exec(testText)) !== null) {
+                console.info(resultTwo)
+            }
+        }
+
+        {
+            /* Regex assertion: mencari pola tertentu di awal kalimat */
+            const regexAssetion = new RegExp(/^Manc/, "igm")
+            const testText = "manchester united \n arsenal \n Manc United"
+            let result
+            while ((result = regexAssetion.exec(testText)) !== null) {
+                console.info(result)
+            }
+        }
+
+        {
+            /* Character class */
+            const regexClass = new RegExp(/^n.va./, "igm")
+            const testText = "noval wardhana \n deni eka \n adrie satrio \n novan arif"
+            let result
+            while ((result = regexClass.exec(testText)) !== null) {
+                console.info(result)
+            }
+
+            const regexClassTwo = new RegExp(/..va/, "igm")
+            let resultTwo
+            while ((resultTwo = regexClassTwo.exec(testText)) !== null) {
+                console.info(resultTwo)
+            }
+        }
+
+        {
+            /* Regex grouping */
+            const regex = new RegExp(/nov[aiueo]/, "igm")
+            const testText = "noval \n novi \n nava"
+            let result
+            while ((result = regex.exec(testText)) !== null) {
+                console.info(result)
+            }
+        }
+
+        {
+            /* Regex pada string */
+            const testText = "nav nav novi noval novel novotel nava"
+            testTextMatch = testText.match(/nov[aiueo]/ig)
+            const regex = new RegExp(/nov[aiueo]/, "ig")
+            testTextSearch = testText.search(regex)
+            testTextReplace = testText.replace(regex, "Haloo")
+            testTextReplaceAll = testText.replaceAll(regex, "hola")
+            testTextSplit = testText.split(/n/ig)
+            console.info(`testTextMatch: `, testTextMatch)
+            console.info(`testTextSearch: `, testTextSearch)
+            console.info(`testTextReplace: `, testTextReplace)
+            console.info(`testTextReplaceAll: `, testTextReplaceAll)
+            console.info(`testTextSplit: `, testTextSplit)
+        }
+
+        {
+            const regexAlphabet = new RegExp(/[A-Za-z]/)
+            const test1 = regexAlphabet.test("123")
+            const test2 = regexAlphabet.test("noval")
+            console.info(test1)
+            console.info(test2)
+            const regexNumeric = new RegExp(/[0-9]/)
+            const test3 = regexNumeric.test(123)
+            const test4 = regexNumeric.test("abc")
+            console.info(test3)
+            console.info(test4)
+        }
+    </script>
+</body>
+</html>

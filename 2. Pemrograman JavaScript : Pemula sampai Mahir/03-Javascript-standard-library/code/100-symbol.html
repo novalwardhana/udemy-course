@@ -1,0 +1,20 @@
+<html>
+<head></head>
+<body>
+    <script>
+        const firstName = Symbol("firstName")
+        const lastName = Symbol("lastName")
+        const person = {}
+        person[firstName] = "Novalita"
+        person[firstName] = "Noval"
+        person[lastName] = "Wardhana"
+        console.info(person)
+
+        const personTwo = {}
+        personTwo[Symbol.for("firstName")] = "Cristiano"
+        personTwo[Symbol.for("lastName")] = "Ronaldo"
+        console.info(`personTwo firstName: ${personTwo[Symbol.for("firstName")]}`)
+        console.info(`personTwo lastName: ${personTwo[Symbol.for("lastName")]}`)
+    </script>
+</body>
+</html>

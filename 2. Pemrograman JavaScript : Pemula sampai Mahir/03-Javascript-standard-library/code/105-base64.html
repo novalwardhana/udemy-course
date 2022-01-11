@@ -1,0 +1,19 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /* base64: binary to text encoding, representasi binary data dalam format string */
+        const text1 = "Novalita Kusuma Wardhana"
+        const text1Encode = btoa(text1)
+        console.info(`text1Encode: ${text1Encode}`)
+        const text1Decode = atob(text1Encode)
+        console.info(`text1Decode: ${text1Decode}`)
+
+        const text2 = "https://novalwardhana.com"
+        const text2Encode = btoa(text2)
+        console.info(`text2Encode: ${text2Encode}`)
+        const text2Decode = atob(text2Encode)
+        console.info(`text2Decode: ${text2Decode}`)
+    </script>
+</body>
+</html>

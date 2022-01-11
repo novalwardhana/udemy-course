@@ -1,0 +1,60 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /*
+            Proxy: semua interaksi ke data harus melalui proxy terlebih dahulu
+            Proxy handler: function yang dinamakan interceptor untuk mengambil data atau mengubah data ke target
+        */
+        const target = {
+            city: "Bantul"
+        }
+        const handler = {
+            get: function(target, property) {
+                console.info(`get property: ${property}`)
+                return target[property]
+            },
+            set: function(target, property, value) {
+                console.info(`set property: ${property}: ${value}`)
+                if (value !== null) {
+                    target[property] = value
+                } else {
+                    target[property] = ""
+                }
+            }
+        }
+        const proxy = new Proxy(target, handler)
+        proxy.name = "Novalita Kusuma Wardhana"
+        proxy.age = 28
+        proxy.smartphone = null
+        console.info(`target name: ${proxy.name}`)
+        console.info(`target age: ${proxy.age}`)
+        console.info(`target city: ${proxy.city}`)
+        console.info(`target smartphone: ${proxy.smartphone}`)
+
+        const targetTwo = {}
+        const proxyHandler = {
+            get: (target, property) => {
+                console.info(`get proxyTwo ${property}`)
+                return target[property]
+            },
+            set: (target, property, value) => {
+                console.info(`set proxyTwo ${property}: ${value}`)
+                if (value !== null) {
+                    target[property] = value
+                } else {
+                    target[property] = "No data detected"
+                }
+            }
+        }
+        const proxyTwo = new Proxy(targetTwo, proxyHandler)
+        proxyTwo.firstName = "Novalita"
+        proxyTwo.middleName = null
+        proxyTwo.lastName = "Wardhana"
+        console.info(`targetTwo: `, targetTwo)
+        console.info(`targetTwo firstName: ${proxyTwo.firstName}`)
+        console.info(`targetTwo middleName: ${proxyTwo.middleName}`)
+        console.info(`targetTwo lastName: ${proxyTwo.lastName}`)
+    </script>
+</body>
+</html>

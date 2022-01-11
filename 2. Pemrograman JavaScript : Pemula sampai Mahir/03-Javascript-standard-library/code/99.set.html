@@ -1,0 +1,43 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /*
+            Set: sama seperti array, hanya saja isinya unique
+        */
+        const setOne = new Set()
+        setOne.add("Novalita")
+        setOne.add("novalita")
+        setOne.add("Novalita")
+        setOne.add("Kusuma")
+        setOne.add("Wardhana")
+        console.info(`setOne: `, setOne)
+        setOne.delete("novalita")
+        console.info(`setOne: `, setOne)
+        setOne.forEach((value, index) => {
+            console.info(`${index}: ${value}`)
+        })
+        console.info("")
+
+        const setTwo = new Set()
+        setTwo.add({
+            name: "Novalita",
+            age: 28
+        })
+        setTwo.add([1, 2, 3])
+        setTwo.add([
+            {
+                club: "Manchester United",
+                state: "Manchester"
+            },
+            {
+                club: "Juventus",
+                state: "Turin"
+            }
+        ])
+        setTwo.forEach(value => {
+            console.info(value)
+        })
+    </script>
+</body>
+</html>

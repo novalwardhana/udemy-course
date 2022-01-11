@@ -1,0 +1,40 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /* 
+            Reflect: digunakan untuk eksekusi javascript function dan modifikasi object
+        */
+        const data1 = {}
+        Reflect.set(data1, "firstName", "Noval")
+        Reflect.set(data1, "lastName", "Wardhana")
+        console.info(`data1: `, data1)
+        console.info(`data1 firstName: `, Reflect.has(data1, "firstName"))
+        console.info(`data1 middleName: `, Reflect.has(data1, "middleName"))
+        console.info(`data1 lastName: `, Reflect.has(data1, "lastName"))
+
+        const data2 = {}
+        Reflect.set(data2, "data", [10, 8, 2, 3, 6, 7, 5, 8, 7, 9])
+        Reflect.set(data2, "mean", function() {
+            let sum = 0
+            for (const detail of this.data) {
+                sum += detail
+            }
+            let result = sum / this.data.length
+            return result
+        })
+        Reflect.set(data2, "maxNumber", (...data) => {
+            let max = 0
+            for (const detail of data) {
+                if (max < detail) {
+                    max = detail
+                }
+            }
+            return max
+        })
+        console.info(`data2: `, data2)
+        console.info(`data2 mean: `, data2.mean())
+        console.info(`data2 maxNumber: `, data2.maxNumber(3, 1, 5, 8, 2, 19, 2, 5, 6))
+    </script>
+</body>
+</html>

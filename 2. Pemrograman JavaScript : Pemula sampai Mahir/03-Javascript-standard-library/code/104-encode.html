@@ -1,0 +1,31 @@
+<html>
+<head></head>
+<body>
+    <script>
+        /*
+            encodedURI: melakukan encode kecuali karakter ?@#$, tidak cocok untuk URL dengan query params
+            encodedURLComponent: melakukan encode untuk semua karakter, cocok untuk URL dengan query params
+            decodedURI: melakukan decode URL yang telah di encodedURI
+            decodedURIComponent: melakukan decode URL yang telah di encodedURIComponent
+        */
+        {
+            let url = "https://novalwardhana.com?name=noval wardhana&address=banguntapan bantul yogyakarta"
+            let encoded = encodeURI(url)
+            console.info(`encoded url: ${encoded}`)
+            let decoded = decodeURI(url)
+            console.info(`decoded url: ${decoded}`)
+        }
+        
+        /* encodedURIComponent & decodedURIComponent */
+        {
+            let url2 = "https://novalwardhana.id?"
+            let value2 = "name=novalita kusuma wardhana&age=28 years old&city=bantul yogyakarta"
+            let encoded = encodeURIComponent(value2)
+            console.info(`encoded url2: ${url2 + encoded}`)
+            let decoded = decodeURIComponent(encoded)
+            console.info(`decoded url2: ${url2 + decoded}`)
+        }
+
+    </script>
+</body>
+</html>
