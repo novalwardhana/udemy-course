@@ -1,0 +1,20 @@
+<html>
+<head></head>
+<body>
+  <script type="module">
+    import {myFirstName, myLastName, Perusahaan} from "./script1.js"
+    console.info(`myFirstName: ${myFirstName}`)
+    console.info(`myLastName: ${myLastName}`)
+    console.info(`perusahaan: `, Perusahaan)
+
+    import {firstName as firstName2, lastName as lastName2, sayHello as sayHello2, sumData as sumData2, Company as Company2} from "./script2.js"
+    console.info(`firstName2: ${firstName2}`)
+    console.info(`lastName2: ${lastName2}`)
+    sayHello2("Wakanda")
+    const sum = sumData2(...[1, 2, 3, 4, 5, 6])
+    console.info(`sum: ${sum}`)
+    const myCompany = new Company2()
+    console.info(myCompany)
+  </script>
+</body>
+</html>

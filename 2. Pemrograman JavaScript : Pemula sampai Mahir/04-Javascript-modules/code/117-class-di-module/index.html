@@ -1,0 +1,20 @@
+<html>
+<head></head>
+<body>
+  <script type="module">
+    import {Person} from "./script1.js"
+    import {Statistic} from "./script2.js"
+
+    Person.sayHai("Rooney")
+    const person = new Person("noval")
+    console.info(person)
+    person.sayGoodBye("Messi")
+    person.sayHello("Sancho")
+
+    const statistic = new Statistic(...[6, 8, 10, 4, 5, 8, 9, 2, 6, 9])
+    console.info(`sum Data: ${statistic.sum()}`)
+    console.info(`max Data: ${statistic.maxNumber()}`)
+    console.info(`mean Data: ${statistic.mean()}`)
+  </script>
+</body>
+</html>

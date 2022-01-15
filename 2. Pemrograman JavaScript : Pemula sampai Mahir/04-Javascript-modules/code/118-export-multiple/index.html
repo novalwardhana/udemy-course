@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<body>
+  <script type="module">
+    import {name, sayHello, sayGoodBye, statistic} from "./script.js"
+
+    console.info(`name: ${name}`)
+    sayHello("Haaland")
+    sayGoodBye("Ibrahimovic")
+
+    const myStat = new statistic(...[6, 8, 10, 4, 5, 8, 9, 2, 6, 9])
+    console.info(myStat)
+    const sumData = myStat.sumData()
+    const meanData = myStat.meanData()
+    const varianceData = myStat.varianceData()
+    const stdDeviationData = myStat.stdDeviationData()
+    console.info(`sumData: ${sumData}`)
+    console.info(`meanData: ${meanData}`)
+    console.info(`varianceData: ${varianceData}`)
+    console.info(`stdDeviationData: ${stdDeviationData}`)
+
+  </script>
+</body>
+</html>
