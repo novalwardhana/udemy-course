@@ -4,9 +4,26 @@
   <script type="module">
     import {default as defaultFunction} from "./script-default-function.js"
     import {default as defaultVariable} from "./script-default-variable.js"
+    import {default as defaultClass} from "./script-default-class.js"
+    import {default as Person, firstName, lastName, sayHello} from "./script-default-named.js"
 
     defaultFunction("Noval")
     console.info(defaultVariable)
-  </script>
+
+    const math = new defaultClass("Math Function")
+    console.info(math)
+    const factorial1 = math.factorial(8)
+    const factorial2 = math.factorial(3)
+    const factorial3 = math.factorial(100)
+    console.info(`factorial1: ${factorial1}`)
+    console.info(`factorial2: ${factorial2}`)
+    console.info(`factorial3: ${factorial3}`)
+
+    console.info(`firstName: ${firstName}`)
+    console.info(`lastName: ${lastName}`)
+    sayHello("Novnoval")
+    const newPerson = new Person("Noval", 28, "Banguntapan")
+    console.info(`newPerson: `, newPerson)
+</script>
 </body>
 </html>
