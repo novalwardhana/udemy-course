@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+  Novalita Kusuma Wardhana
+  <br>
+  Lionel Messi
+  <script>
+    /*
+      Text Node: ketika membuat HTML tanpa text tag
+      maka text tag tersebut bukanlah element, melainkan node
+      lebih tepatnya text node.
+      Text node sulit diambil data/valuenya karena tidak ada ID
+    */
+   const text1 = document.body.firstChild
+   const text2 = document.body.lastChild
+   console.info(text1.wholeText)
+   console.info(text2.wholeText)
+
+   /* Membuat text node */
+   const textNode1 = document.createTextNode("Cristiano Ronaldo")
+   const textNode2 = document.createTextNode("\n Arsenal")
+   const textNode3 = document.createTextNode("\n Manchester United")
+   document.body.appendChild(textNode1)
+   document.body.appendChild(textNode2)
+   document.body.appendChild(textNode3)
+  </script>
+</body>
+</html>

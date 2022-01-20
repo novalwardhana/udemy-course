@@ -1,0 +1,68 @@
+<html>
+<head></head>
+<body>
+  <ul>
+    <li id="first">First</li>
+    <li id="second">Second</li>
+    <li id="third">Third</li>
+  </ul>
+
+  <ul id="menu1">
+    <li id="one">One</li>
+    <li id="two">Two</li>
+    <li id="three">Three</li>
+  </ul> 
+
+  <ul id="menu2">
+    <li id="satu">Satu</li>
+    <li id="dua">Dua</li>
+    <li id="tiga">Tiga</li>
+  </ul>
+
+  <ul id="menu3">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <ul id="menu4">
+    <li>a-1</li>
+    <li>b-2</li>
+    <li>c-3</li>
+  </ul>
+  <script>
+    const liList = document.querySelectorAll("li")
+    console.info(`li list: `, liList)
+
+    const menu1 = document.getElementById("menu1").childNodes
+    console.info(`menu1: `, menu1)
+
+    const menu2 = document.getElementById("menu2").childNodes
+    console.info(`menu2: `, menu2)
+
+    /*
+      Live vs Static NodeList
+      Live: perubahan pada nodelist, akan merubah nodelist yang sama.Contoh syntax: document.getElementById("...").childNodes
+      Static: perubahan pada nodelist, akan tidak akan merubah nodelist yang sama .Contoh syntax: querySelectorAll("...")
+    */
+    const menu3 = document.getElementById("menu3")
+    const menu3List = menu3.childNodes
+    menu3.appendChild(document.createElement("li"))
+    menu3.appendChild(document.createElement("li"))
+    menu3.appendChild(document.createElement("li"))
+    console.info(`menu3List: `, menu3List)
+
+    const menu4 = document.getElementById("menu4")
+    let menu4List = document.querySelectorAll("li")
+    menu4.appendChild(document.createElement("li"))
+    menu4.appendChild(document.createElement("li"))
+    menu4.appendChild(document.createElement("li"))
+    menu4.appendChild(document.createElement("li"))
+    menu4.appendChild(document.createElement("li"))
+    console.info(`menu4List: `, menu4List)
+
+    menu4List = document.querySelectorAll("li")
+    console.info(`menu4List: `, menu4List)
+  </script>
+</body>
+</html>

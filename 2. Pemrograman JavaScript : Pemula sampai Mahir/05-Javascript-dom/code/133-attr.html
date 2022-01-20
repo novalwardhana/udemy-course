@@ -1,0 +1,37 @@
+<html>
+<head></head>
+<body>
+  <img id="myImage" class="my-image-class" src="https://www.freecodecamp.org/news/content/images/size/w2000/2021/10/golang.png" alt="Golang Image">
+  <img id="myImageNodeJS">
+  <img id="myImagePHP">
+  <script>
+    /* attr: Representasi atribut dalam sebuah element */
+    const myImage = document.getElementById("myImage")
+    const myImageSrc = myImage.getAttributeNode("src")
+    console.info(`myImageSrc name: `, myImageSrc.name)
+    console.info(`myImageSrc value: `, myImageSrc.value)
+    console.info(`myImageSrc node value: `, myImageSrc.nodeValue)
+
+    const myImageAlt = myImage.getAttributeNode("alt")
+    console.info(`myImageAlt: `, myImageAlt)
+    console.info(`myImageAlt name: `, myImageAlt.name)
+    console.info(`myImage value: `, myImageAlt.value)
+    console.info(`myImage node value: `, myImageAlt.nodeValue)
+
+    /* get attribute value */
+    const myImageClass = myImage.getAttribute("class")
+    console.info(`myImageClass: `, myImageClass)
+
+    /* Membuat Attr secara tidak langsung*/
+    const myImageNodeJS = document.getElementById("myImageNodeJS")
+    const myImageNodeJSSrc = document.createAttribute("src")
+    myImageNodeJSSrc.value = "https://nodejs.org/static/images/logo.svg"
+    myImageNodeJS.setAttributeNode(myImageNodeJSSrc)
+
+    /* Membuat Attr secara langsung */
+    const myImagePHP = document.getElementById("myImagePHP")
+    myImagePHP.setAttribute("src", "https://www.php.net/images/logos/php-logo.svg")
+
+  </script>
+</body>
+</html>

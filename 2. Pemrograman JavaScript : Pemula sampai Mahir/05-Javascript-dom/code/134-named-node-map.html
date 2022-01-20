@@ -1,0 +1,36 @@
+<html>
+<head></head>
+<body>
+  <img id="myImage">
+  <p id="myParagraf" class="myParagraf" tag="my-paragraf">Test named node map</p>
+  <script>
+    const myImage = document.getElementById("myImage")
+    const myImageSrc = document.createAttribute("src")
+    myImageSrc.value = "https://www.freecodecamp.org/news/content/images/size/w2000/2021/10/golang.png"
+    const myImageAlt = document.createAttribute("alt")
+    myImageAlt.value = "Golang image"
+    const myImageClass = document.createAttribute("class")
+    myImageClass.value = "myImage"
+    myImage.setAttributeNode(myImageSrc)
+    myImage.setAttributeNode(myImageAlt)
+    myImage.setAttributeNode(myImageClass)
+
+    /* Get named node map */
+    const myImageAttributes = myImage.attributes
+    console.info(`myImageAttributes: `, myImageAttributes)
+    for (const attribute of myImageAttributes) {
+      console.info(`${attribute.name} : ${attribute.value}`)
+    }
+    
+    /* Get named item */
+    const myParagraf = document.getElementById("myParagraf")
+    const myParagrafAttributes = myParagraf.attributes
+    const myParagrafID = myParagrafAttributes.getNamedItem("id")
+    const myParagrafClass = myParagrafAttributes.getNamedItem("class")
+    const myParagrafTag = myParagrafAttributes.getNamedItem("tag")
+    console.info(`myParagrafID: `, myParagrafID)
+    console.info(`myParagrafClass: `, myParagrafClass)
+    console.info(`myParagrafTag: `, myParagrafClass)
+  </script>
+</body>
+</html>
