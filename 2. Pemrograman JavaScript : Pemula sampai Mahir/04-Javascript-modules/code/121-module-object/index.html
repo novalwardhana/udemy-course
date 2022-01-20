@@ -1,0 +1,39 @@
+<html>
+<head></head>
+<body>
+  <script type="module">
+    import * as scriptOne from "./script.js"
+    console.info(`scriptOne firstName: ${scriptOne.firstName}`)
+    console.info(`scriptOne middleName: ${scriptOne.middleName}`)
+    console.info(`scriptOne lastName: ${scriptOne.lastName}`)
+    scriptOne.sayHello("aaa")
+    const person = new scriptOne.Person("Pogba")
+    console.info(`scriptOne person: `, person)
+
+    import * as scriptTwo from "./script2.js"
+    const club = new scriptTwo.Club("Arsenal", "EPL")
+    console.info(`club: `, club)
+    console.info(`club name: `, club.thisName)
+    console.info(`club league: `, club.thisLeague)
+    club.thisName = "Paris Saint Germain"
+    club.thisLeague = "League 1"
+    console.info(`club: `, club)
+    console.info(`club name: `, club.thisName)
+    console.info(`club league: `, club.thisLeague)
+
+    const probability = new scriptTwo.Probability()
+    const permutation1 = probability.permutation(9)
+    const permutation2 = probability.permutation(3)
+    const permutation3 = probability.permutation(20)
+    console.info(`permutation1: ${permutation1}`)
+    console.info(`permutation2: ${permutation2}`)
+    console.info(`permutation3: ${permutation3}`)
+    const combination1 = probability.combination(6, 2)
+    const combination2 = probability.combination(8, 3)
+    const combination3 = probability.combination(3, 2)
+    console.info(`combination1: ${combination1}`)
+    console.info(`combination2: ${combination2}`)
+    console.info(`combination3: ${combination3}`)
+  </script>
+</body>
+</html>

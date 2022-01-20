@@ -1,0 +1,37 @@
+<html>
+<head></head>
+<body>
+  <ul id="menu">
+    <li id="first">First</li>
+    <li id="second">Second</li>
+    <li id="third">Third</li>
+    <li id="fourth">Fourth</li>
+  </ul>
+  <script>
+    /* Node */
+    const nodeMenu = document.getElementById("menu")
+    const nodeMenuFirst = document.getElementById("first")
+    const nodeMenuSecond = document.getElementById("second")
+    const nodeMenuThird = document.getElementById("third")
+    const nodeMenuFourth = document.getElementById("fourth")
+    console.info(nodeMenu)
+    console.info(nodeMenuFirst)
+    console.info(nodeMenuSecond)
+    console.info(nodeMenuThird)
+    console.info(nodeMenuFourth)
+
+    /* Node Property */
+    console.info(`menu childNodes: `, nodeMenu.childNodes)
+    console.info(`menu children: `, nodeMenu.children)
+    console.info(`menu first text: `, nodeMenuFirst.textContent)
+    console.info(`menu third text: `, nodeMenuThird.textContent)
+    console.info(`menu third previous node: `, nodeMenuThird.previousSibling.previousSibling)
+    console.info(`menu third next node`, nodeMenuThird.nextSibling.nextSibling)
+
+    /* Node method: memanipulasi node seperti menghapus/menambah child di dalam node */
+    nodeMenu.removeChild(document.getElementById("third"))
+    nodeMenu.removeChild(document.getElementById("second"))
+    
+  </script>
+</body>
+</html>

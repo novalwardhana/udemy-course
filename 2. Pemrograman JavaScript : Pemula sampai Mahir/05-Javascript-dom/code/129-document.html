@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>Test Document DOM</title>
+</head>
+<body>
+  Input 1: <input type="text" id="myID"> <br>
+  Input 2: <input type="text" class="myClass">
+  <script>
+    /* Document */
+    console.info(document)
+
+    /* Document Element */
+    console.info(document.title)
+    console.info(document.head)
+    console.info(document.body)
+    console.info(document.images)
+    console.info(document.contentType)
+
+    /* Document method */
+    const myID = document.getElementById("myID")
+    const myCLass = document.getElementsByClassName("myClass")
+    console.info(myID)
+    console.info(myCLass)
+  </script>
+</body>
+</html>

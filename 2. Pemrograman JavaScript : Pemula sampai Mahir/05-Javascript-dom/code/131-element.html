@@ -1,0 +1,71 @@
+<html>
+<head></head>
+<body>
+  <h1 id="myTitle"></h1>
+  <p id="myDescription"></p>
+
+  <div id="information" class="information">
+    <h1 id="information-title" class="information-title">Test</h1>
+    <p id="information-desc" class="information-desc">Description</p>
+  </div>
+
+  <div id="description">
+  </div>
+
+  <div id="content"></div>
+  <script>
+    /* Element */
+    const myTitle = document.getElementById("myTitle")
+    myTitle.textContent = "Haloo"
+    const myDescription = document.getElementById("myDescription")
+    myDescription.textContent = "Novalita Kusuma Wardhana"
+
+    /* Element property */
+    const information = document.getElementById("information")
+    const informationID = information.id
+    const informationClassName = information.className
+    const informationTagName = information.tagName
+    console.info(`informationID: `, informationID)
+    console.info(`informationClassName: `, informationClassName)
+    console.info(`informationTagName: `, informationTagName)
+
+    /* Element method */
+    const informationTitle = document.getElementById("information-title")
+    const informationDesc = document.getElementById("information-desc")
+    informationTitle.remove()
+    informationDesc.remove()
+
+    /* Create element */
+    const description = document.getElementById("description")
+    const descriptionTitle = document.createElement("h1")
+    descriptionTitle.textContent = "Test H3"
+    description.appendChild(descriptionTitle)
+    const descriptionText = document.createElement("p")
+    descriptionText.id = "description-text"
+    descriptionText.className ="description-text"
+    descriptionText.tagName ="description-text-tag"
+    descriptionText.textContent = "Jalan jalan men"
+    description.appendChild(descriptionText)
+
+    const content = document.getElementById("content")
+    const contentTitle = document.createElement("h2")
+    contentTitle.id = "content-title"
+    contentTitle.className = "content-title"
+    contentTitle.textContent = "My Content Title"
+    const contentDesc = document.createElement("p")
+    contentDesc.id = "content-desc"
+    contentDesc.textContent = "My content desc"
+    content.appendChild(contentTitle)
+    content.appendChild(contentDesc)
+
+    const contentBtn = document.createElement("button")
+    contentBtn.id = "content-btn"
+    contentBtn.textContent = "Delete element"
+    content.appendChild(contentBtn)
+    document.getElementById("content-btn").onclick = function(event){
+      document.getElementById("content-title").remove()
+      document.getElementById("content-desc").remove()
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+  <script type="module">
+    import {Statsictic, Probability, sayHello, sayGoodBye, firstName, middleName, lastName} from "./script.js"
+
+    sayHello("Noval")
+    sayGoodBye("Novvv")
+    console.info(firstName)
+    console.info(middleName)
+    console.info(lastName)
+
+    const stats = new Statsictic(...[8, 3, 5, 9, 12, 15, 2, 5, 9, 10])
+    console.info(`stats datas: `, stats.datas)
+    console.info(`stats sum datas: `, stats.sumData())
+    console.info(`stats mean: `, stats.meanData())
+
+    const probs = new Probability()
+    console.info(`probs: `, probs)
+    console.info(`probs permutation: `, probs.permutation(9))
+    console.info(`probs combination: `, probs.combination(9, 2))
+  </script>
+</body>
+</html>

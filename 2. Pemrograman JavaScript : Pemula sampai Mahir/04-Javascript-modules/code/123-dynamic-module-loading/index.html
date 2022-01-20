@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body>
+  <input type="text" id="textID">
+  <input type="button" value="CLick Me" id="btnID">
+  <script type="module">
+    document.getElementById("btnID").onclick = function() {
+      const name = document.getElementById("textID").value
+      import("./script.js").then(function(module) {
+        module.sayHelllo("aaa")
+      })
+    }
+  </script>
+</body>
+</html>
