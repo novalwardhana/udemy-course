@@ -1,0 +1,26 @@
+<html>
+<head></head>
+<body>
+  <b>My Canvas Coordinat => </b><span id="coordinatMyCanvas"></span>
+  <div id="myCanvas" style="height: 300px; width: 300px; background: orange"></div> <br><br>
+
+  <b>My Canvas Coordinat => </b><span id="coordinatMyCanvas2"></span>
+  <div id="myCanvas2" style="height: 300px; width: 300px; background: purple;"></div>
+  <script>
+    /*
+      Referensi: https://developer.mozilla.org/en-US/docs/Web/Events
+    */
+    const myCanvas = document.getElementById("myCanvas")
+    myCanvas.onclick = function(event) {
+      const coordinatMyCanvas = document.getElementById("coordinatMyCanvas")
+      coordinatMyCanvas.textContent = `Coordinat x: ${event.x}, y: ${event.y}`
+    }
+
+    const myCanvas2 = document.getElementById("myCanvas2")
+    myCanvas2.addEventListener("mousemove", () => {
+      const coordinatMyCanvas2 = document.getElementById("coordinatMyCanvas2")
+      coordinatMyCanvas2.textContent = `Coordinat x: ${event.x}, y: ${event.y}`
+    })
+  </script>
+</body>
+</html>

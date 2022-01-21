@@ -1,0 +1,77 @@
+<html>
+<head></head>
+<body>
+  <input type="button" id="myButton" value="Button 1"> <br>
+  <input type="button" id="myButton2" value="Button 2"> <br>
+  <img id="myImage"><button id="myButton3">Change Image</button> <br>
+
+  <input type="button" id="myButton4" value="Button 4"> <br>
+  <input type="button" id="myButton5" value="Button 5"> <br>
+  <img id="myImage2"><img id="myImage3"><button type="button" id="myButton6">Change Image</button>
+  <script>
+    /*
+      Referensi: 
+      https://developer.mozilla.org/en-US/docs/Web/API/EventTarget
+      https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers
+      https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers
+    */
+
+    /* Event target 
+      Merupakan parent class dari node, jadi semua node mempunyai kemampuan dari event target
+      Pada event target kita bisa menggunakan method addEventListener('type', callback)
+    */
+   const myButton = document.getElementById("myButton")
+   myButton.addEventListener("click", function(){
+     myButton.setAttribute("value", "You've been already clicked Button 1")
+   })
+
+   const myButton2 = document.getElementById("myButton2")
+   myButton2.addEventListener("click", () => {
+     myButton2.setAttribute("value", "You've been already clicked Button 2")
+   })
+
+   const myButton3 = document.getElementById("myButton3")
+   myButton3.addEventListener("click", ()=>{
+    const myImage = document.getElementById("myImage")
+    myImage.setAttribute("src", "https://nodejs.org/static/images/logo.svg")
+    const myImageHeight = document.createAttribute("height")
+    myImageHeight.value = 100
+    const myImageWeight = document.createAttribute("weight")
+    myImageWeight.value = 100
+    myImage.setAttributeNode(myImageHeight)
+    myImage.setAttributeNode(myImageWeight)
+   })
+
+   /* Global event handler */
+   const myButton4 = document.getElementById("myButton4")
+   myButton4.onclick = function() {
+     myButton4.setAttribute("value", "You've been already clicked Button 4")
+     console.info("Button 4 clicked")
+   }
+
+   const myButton5 = document.getElementById("myButton5")
+   myButton5.onmouseover = () => {
+     myButton5.setAttribute("value", "You've been already clicked Button 5")
+   }
+
+   const myButton6 = document.getElementById("myButton6")
+   myButton6.onclick = () => {
+
+     const myImageHeight = document.createAttribute("height")
+     myImageHeight.value = 50
+     const myImageWeight = document.createAttribute("weight")
+     myImageWeight.value = 50
+
+     const myImage2 = document.getElementById("myImage2")
+     myImage2.setAttribute("src", "https://www.php.net/images/logos/php-logo.svg")
+     myImage2.setAttributeNode(myImageHeight)
+     myImage2.setAttributeNode(myImageWeight)
+
+     const myImage3 = document.getElementById("myImage3")
+     myImage3.setAttribute("src", "https://www.freecodecamp.org/news/content/images/size/w2000/2021/10/golang.png")
+     myImage3.setAttribute("height", 50)
+     myImage3.setAttribute("weight", 50)
+   }
+  </script>
+</body>
+</html>
