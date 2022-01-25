@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+  <button type="button" value="red">Red</button>
+  <button type="button" value="green">Green</button>
+  <button type="button" value="blue">Blue</button>
+  <div id="canvas" style="height: 300px; width: 300px; background-color: #f2f2f2;"></div>
+  <br><br>
+
+  <span value="navy">Navy</span>
+  <span value="olive">Olive</span>
+  <div id="canvas2" style="height: 300px; width: 300px; background-color: #f3f3f3;"></div>
+  <script>
+    /*
+      Pada style css, rata-rata menggunakan "-" seperti background-color, border-color
+      Sedangkan pada DOM menggunakan pascalCase seperti backgroundColor, borderColor
+    */
+    const myCanvas = document.getElementById("canvas")
+    const buttons = document.querySelectorAll("button")
+    for (const button of buttons) {
+      button.onclick = function() {
+        myCanvas.style.backgroundColor = button.getAttribute("value")
+      }
+    }
+
+    const myCanvas2 = document.getElementById("canvas2")
+    const spans = document.querySelectorAll("span")
+    for (const span of spans) {
+        span.addEventListener("click", () => {
+        myCanvas2.style.backgroundColor = span.getAttribute("value")
+      })
+    }
+  </script>
+</body>
+</html>

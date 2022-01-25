@@ -1,0 +1,26 @@
+<html>
+<head></head>
+<body>
+  <div id="content"></div>
+  <br>
+  <div id="location"></div>
+  <br>
+  <div id="localStorage"></div>
+  <script>
+    /*
+      https://developer.mozilla.org/en-US/docs/Web/API/Window
+      contoh: ketika kita menggunakan console.info sebenarnya window.info
+    */
+    const content = document.getElementById("content")
+    const myLocation = document.getElementById("location")
+    const myLocalStorage = document.getElementById("localStorage")
+
+    const windowHeight = window.screen.height
+    const windowWidth = window.screen.width
+    const windowLocation = window.location
+    content.textContent = `Window height: ${windowHeight}, width: ${windowWidth}`
+    myLocation.textContent = `Window location: ${windowLocation}`
+    myLocalStorage.textContent = window.localStorage
+  </script>
+</body>
+</html>

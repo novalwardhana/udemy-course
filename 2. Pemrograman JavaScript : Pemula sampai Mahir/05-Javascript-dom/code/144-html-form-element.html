@@ -1,0 +1,83 @@
+<html>
+<head></head>
+<body>
+  <form name="commentForm">
+    <label for="comment">
+      Comment: <input type="text" name="comment" id="comment">
+    </label>
+    <br>
+    <label for="from">
+      From: <input type="text" name="from" id="from">
+    </label>
+    <br>
+    <input type="submit" value="submit">
+  </form>
+  <div id="commentList"></div>
+
+  <hr>
+
+  <form name="footballForm">
+    <label for="player">
+      Player: <input type="text" name="player" id="player">
+    </label>
+    <br>
+    <label for="club">
+      Club: <input type="text" name="club" id="club">
+    </label>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  <div id="footballList"></div>
+  <script>
+    /*
+      https://developer.mozilla.org/en-US/docs/Web/api/htmlformelement
+      https://developer.mozilla.org/en-US/docs/Web/api/htmlinputelement
+    */
+    document.querySelector("form[name='commentForm']").onsubmit = function(event) {
+      event.preventDefault()
+
+      const commentList = document.getElementById("commentList")
+      const comment = document.getElementById("comment").value
+      const from = document.getElementById("from").value
+
+      const commentItem = document.createElement("p")
+      commentItem.textContent = `${comment} - ${from}`
+      commentList.appendChild(commentItem)
+
+      document.querySelector("form[name='commentForm']").reset()
+    }
+
+    /* 
+      Akses form via name
+      Kelebihan form: bisa mengakses form via name
+    */
+    document.forms["commentForm"].addEventListener("submit", (event) => {
+      event.preventDefault()
+
+      const commentList = document.getElementById("commentList")
+      const comment = document.forms["commentForm"]["comment"].value
+      const from = document.forms["commentForm"]["from"].value
+
+      const commentItem = document.createElement("p")
+      commentItem.textContent = `comment: ${comment}, from: ${from}`
+      commentList.appendChild(commentItem)
+
+      document.querySelector("form[name='commentForm']").reset()
+    })
+
+    document.querySelector("form[name='footballForm']").addEventListener("submit", (event) => {
+      event.preventDefault()
+
+      const footballList = document.getElementById("footballList")
+      const player = document.forms["footballForm"]["player"].value
+      const club = document.forms["footballForm"]["club"].value
+      
+      const footballItem = document.createElement("p")
+      footballItem.innerText = `Player: ${player} \n Club: ${club}`
+      footballList.appendChild(footballItem)
+
+      document.forms["footballForm"].reset()
+    })
+  </script>
+</body>
+</html>

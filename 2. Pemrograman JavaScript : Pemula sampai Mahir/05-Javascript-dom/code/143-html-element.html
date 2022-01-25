@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+  <a id="link">Link</a>
+  <a id="link2"></a>
+  <br><br>
+  <img id="myImage">
+  <script>
+    /*
+      Element merupakan representasi dari DOM
+      Saat menggunakan HTML, implementasi sebenarnya adalah HTML element yang merupakan turunan dari element
+      HTML element memiliki properti tambahan selain dari element DOM
+
+      Kebanyakan HTML element memiliki properti dan attribute yang ada pada tag HTML tersebut, 
+      sehingga tidak butuh lagi memanggil method setAttribute atau getAttribute
+      Referensi: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement
+    */
+    const link = document.getElementById("link")
+    link.href = "https://novalwardhana.com"
+    link.target = "_blank"
+    link.textContent = "My Web"
+
+    const link2 = document.getElementById("link2")
+    link2.href = "https://hipwee.com"
+    link2.target = "_blank"
+    link2.textContent = "Hipwee"
+
+    const myImage = document.getElementById("myImage")
+    myImage.src = "https://nodejs.org/static/images/logo.svg"
+    myImage.alt = "Node JS"
+    myImage.style.height = "150px"
+    myImage.style.width = "150px"
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<html>
+<head></head>
+<body>
+  <div id="content">
+    <script>
+      console.info("Hello world")
+    </script>
+    <b>Noval <i>Kusuma</i> <u>Wardhana</u></b>
+  </div>
+
+  <div id="content2"></div>
+
+  <button type="button" id="change">Change Content</button>
+  <div id="content3">
+    <script>
+      console.info("Welcome...")
+    </script>
+    <div class="club">
+      Manchester United
+    </div>
+    <div class="club">
+      Arsenal
+    </div>
+    <div class="club">
+      Chelsea
+    </div>
+  </div>
+  <script>
+    /*
+      Selain textContent, ada property bernama innerText untuk mengambil isi text content sebuah element
+      textContent akan mengembalikan semua isi konten text di sebuah element
+      innerText hanya akan mengambil text yang akan ditampilkan saja
+    */
+
+    /* Inner Text */
+    const content = document.getElementById("content")
+    console.info(`content textContent: `, content.textContent)
+    console.info(`content innerText: `, content.innerText)
+
+    /* Inner HTML */
+    console.info(`content innerHTML: `, content.innerHTML)
+
+    /* Mengubah element dengan innerHTML */
+    const content2 = document.getElementById("content2")
+    content2.innerHTML = "<h1>Halooo</h1><h2>Novalita Kusuma Wardhana</h2>"
+
+    const content3 = document.getElementById("content3")
+    console.info(`content3: `, content3)
+    console.info(`content3 textContent: `, content3.textContent)
+    console.info(`content3 innerText: `, content3.innerText)
+    console.info(`content3 innerHTML: `, content3.innerHTML)
+    const change = document.getElementById("change")
+    change.addEventListener("click", () => {
+      content3.innerHTML = "<b>Content has been changed</b>"
+    })
+  </script>
+</body>
+</html>

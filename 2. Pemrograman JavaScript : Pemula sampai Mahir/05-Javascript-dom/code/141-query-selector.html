@@ -1,0 +1,144 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Query Selector</title>
+</head>
+<body>
+  <div id="content">
+    <div class="club">Arsenal</div>
+    <div class="club">Barcelona</div>
+    <div class="club">Paris Saint Germain</div>
+  </div>
+  <p>Hello World</p>
+
+  <div>
+    <span>Noah</span>
+    <span>Andra & The Backbone</span>
+    <span>Sheila on 7</span>
+  </div>
+
+  <ul>
+    <li class="food">Sate</li>
+    <li class="food">Soto</li>
+    <li class="drink">Es Teh</li>
+    <li class="food">Bebek</li>
+    <li class="drink">Es Jeruk</li>
+    <li id="appetizer">Salad</li>
+  </ul>
+
+  <ul>
+    <li>Manchester United</li>
+    <li>Tottenham</li>
+    <li>Arsenal</li>
+  </ul>
+
+  <ul>
+    <li>Real Madrid</li>
+    <li>Barcelona</li>
+  </ul>
+
+  <ul>
+    <li class="menuListEn">Chelsea</li>
+    <li class="menuListIt">Juventus</li>
+    <li class="menuListIt">Inter Milan</li>
+    <li class="menuListIt">AC Milan</li>
+    <li class="menuListEn">Manchester City</li>
+    <li id="menuListFr">Lyon</li>
+  </ul>
+
+  <ul>
+    <li class="laptop">Lenovo</li>
+    <li class="laptop">Huawei</li>
+    <li class="laptop">Samsung</li>
+  </ul>
+
+  <div id="myImage">
+    <img>
+    <img>
+    <img>
+    <img>
+  </div>
+  <script>
+    /* 
+      document.QuerySelector: mengambil node pertama
+      document.QuerySelectorAll: mengambil semua node yang memiliki pola sama
+      Css selector: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors?retiredLocale=id
+    */
+
+    /* Universal selector */
+    const universalSelector = document.querySelectorAll("*")
+    console.info(`universalSelector: `, universalSelector)
+
+    const allSelector = document.querySelectorAll("*")
+    console.info(`allSelector: `, allSelector)
+
+    /* Type selector */
+    const liSelector = document.querySelectorAll("li")
+    console.info(`liSelector: `, liSelector)
+
+    const spanSelector = document.querySelectorAll("span")
+    console.info(`spanSelector: `, spanSelector)
+
+    /* Class selector: seleksi selector dengan class */
+    const liMenuListEn = document.querySelectorAll(".menuListEn")
+    const liMenuListIt = document.querySelectorAll("li.menuListIt")
+    console.info(`menuListEn: `, liMenuListEn)
+    console.info(`menuListIt: `, liMenuListIt)
+
+    const liFood = document.querySelectorAll(".food")
+    const liDrink = document.querySelectorAll("li.drink")
+    console.info(`liFood: `, liFood)
+    console.info(`liDrink: `, liDrink)
+
+    /* ID selector: seleksi selector dengan ID */
+    const liMenuListFr = document.querySelectorAll("#menuListFr")
+    console.info(`liMenuListFr: `, liMenuListFr)
+    
+    const liAppetizer = document.querySelectorAll("li#appetizer") 
+    console.info(`liAppetizer: `, liAppetizer)
+    console.info(`liAppetizer baseURI: `, liAppetizer[0].baseURI)
+
+    /* Attribute selector: seleksi element berdasarkan attributenya 
+      https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors
+    */
+    const allAttributeClass = document.querySelectorAll("[class]")
+    const allAttributeID = document.querySelectorAll("[id]")
+    console.info(`allAttributeClass: `, allAttributeClass)
+    console.info(`allAtributeID: `, allAttributeID)
+
+    const srcImages = ["https://www.freecodecamp.org/news/content/images/size/w2000/2021/10/golang.png", "https://nodejs.org/static/images/logo.svg", "https://www.php.net/images/logos/php-logo.svg", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png"]
+    let srcImageIndex = 0
+    const imgs = document.querySelectorAll("img")
+    for (const img of imgs) {
+      const srcAttribute = document.createAttribute("src")
+      srcAttribute.value = srcImages[srcImageIndex]
+     
+      img.style.height = 150
+      img.style.width = 150
+      img.setAttributeNode(srcAttribute)
+
+      const classAttribute = document.createAttribute("class")
+      if (srcImageIndex % 2 == 0) {
+        classAttribute.value = "evenImage"
+      } else {
+        classAttribute.value = "oddImage"
+      }
+      img.setAttributeNode(classAttribute)
+      srcImageIndex++
+    }
+    const imgQueries = document.querySelectorAll("img[class]")
+    console.info(`imgs: `, imgQueries)
+
+   /* Operator selector: jika attribute sama seperti value tertentu
+    https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors#syntax
+    https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors?retiredLocale=id
+   */
+    const laptop = document.querySelectorAll("li[class^='laptop']")
+    console.info(laptop)
+    const oddImages = document.querySelectorAll("img[class^='oddImage']")
+    console.info(`oddImages: `, oddImages)
+    const evenImages = document.querySelectorAll("img[class^='evenImage']")
+    console.info(`evenImage: `, evenImages)
+  </script>
+</body>
+</html>

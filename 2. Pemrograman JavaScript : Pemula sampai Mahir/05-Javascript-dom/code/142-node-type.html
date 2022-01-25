@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Node Type</title>
+</head>
+<body>
+  <!-- Comment sample -->
+  Test
+  <div id="content">
+    <div id="header">
+      <h3>Noval Wardhana</h3>
+    </div>
+    <div id="body">
+      <b>Welcome to my site</b>
+    </div>
+    <div id="footer">
+      <div class="screen">Address</div>
+      <div class="screen">About</div>
+    </div>
+  </div>
+
+  <ul id="ulMenu">
+    <li>Manchester United</li>
+    <li>Real Madrid</li>
+    <li>Tottenham Hotspur</li>
+    <li>AC Milan</li>
+    <li>Borussia Dortmund</li>
+  </ul>
+  <script>
+    /*
+      Referensi node type: https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType
+    */
+    const allElements = document.body.childNodes
+    for (const node of allElements) {
+      console.info(`${node}: ${node.nodeName}, ${node.nodeType}`)
+    }
+
+    const ulMenu = document.getElementById("ulMenu").childNodes
+    ulMenu.forEach(node => {
+      console.info(`${node.nodeName}: ${node.nodeType}, ${node.nodeValue}`)
+    })
+  </script>
+</body>
+</html>
