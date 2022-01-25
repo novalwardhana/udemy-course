@@ -1,0 +1,92 @@
+<html>
+<head></head>
+<body>
+  <table id="orderRevenue" border="1">
+    <caption>Order Revenue</caption>
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Incode</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>January</td>
+        <td>100.000.000</td>
+      </tr>
+      <tr>
+        <td>February</td>
+        <td>200.000.000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Total</td>
+        <td>300.000.000</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <br><br>
+
+  <table id="purchaseOrder">
+    <caption>Purchase Order</caption>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>City</th>
+        <th>Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Kota Yogyakarta</td>
+        <td>120.000.000</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Bantul</td>
+        <td>105.000.000</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Sleman</td>
+        <td>115.000.000</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Kulon Progo</td>
+        <td>85.000.000</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Gunungkidul</td>
+        <td>100.500.000</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan=2>Total</td>
+        <td>525500000</td>
+      </tr>
+    </tfoot>
+  </table>
+  <script>
+    const orderRevenue = document.getElementById("orderRevenue")
+    console.info(`orderRevenue caption: `, orderRevenue.caption)
+    console.info(`orderRevenue tHead: `, orderRevenue.tHead)
+    console.info(`orderRevenue tBodies:`, orderRevenue.tBodies)
+    console.info(`orderRevenue tFoot:`, orderRevenue.tFoot)
+    console.info(`orderRevenue rows: `, orderRevenue.rows)
+
+    const purchaseOrder = document.getElementById("purchaseOrder")
+    purchaseOrder.setAttribute("border", "1")
+    console.info(`purchaseOrder caption: `, purchaseOrder.caption)
+    console.info(`purchaseOrder tHead:`, purchaseOrder.tHead)
+    console.info(`purchaseOrder tBodies: `, purchaseOrder.tBodies)
+    console.info(`purchaseOrder tFoot:`, purchaseOrder.tFoot)
+    console.info(`purchaseOrder rows:`, purchaseOrder.rows)
+  </script>
+</body>
+</html>
