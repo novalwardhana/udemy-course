@@ -1,0 +1,107 @@
+<html>
+<head></head>
+<body>
+  <form action="#" name="todoForm">
+    <table>
+      <tbody>
+        <tr>
+          <td>Todo</td>
+          <td><input type="text" name="todo" id="todo"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Add"></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <h1>Todolist</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Filter</th>
+        <th><input type="text" name="search" id="search"></th>
+      </tr>
+    </thead>
+    <tbody id="todoListBody">
+      <tr>
+        <td><input type="button" value="Done"></td>
+        <td>Todo Description</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    let todoList = [
+      "Belajar Javascript Dasar",
+      "Belajar Javascript Object Oriented Programming",
+      "Belajar Javascript Document Object Model"
+    ]
+
+    const clearTodoList = () => {
+      const todoListBody = document.getElementById("todoListBody")
+      while(todoListBody.firstChild) {
+        todoListBody.removeChild(todoListBody.firstChild)
+      }
+    }
+
+    const displayTodoList = () => {
+      clearTodoList()
+      for (let i = 0; i < todoList.length; i++) {
+
+        const tr = document.createElement("tr")
+        const tdButton = document.createElement("td")
+        const buttonDone = document.createElement("input")
+        buttonDone.type = "button"
+        buttonDone.value = "Done"
+        tdButton.appendChild(buttonDone)
+        tr.appendChild(tdButton)
+
+        const tdTodo = document.createElement("td")
+        tdTodo.textContent = todoList[i]
+        tr.appendChild(tdTodo)
+
+        const todoListBody = document.getElementById("todoListBody")
+        todoListBody.appendChild(tr)
+      }
+    }
+
+    document.forms["todoForm"].onsubmit = function(event) {
+      event.preventDefault()
+
+      const todo = document.forms["todoForm"]["todo"].value
+      todoList.push(todo)
+
+      document.forms["todoForm"].reset()
+      displayTodoList()
+    }
+
+    displayTodoList()
+
+    document.getElementById("search").addEventListener("change", (event) => {
+      clearTodoList()
+      const searchValue = document.getElementById("search").value
+      const filterTodoList = todoList.filter(element => element.match(searchValue))
+      for (const todo of filterTodoList) {
+        const tr = document.createElement("tr")
+        const tdButton = document.createElement("td")
+        tr.appendChild(tdButton)
+
+        const buttonDone = document.createElement("input")
+        buttonDone.type ="button"
+        buttonDone.value = "Done"
+        tdButton.appendChild(buttonDone)
+
+        const tdTodo = document.createElement("td")
+        tdTodo.textContent = todo
+        tr.appendChild(tdTodo)
+
+        const todoListBody = document.getElementById("todoListBody")
+        todoListBody.appendChild(tr)
+      }
+    })
+  </script>
+</body>
+</html>

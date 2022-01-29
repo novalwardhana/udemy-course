@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>Membuat Halaman</title>
+</head>
+<body>
+  <form action="#" name="todoForm">
+    <table>
+      <tbody>
+        <tr>
+          <td><label for="todo">Todo</label></td>
+          <td><input type="text" id="todo" name="todo"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Add"></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <h1>Todolist</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Filter
+        </th>
+        <td>
+          <input type="text" id="search" name="search">
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="button" value="Done"></td>
+        <td>Todo Description</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    const tables = document.querySelectorAll("tbody")[1]
+    document.forms["todoForm"].addEventListener("click", (event) => {
+      event.preventDefault()
+      
+      const formValue = document.forms["todoForm"]["todo"].value
+      
+      const row = document.createElement("tr")
+
+      const firstColumn = document.createElement("td")
+      const doneButton = document.createElement("input")
+      doneButton.setAttribute("type", "button")
+      doneButton.setAttribute("value", "Done")
+      firstColumn.appendChild(doneButton)
+
+      const secondColumn = document.createElement("td")
+      secondColumn.textContent = formValue
+
+      row.appendChild(firstColumn)
+      row.appendChild(secondColumn)
+      
+      console.info(tables)
+      tables.appendChild(row)
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<html>
+<head></head>
+<body>
+  <form action="#" name="todoForm">
+    <table>
+      <tr>
+        <td>Todo</td>
+        <td><input type="text" id="todo" name="todo"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Add"></td>
+      </tr>
+    </table>
+  </form>
+
+  <h1>Todolist</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Filter</th>
+        <th><input type="text" name="search" id="search"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="button" value="Done"></td>
+        <td>Todo Description</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    let todoList = []
+
+    document.forms["todoForm"].onsubmit = function(event) {
+      event.preventDefault()
+      
+      const todo = document.forms["todoForm"]["todo"].value
+      todoList.push(todo)
+
+      console.info(`todoList: `, todoList)
+      document.forms["todoForm"].reset()
+    }
+  </script>
+</body>
+</html>
