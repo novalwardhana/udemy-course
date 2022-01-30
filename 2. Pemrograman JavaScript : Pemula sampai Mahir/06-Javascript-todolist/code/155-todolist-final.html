@@ -1,0 +1,111 @@
+<html>
+<head></head>
+<body>
+  <form action="#" name="foodForm">
+    <table>
+      <tbody>
+        <tr>
+          <td>Food</td>
+          <td><input type="text" name="food" id="food"></td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td><input type="number" name="price" id="price"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Add Food"></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <h1>Food Lists</h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Filter</th>
+        <th colspan="2"><input type="text" id="search" name="search"></th>
+      </tr>
+    </thead>
+    <tbody id="foodBody">
+    </tbody>
+  </table>
+
+  <script>
+    let foodList = []
+
+    const resetData = () => {
+      const foodBody = document.getElementById("foodBody")
+      while(foodBody.firstChild) {
+        foodBody.removeChild(foodBody.firstChild)
+      }
+    }
+
+    const removeData = (index) => {
+      foodList.splice(index, 1)
+      displayData()
+    }
+
+    const addData = (index, data) => {
+      const tr = document.createElement("tr")
+
+      const tdButton = document.createElement("td")
+      const tdButtonDone = document.createElement("input")
+      tdButtonDone.type = "button"
+      tdButtonDone.value = "Done"
+      tdButtonDone.onclick = () => {
+        removeData(index)
+      }
+      tdButton.appendChild(tdButtonDone)
+      tr.appendChild(tdButton)
+
+      const tdFood = document.createElement("td")
+      tdFood.textContent = data.name
+      tr.appendChild(tdFood)
+
+      const tdPrice = document.createElement("td")
+      tdPrice.textContent = data.price
+      tr.appendChild(tdPrice)
+
+      const foodBody = document.getElementById("foodBody")
+      foodBody.appendChild(tr)
+    }
+
+    const displayData = () => {
+      resetData()
+      for (const index in foodList) {
+       
+        const food = foodList[index]
+        const searchText = document.getElementById("search")
+        
+        if (food.name.toLowerCase().includes(searchText.value.toLowerCase()) || food.price.toString().toLowerCase().includes(searchText.value.toLowerCase())) {
+          addData(index, food)
+        }
+      }
+    }
+
+    document.forms["foodForm"].addEventListener("submit", (event) => {
+      event.preventDefault()
+      
+      const food = {
+        "name": document.forms["foodForm"]["food"].value,
+        "price": Number(document.forms["foodForm"]["price"].value)
+      }
+      foodList.push(food)
+
+      document.forms["foodForm"].reset()
+      displayData()
+    })
+
+    const searchText = document.getElementById("search")
+    searchText.addEventListener("keyup", () => {
+      displayData()
+    })
+    searchText.addEventListener("keydown", () => {
+      displayData()
+    })
+  </script>
+</body>
+</html>
