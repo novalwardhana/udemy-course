@@ -1,0 +1,25 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      Hookbin adalah aplikasi yang bisa digunakan untuk menerima request HTTP dan menyimpan datanya
+      Dengan ini kita bisa menggunakan hookbin untuk melihat detail data ajax yang kita kirim
+      referensi: hookbin.com
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "https://hookb.in/nP02bjD17ziZ7Qrr7NO7")
+    ajax.addEventListener("load", () => {
+      if (ajax.status === 200) {
+        const response = JSON.parse(ajax.responseText)
+        console.info(`response: `, response)
+      }
+    })
+    ajax.addEventListener("readystatechange", () => {
+      console.info(`State change: ${ajax.readyState}`)
+    })
+    ajax.send()
+  </script>
+</body>
+</html>

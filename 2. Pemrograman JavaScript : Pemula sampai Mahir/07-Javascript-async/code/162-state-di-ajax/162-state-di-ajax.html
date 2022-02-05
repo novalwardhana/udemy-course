@@ -1,0 +1,63 @@
+<html>
+<head></head>
+<body>
+  <div id="response"></div>
+  <div id="response2"></div>
+  <script>
+    /*
+      State AJAX
+      a. AJAX memiliki tahapan state, dimana kita bisa mendapat banyak sekali state di ajax menggunakan
+        properti readyState
+      b. Property readyState mengembalikan nilai number, dimana setiap number merepresentasi dari statenya
+
+      Daftar State AJAX
+      0: UNSENT
+        Client has been created. open() not yet called
+      1: OPENED
+        open() has been called
+      2: HEADERS_RECEIVED
+        send() has been called, and header and status are availble
+      3: LOADING
+        Downloading: responseText holds partial data
+      4: DONE
+        The operation is completed
+
+      Ready State Change Event
+      Jika kita ingin melihat perubahan yang terjadi pada state
+      https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/onreadystatechange
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "api.json")
+    ajax.addEventListener("load", function() {
+      const response = document.getElementById("response")
+      if (ajax.status === 200) {
+        const json = JSON.parse(ajax.responseText)
+        response.textContent = json.response
+      } else {
+        response.textContent = `Failed get data ${ajax.status}`
+      }
+    })
+    ajax.onreadystatechange = function() {
+      console.info(`Status state: ${ajax.readyState}`)
+    }
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "wrong-api.json")
+    ajax2.addEventListener("load", () => {
+      const response = document.getElementById("response2")
+      if (ajax2.status === 200) {
+        const json = JSON.parse(ajax2.responseText)
+        response.textContent = json.response
+      } else {
+        response.textContent = `Failed get data ${ajax2.status}`
+      }
+    })
+    ajax2.addEventListener("readystatechange", () => {
+      console.info(`Ajax2 Status state: ${ajax2.readyState}`)
+    })
+    ajax2.send()
+  </script>
+</body>
+</html>

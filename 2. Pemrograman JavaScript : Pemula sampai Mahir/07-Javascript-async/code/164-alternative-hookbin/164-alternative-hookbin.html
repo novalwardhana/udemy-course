@@ -1,0 +1,52 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /* 
+      Ada banyak alternatif website hookbin, misalnya:
+      a. https://requestbin.net
+      b. https://pipedream.com/requestbin
+      c. https://beeceptor.com
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "http://requestbin.net/r/huvsrpwr")
+    ajax.addEventListener("load", () => {
+      if (ajax.status === 200) {
+        const response = ajax.responseText
+        console.info("Requestbin response: ", response)
+      }
+    })
+    ajax.addEventListener("readystatechange", () => {
+      console.info(`Requestbin ready state change: ${ajax.readyState}`)
+    })
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "https://romanov.free.beeceptor.com/my/api/path")
+    ajax2.addEventListener("load", () => {
+      if (ajax2.status === 200) {
+        const response = ajax2.responseText
+        console.info(`Beeceptor response: `, response)
+      }
+    })
+    ajax2.addEventListener("readystatechange", () => {
+      console.info(`Beeceptor ready state change: ${ajax2.readyState}`)
+    })
+    ajax2.send()
+
+    const ajax3 = new XMLHttpRequest()
+    ajax3.open("GET", "https://enlomb93acl69bi.m.pipedream.net")
+    ajax3.addEventListener("load", () => {
+      if (ajax3.status === 200) {
+        const response = JSON.parse(ajax3.responseText)
+        console.info(`Pipedream response: `, response)
+      }
+    })
+    ajax3.addEventListener("readystatechange", () => {
+      console.info(`Pipedream ready state change: ${ajax3.readyState}`)
+    })
+    ajax3.send()
+  </script>
+</body>
+</html>
