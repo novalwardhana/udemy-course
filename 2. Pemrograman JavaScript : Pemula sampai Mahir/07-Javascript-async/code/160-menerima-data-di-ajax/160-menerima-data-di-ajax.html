@@ -1,0 +1,51 @@
+<html>
+<head></head>
+<body>
+  <div id="identity"></div>
+  <hr>
+  <table id="foodList">
+    <thead>
+      <th>Name</th>
+      <th>Price</th>
+    </thead>
+    <tbody id="foodListBody"></tbody>
+  </div>
+  <script>
+    /*
+      Menerima data dari AJAX
+      a. Kita tidak bisa langsung mengambil response AJAX, karena proses async, 
+        sehingga harus menunggu hingga proses async selesai
+      b. Untuk mendapatkan informasi AJAX, kita bisa menggunakan AJAX callback yang akan
+        dieksekusi setelah proses ajax selesai
+      c. referensi: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/load_event
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "api.json")
+    ajax.addEventListener("load", function(){
+      const json = JSON.parse(ajax.responseText)
+      const identity = document.getElementById("identity")
+      identity.textContent = json.firstName
+    })
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "api2.json")
+    ajax2.addEventListener("load", () => {
+      const foods = JSON.parse(ajax2.responseText)
+      const foodListBody = document.getElementById("foodListBody")
+      for (const food of foods) {
+        const tr = document.createElement("tr")
+        const tdName = document.createElement("td")
+        tdName.textContent = food.name
+        tr.appendChild(tdName)
+        const tdPrice = document.createElement("td")
+        tdPrice.textContent = food.price
+        tr.appendChild(tdPrice)
+        foodListBody.appendChild(tr)
+      }
+    })
+    ajax2.send()
+  </script>
+</body>
+</html>

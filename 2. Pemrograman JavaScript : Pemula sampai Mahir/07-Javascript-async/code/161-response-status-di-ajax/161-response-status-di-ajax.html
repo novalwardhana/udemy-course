@@ -1,0 +1,113 @@
+<html>
+<head></head>
+<body>
+  <div id="response"></div>
+  <div id="response2"></div>
+  <table id="table">
+    <thead>
+      <th>Player</th>
+      <th>Number</th>
+    </thead>
+    <tbody id="tableListBody"></tbody>
+  </table>
+
+  <table id="table2">
+    <thead>
+      <th>Player</th>
+      <th>Number</th>
+    </thead>
+    <tbody id="tableListBody2"></tbody>
+  </table>
+  <script>
+    /*
+      Response status di AJAX
+      a. AJAX adalah komunikasi antara client dengan server
+      b. Dalam komunikasi client dan server, kita tidak bisa selalu menganggap proses akan berjalan lancar
+      c. Ada banyak hal yang menyebabkan error mulai dari: koneksi internet, error dari server, data dari client tidak valid, dll
+      d. Server biasanya akan mengirim HTTP statuscode sesuai response nya
+      referensi: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/status
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "api.json")
+    ajax.addEventListener("load", function(){
+      if (ajax.status === 200) {
+        const json = JSON.parse(ajax.responseText)
+        const response = document.getElementById("response")
+        response.textContent = json.response
+      } else {
+        const response = document.getElementById("response")
+        response.textContent ="Failed get json data"
+      }
+    })
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "wrong-api.json")
+    ajax2.addEventListener("load", () => {
+      if (ajax2.status === 200) {
+        const json = JSON.parse(json2.responseText)
+        const response2 = document.getElementById("response2")
+        response2.textContent = json.response
+      } else {
+        const response2 = document.getElementById("response2")
+        response2.textContent = `Failed get json data, error status: ${ajax2.status}`
+      }
+    })
+    ajax2.send()
+
+    const ajax3 = new XMLHttpRequest()
+    ajax3.open("GET", "api2.json")
+    ajax3.addEventListener("load",  () => {
+      const tableListBody = document.getElementById("tableListBody")
+      if (ajax3.status === 200) {
+        const players = JSON.parse(ajax3.responseText)
+        for (const player of players) {
+          const tr = document.createElement("tr")
+          const tdPlayer = document.createElement("td")
+          tdPlayer.textContent = player.name
+          const tdNumber = document.createElement("td")
+          tdNumber.textContent =player.number
+          tr.appendChild(tdPlayer)
+          tr.appendChild(tdNumber)
+          tableListBody.appendChild(tr)
+        }
+      } else {
+        const tr = document.createElement("tr")
+        const td = document.createElement("td")
+        td.colSpan = 2
+        td.textContent = "Cannot load data"
+        tr.appendChild(td)
+        tableListBody.appendChild(tr)
+      }
+    })
+    ajax3.send()
+
+    const ajax4 = new XMLHttpRequest()
+    ajax4.open("GET", "wrong-api2.json")
+    ajax4.addEventListener("load", () => {
+      const tableListBody = document.getElementById("tableListBody2")
+      if (ajax4.status !== 200) {
+        const tr = document.createElement("tr")
+        const td = document.createElement("td")
+        tr.appendChild(td)
+        td.textContent = `Cannot load data, error status ${ajax4.status}`
+        tableListBody.appendChild(tr)
+      } else {
+        const players = JSON.parse(ajax4.responseText)
+        for (const player of players) {
+          const tr = document.createElement("tr")
+          const tdPlayer = document.createElement("td")
+          tdPlayer.textContent = player.name
+          const tdNumber = document.createElement("td")
+          tdNumber.textContent = player.number
+          tr.appendChild(tdPlayer)
+          tr.appendChild(tdNumber)
+          tableListBody.appendChild(tr)
+        }
+      }
+    })
+    ajax4.send()
+  </script>
+</body>
+</html>

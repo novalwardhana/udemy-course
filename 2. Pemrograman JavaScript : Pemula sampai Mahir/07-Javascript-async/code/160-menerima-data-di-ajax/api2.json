@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Sate Ayam",
+    "price": 15000
+  },
+  {
+    "name": "Sate Sapi",
+    "price": 25000
+  },
+  {
+    "name": "Bakso",
+    "price": 12000
+  }
+]

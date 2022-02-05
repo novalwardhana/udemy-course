@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+    /*
+      AJAX: Ascnyhronous Javascript And XML
+      AJAX biasanya digunakan untuk mengirim atau menerima data dari URL lain
+      Untuk menggunakan AJAX kita bisa menggunakan class XMLHttpRequest
+      sumber: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "api.json")
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "api2.json")
+    ajax2.send()
+  </script>
+</body>
+</html>

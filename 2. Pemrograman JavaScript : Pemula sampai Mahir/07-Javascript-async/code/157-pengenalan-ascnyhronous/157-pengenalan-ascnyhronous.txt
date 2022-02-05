@@ -1,0 +1,15 @@
+1. Synchronous
+  a. Program di javascript secara default dieksekusi baris per baris
+  b. Secara default, proses di javascript dieksekusi secara Synchronous
+    artinya baris selanjutnya akan dieksekusi setelah baris sebelumnya
+    selesai dijalankan
+  c. Proses syncronous juga biasa disebut blocking, karena harus menunggu
+    tiap proses selesai, baru proses selanjutnya bisa dilakukan
+
+
+2. Asynchronous
+  a. Walaupun secara default proses di javascript dieksekusi secara syncronous, namun kita bisa
+    membuatnya menjadi Asynchronous
+  b. Berbeda dengan syncronous, pada proses asynchronous, javascript tidak akan menunggu proses tersebut selesai
+    , melainkan akan melanjutkan baris selanjutnya, tanpa harus menunggu proses asynchronous selesai
+  c. Proses asynchronous juga biasa disebut non-blocking

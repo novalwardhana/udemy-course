@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "name": "Manchester United",
+      "country": "England"
+    },
+    {
+      "name": "Inter Milan",
+      "country": "Italy"
+    },
+    {
+      "name": "AC Milan",
+      "country": "Italy"
+    }
+  ]
+}
