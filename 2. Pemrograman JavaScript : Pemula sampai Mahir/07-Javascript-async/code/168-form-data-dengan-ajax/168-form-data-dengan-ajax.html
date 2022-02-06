@@ -1,0 +1,82 @@
+<html>
+<head></head>
+<body>
+  <form action="#">
+    <label for="username">
+      Username <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="password">
+      Password <input type="text" id="password" name="password">
+    </label>
+    <br>
+    <input type="button" id="login" value="Login">
+  </form>
+  <h1 id="response"></h1>
+  <br>
+  <hr>
+  <br>
+
+  <form action="#" name="foodForm">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" name="name"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input type="number" name="price"></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td><input type="text" name="category"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+  <h2 id="responseFood"></h2>
+  <script>
+    /* 
+      Selain json dan QueryParam, kadang kita juga mengirim form data dari client ke server menggunakan ajax
+      Untuk kasus ini kita tetap menggunakan URLSearchParam
+      Object nya kemudian dikirim melalui parameter send()
+    */
+    function doLogin() {
+      const form = new URLSearchParams()
+      form.append("username", document.getElementById("username").value)
+      form.append("password", document.getElementById("password").value)
+      const ajax = new XMLHttpRequest()
+      ajax.open("POST", "https://hookb.in/VGM1O8wmKqHDrgoor7b9")
+      ajax.setRequestHeader("Content-Type", "x-form-urlencoded")
+      ajax.addEventListener("load", function() {
+        const response = document.getElementById("response")
+        response.innerText = ajax.responseText
+      })
+      ajax.send(form)
+    }
+    document.getElementById("login").onclick = doLogin
+
+    const foodSubmit = (event) => {
+      event.preventDefault()
+      
+      const form = new URLSearchParams()
+      form.append("name", document.forms["foodForm"]["name"].value)
+      form.append("price", document.forms["foodForm"]["price"].value)
+      form.append("category", document.forms["foodForm"]["category"].value)
+
+      const ajax = new XMLHttpRequest()
+      ajax.open("POST", "https://hookb.in/VGM1O8wmKqHDrgoor7b9")
+      ajax.setRequestHeader("Content-Type", "x-form-urlencoded")
+      ajax.addEventListener("load", () => {
+        const responseFood = document.getElementById("responseFood")
+        responseFood.innerText = ajax.responseText
+      })
+      ajax.send(form)
+    }
+    document.forms["foodForm"].addEventListener("submit", foodSubmit)
+  </script>
+</body>
+</html>

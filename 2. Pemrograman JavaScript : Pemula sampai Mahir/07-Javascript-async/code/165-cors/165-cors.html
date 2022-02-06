@@ -1,0 +1,49 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      CORS plugin: https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
+    */
+
+    const ajax = new XMLHttpRequest()
+    ajax.open("GET", "http://requestbin.net/r/huvsrpwr")
+    ajax.addEventListener("load", () => {
+      if (ajax.status === 200) {
+        const response = ajax.responseText
+        console.info(`Requestbin response: `, response)
+      }
+    })
+    ajax.addEventListener("readystatechange", () => {
+      console.info(`Requestbin readyStateChange: ${ajax.readyState}`)
+    })
+    ajax.send()
+
+    const ajax2 = new XMLHttpRequest()
+    ajax2.open("GET", "https://romanov.free.beeceptor.com/my/api/path")
+    ajax2.addEventListener("load", () => {
+      if (ajax2.status === 200) {
+        const response = ajax2.responseText
+        console.info(`Beecpetor response: `, response)
+      }
+    })
+    ajax2.addEventListener("readystatechange", () => {
+      console.info(`Beeceptor readyStateChange: ${ajax2.readyState}`)
+    })
+    ajax2.send()
+
+    const ajax3 = new XMLHttpRequest()
+    ajax3.open("GET", "https://enlomb93acl69bi.m.pipedream.net")
+    ajax3.addEventListener("load", () => {
+      if (ajax3.status === 200) {
+        const response = ajax3.responseText
+        console.info(`Pipedream response: `, JSON.parse(response))
+      }
+    })
+    ajax3.addEventListener("readystatechange", () => {
+      console.info(`Pipedream readyStateChange: ${ajax3.readyState}`)
+    })
+    ajax3.send()
+  </script>
+</body>
+</html>

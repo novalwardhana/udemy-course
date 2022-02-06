@@ -1,0 +1,81 @@
+<html>
+<head></head>
+<body>
+  <form action="#">
+    <label for="search">
+      Search:
+      <input type="text" name="search" id="search">
+    </label>
+    <br>
+    <input type="button" value="Search" id="searchButton">
+  </form>
+  <h1 id="response"></h1>
+
+  <br><hr><br>
+
+  <form action="#" name="userSearch">
+    <table>
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="username" id="username"></td>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" id="name"></td>
+      </tr>
+      <tr>
+        <td>Role</td>
+        <td><input type="text" name="role" id="role"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Search"></td>
+      </tr>
+    </table>
+  </form>
+  <h2 id="responseUserSearch"></h2>
+  <script>
+    /*
+      URL search param
+      https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+    */
+
+    function doSearch() {
+      const ajax = new XMLHttpRequest()
+      const param = new URLSearchParams()
+      param.append("search", document.getElementById("search").value)
+      param.append("filter", document.getElementById("search").value)
+      console.info(param.toString())
+
+      ajax.open("GET", `https://hookb.in/VGM1O8wmKqHDrgoor7b9?${param.toString()}`)
+      ajax.onload = function() {
+        const response = document.getElementById("response")
+        response.innerText = ajax.responseText
+      }
+      ajax.send()
+    }
+    document.getElementById("searchButton").onclick = doSearch
+
+    const doUserSearch = (event) => {
+      event.preventDefault()
+      
+      const params = new URLSearchParams()
+      params.append("username", document.forms["userSearch"]["username"].value)
+      params.append("name", document.forms["userSearch"]["name"].value)
+      params.append("role", document.forms["userSearch"]["role"].value)
+      params.append("dummy", "test dummy")
+      console.info(params.toString())
+      params.delete("dummy")
+      
+      const ajax = new XMLHttpRequest()
+      ajax.open("GET", `https://hookb.in/VGM1O8wmKqHDrgoor7b9?${params.toString()}`)
+      ajax.addEventListener("load", () => {
+        const responseUserSearch = document.getElementById("responseUserSearch")
+        responseUserSearch.innerText = ajax.responseText
+      })
+      ajax.send()
+    }
+    document.forms["userSearch"].addEventListener("submit", doUserSearch)
+  </script>
+</body>
+</html>

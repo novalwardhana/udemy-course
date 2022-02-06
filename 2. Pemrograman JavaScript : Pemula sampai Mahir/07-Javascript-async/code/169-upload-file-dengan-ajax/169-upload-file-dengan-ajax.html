@@ -1,0 +1,96 @@
+<html>
+<head></head>
+<body>
+  <h2>Register</h2>
+  <form action="#">
+    <label for="username">Username
+      <input type="text" id="username" name="username">
+    </label><br>
+    <label for="name">Name
+      <input type="text" id="name" name="name">
+    </label><br>
+    <label for="profile">Profile
+      <input type="file" id="profile" name="profile">
+    </label><br>
+    <input type="button" id="register" value="Register">
+  </form>
+  <h1 id="response"></h1>
+
+  <br><hr><br>
+
+  <form action="#" name="foodForm">
+    <table>
+      <tr>
+        <td>Food</td>
+        <td><input type="text" name="name"></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td><input type="number" name="price"></td>
+      </tr>
+      <tr>
+        <td>Image</td>
+        <td><input type="file" name="image"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Submit"></td>
+      </tr>
+    </table>
+  </form>
+  <h2 id="foodResponse"></h2>
+  <script>
+    /*
+      Untuk mengirim file ke server kita perlu menggunakan object form data, lalu kita perlu menambahkan object file ke dalam form data tersebut
+      Referensi:
+      https://developer.mozilla.org/en-US/docs/Web/API/FormData
+      https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file
+      https://developer.mozilla.org/en-US/docs/Web/API/File
+      https://developer.mozilla.org/en-US/docs/Web/API/FileList
+    */
+
+    function doRegister() {
+      const ajax = new XMLHttpRequest()
+      const url1 = "https://hookb.in/VGM1O8wmKqHDrgoor7b9"
+      const url2 = "http://requestbin.net/r/huvsrpwr"
+      const url3 = "https://enlomb93acl69bi.m.pipedream.net"
+      ajax.open("POST", url3)
+      ajax.onload = function() {
+        const response = document.getElementById("response")
+        response.innerText = ajax.responseText
+      }
+      
+      const formData = new FormData()
+      formData.append("username", document.getElementById("username").value)
+      formData.append("name", document.getElementById("name").value)
+      const files = document.getElementById("profile").files
+      const firstFile = files.item(0)
+      formData.append("profile", firstFile)
+
+      ajax.send(formData)
+    }
+    document.getElementById("register").onclick = doRegister
+
+    const submitFood = (event) => {
+      event.preventDefault()
+      
+      const formData = new FormData()
+      formData.append("name", document.forms["foodForm"]["name"].value)
+      formData.append("price", document.forms["foodForm"]["price"].value)
+      const files = document.forms["foodForm"]["image"].files
+      const firstFile = files.item(0)
+      formData.append("image", firstFile)
+      
+      const ajax = new XMLHttpRequest()
+      ajax.open("POST", "https://enlomb93acl69bi.m.pipedream.net")
+      ajax.addEventListener("load", () => {
+        const response = ajax.responseText
+        const foodResponse = document.getElementById("foodResponse")
+        foodResponse.innerText = response
+      })
+      ajax.send(formData)
+    }
+    document.forms["foodForm"].addEventListener("submit", submitFood)
+  </script>
+</body>
+</html>

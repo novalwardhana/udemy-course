@@ -1,0 +1,75 @@
+<html>
+<head></head>
+<body>
+  <form action="#">
+    <label for="username">
+      Username:
+      <input type="text" name="username" id="username">
+    </label>
+    <label for="password">
+      Password:
+      <input type="password" name="password" id="password">
+    </label>
+    <input type="button" id="login" value="Login">
+  </form>
+  <h1 id="response"></h1>
+
+  <hr>
+
+  <form action="#" name="login">
+    <label for="username">
+      Username: <input type="text" name="username">
+    </label>
+    <label for="password">
+      Password: <input type="password" name="password">
+    </label>
+    <input type="submit" value="Login">
+  </form>
+  <h2 id="response2"></h2>
+  <script>
+    /*
+      Mengirim data dengan ajax
+      Untuk mengirim data dengan ajax kita bisa menambahkan parameter data pada method send() milik XMLHttpRequest
+      Referensi: https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+    */
+
+    function doLogin() {
+      const ajax = new XMLHttpRequest()
+      ajax.open("POST", "https://hookb.in/VGM1O8wmKqHDrgoor7b9")
+      ajax.setRequestHeader("Content-Type", "application/json")
+      ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+      ajax.onload = function() {
+        const response = document.getElementById("response")
+        response.innerText = ajax.responseText
+      }
+      const json = {
+        username: document.getElementById("username").value,
+        password: document.getElementById("password").value
+      }
+      ajax.send(JSON.stringify(json))
+    }
+    document.getElementById("login").onclick = doLogin
+
+    const formSubmit = (event) => {
+      event.preventDefault()
+      const params = {
+        username: document.forms["login"]["username"].value,
+        password: document.forms["login"]["password"].value
+      }
+      const ajax = new XMLHttpRequest()
+      ajax.open("POST", "https://hookb.in/VGM1O8wmKqHDrgoor7b9")
+      ajax.setRequestHeader("Content-Type", "application/json")
+      ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+      ajax.addEventListener("load", () => {
+        const response = document.getElementById("response2")
+        response.innerText = ajax.responseText
+      })
+      ajax.addEventListener("readystatechange", () => {
+        console.info(`Login ready state change: ${ajax.readyState}`)
+      })
+      ajax.send(JSON.stringify(params))
+    }
+    document.forms["login"].addEventListener("submit", formSubmit)
+  </script>
+</body>
+</html>
