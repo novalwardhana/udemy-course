@@ -1,0 +1,22 @@
+{
+  "status": 200,
+  "message": "Succes get data",
+  "data": [
+    {
+      "name": "Golang",
+      "year": 2002
+    },
+    {
+      "name": "PHP",
+      "year": 1999
+    },
+    {
+      "name": "Javascript",
+      "year": 1998
+    },
+    {
+      "name": "Python",
+      "year": 1990
+    }
+  ]
+}

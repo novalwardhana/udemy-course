@@ -1,0 +1,71 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      Promise
+      a. Promise merupakan proxy untuk sebuah nilai di masa depan (future) yang belum diketahui
+        saat pembuatan promise tersebut.
+        Proses pembuatan data yang suatu saat akan datang, tapi tidak tau saat ini nilainya apa
+      b. Biasa promise digunakan sebagai proxy untuk proses async
+      c. Penggunaan promise sangat mudah dan lebih mirip kode synchronous
+      d. Referensi: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise
+      e. Promise dibuat untuk menghindari callback hell (terlalu banyak callback)
+
+      Promise State:
+      a. pending => undefined
+      b. fullfilled => value
+      c. rejected => error
+    */
+
+    const promise = new Promise(function(resolve, reject) {
+      const ajax = new XMLHttpRequest()
+      ajax.open("GET", "api.json")
+      ajax.onload = function() {
+        if (ajax.status === 200) {
+          resolve(ajax.responseText)
+        } else {
+          reject(`Error get data: ${ajax.status}`)
+        }
+      }
+      ajax.send()
+    })
+    console.info(`promise: `, promise)
+
+    const promiseReject = new Promise(function(resolve, reject) {
+      const ajax = new XMLHttpRequest()
+      ajax.open("GET", "wrong-api.json")
+      ajax.addEventListener("load", () => {
+        if (ajax.status === 200) {
+          resolve(ajax.responseText)
+        } else {
+          reject(`Error get data: ${ajax.status}`)
+        }
+      })
+      ajax.send()
+    })
+    console.info(`promiseReject: `, promiseReject)
+
+    const promisePending = new Promise(function(resolve, reject) {
+      const ajax = new XMLHttpRequest()
+      ajax.open("GET", "api.json")
+      ajax.send()
+    })
+    console.info(`promisePending: `, promisePending)
+
+    const promise2 = new Promise(function(resolve, reject){
+      const ajax = new XMLHttpRequest()
+      ajax.open("GET", "api2.json")
+      ajax.addEventListener("load", () => {
+        if (ajax.status === 200) {
+          resolve(JSON.parse(ajax.responseText))
+        } else {
+          resolve(`Error get data: ${ajax.status}`)
+        }
+      })
+      ajax.send()
+    })
+    console.info(`promise2: `, promise2)
+  </script>
+</body>
+</html>

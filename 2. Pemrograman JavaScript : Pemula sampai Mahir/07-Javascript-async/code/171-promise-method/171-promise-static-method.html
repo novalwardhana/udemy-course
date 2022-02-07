@@ -1,0 +1,145 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      Promise Static Method
+      a. Promise memiliki beberapa static method
+      b. Promise.all(), digunakan untuk eksekusi beberapa promise sekaligus dan mengunggu semua hasil promisenya
+      c. Promise.any(), digunakan untuk eksekusi beberapa promise sekaligus dan mengambil hasil promise paling cepat
+      d. Referensi: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods
+    */
+
+    function getProduct(product) {
+      return new Promise(function(resolve, reject) {
+        const ajax = new XMLHttpRequest()
+        ajax.open("GET", `${product}.json`)
+        ajax.onload = function() {
+          if (ajax.status === 200) {
+            resolve(ajax.responseText)
+          } else {
+            reject(`Error get data: ${ajax.status}`)
+          }
+        }
+        ajax.send()
+      })
+    }
+
+    /* Case: all success */
+    const promiseAll = Promise.all([
+      getProduct("product1"),
+      getProduct("product2"),
+      getProduct("product3")
+    ])
+    promiseAll
+      .then(function(response){
+        for (const data of response) {
+          console.info(`promiseAll: `, JSON.parse(data))
+        }
+      })
+      .catch(function(error){
+        console.info(`promiseAll: `, error)
+      })
+
+    /* Case: all but one request is failed */
+    const promiseAllFailed = Promise.all([
+      getProduct("product1"),
+      getProduct("product2b")
+    ])
+    promiseAllFailed
+      .then(function(response){
+        for (const data of response) {
+          console.info(`promiseAllFailed: `, JSON.parse(data))
+        }
+      })
+      .catch(function(error) {
+        console.info(`promiseAllFailed: `, error)
+      })
+
+    /* Case any success */
+    const promiseAny = Promise.any([
+      getProduct("product1a"),
+      getProduct("product2"),
+      getProduct("product3")
+    ])
+    promiseAny
+      .then(function(response){
+        console.info(`promiseAny: `, response)
+      })
+      .catch(function(error) {
+        console.info(error)
+      })
+
+    /* Case race */
+    const promiseRace = Promise.race([
+      getProduct("product1a"),
+      getProduct("product2"),
+      getProduct("product3")
+    ])
+    promiseRace
+      .then(function(response){
+        console.info(`promiseRace: `, response)
+      })
+      .catch(function(error){
+        console.info(`promiseRace: `, error)
+      })
+
+    const getProgrammingLanguage = (param) => {
+      return new Promise((resolve, reject) => {
+        const ajax = new XMLHttpRequest()
+        ajax.open("GET", `${param}.json`)
+        ajax.addEventListener("load", () => {
+            if (ajax.status === 200) {
+              resolve(JSON.parse(ajax.responseText))
+            } else {
+              reject(`Error get data: ${ajax.status}`)
+            }
+        })
+        ajax.send()
+      })
+    }
+
+    /* Promise all */
+    const promiseALL2 = Promise.all([
+      getProgrammingLanguage("programmingLanguage1"),
+      getProgrammingLanguage("programmingLanguage2"),
+      getProgrammingLanguage("programmingLanguage3")
+    ])
+    promiseALL2
+      .then((response) => {
+        console.info(`promiseAll2: `, response)
+      })
+      .catch((error) => {
+        console.info(`promiseAll2: `, error)
+      })
+
+  /* Promise any */
+  const promiseAny2 = Promise.any([
+    getProgrammingLanguage("programmingLanguage1"),
+    getProgrammingLanguage("programmingLanguage2"),
+    getProgrammingLanguage("programmingLanguage3")
+  ])
+  promiseAny2
+      .then((response) => {
+        console.info(`promiseAny2: `, response)
+      })
+      .catch((error) => {
+        console.info(`promiseAny2: `, error)
+      })
+
+  /* Promise race */
+  const promiseRace2 = Promise.race([
+    getProgrammingLanguage("programmingLanguage1"),
+    getProgrammingLanguage("programmingLanguage2"),
+    getProgrammingLanguage("programmingLanguage3")
+  ])
+  promiseRace2
+      .then((response) => {
+        console.info(`promiseRace2: `, response)
+      })
+      .catch((error) => {
+        console.info(`promiseRace2: `, error)
+      })
+  </script>
+</body>
+</html>
