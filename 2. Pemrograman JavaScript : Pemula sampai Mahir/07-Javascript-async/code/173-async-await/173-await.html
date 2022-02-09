@@ -1,0 +1,140 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      Await
+      a. Await digunakan untuk mendapatkan value hasil dari promise
+      b. Awit hanya bisa digunakan dalam async function
+    */
+
+    function getProduct() {
+      const request = new Request("api.json", {
+        method: "GET"
+      })
+      const response = fetch(request)
+      return response.then((response) => 
+        response.json()
+      )
+    }
+    
+    /* Get product promise */
+    function getProductPromise() {
+      return new Promise(function(resolve, reject) {
+        getProduct()
+          .then((response) => {
+            resolve(response.name)
+          })
+          .catch((error) => {
+            resolve(`Product not found`)
+          })
+      })
+    }
+    getProductPromise()
+      .then((response) => {
+        console.info(`getProductPromise: `, response)
+      })
+      .catch((error) => {
+        console.info(`getProductPromise: `, error)
+      })
+
+    /* Get product async */
+    async function getProductAsync() {
+      try {
+        const product = await getProduct()
+        return product.name 
+      } catch (error) {
+        return `Product not found`
+      } finally {
+
+      }
+    }
+    getProductAsync()
+      .then((response) => {
+        console.info(`getProductAsync: `, response)
+      })
+
+    /* Get club */
+    const getClub = () => {
+      const request = new Request("api2.json", {
+        method: "GET"
+      })
+      const response = fetch(request)
+      return response
+        .then((response) => 
+          response.json()
+        )
+    }
+    const getClubAsync = async () => {
+      try {
+        const club = await getClub()
+        return club
+      } catch (error) {
+        return `Club not found: ${error}`
+      } finally {
+        console.info("Finish get club")
+      }
+    }
+    getClubAsync()
+      .then((response) => {
+        console.info(response)
+      })
+      .catch((error) => {
+        console.info(error)
+      })
+
+    /* Math function */
+    const getSumData = async (datas) => {
+      let sum = 0
+      for (const data of datas) {
+        sum += data
+      }
+      return sum
+    }
+    const getMaxData = async (datas) => {
+      let maxData = 0
+      for (const data of datas) {
+        if (data > maxData) {
+          maxData = data
+        }
+      }
+      return maxData
+    }
+    const getMinData = async (datas) => {
+      let minData = datas[0]
+      for (const data of datas) {
+        if (data < minData) {
+          minData = data
+        }
+      }
+      return minData
+    }
+    const getStatisticData = async (...datas) => {
+      try {
+        const sum = await getSumData(datas)
+        const max = await getMinData(datas)
+        const min = await getMinData(datas)
+        const mean = sum / datas.length
+        const result = {
+          "sum": sum,
+          "max": max,
+          "min": min,
+          "mean": mean
+        }
+        return result
+      } catch (error) {
+        return `Failed get statistic data ${error}`
+      } finally {
+        console.info("finished get statistic data")
+      }
+    }
+    getStatisticData(8, 3, 5, 8, 9, 5, 7, 9, 6, 9)
+      .then((response) => {
+        console.info(`getStatisticData success: `, response)
+      })
+      .catch((error) => {
+        console.info(`getStatisticData failed: `, error)
+      })
+  </script>
+</body>
+</html>

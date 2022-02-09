@@ -1,0 +1,159 @@
+<html>
+<head></head>
+<body>
+  <form action="#">
+    <table>
+      <tr>
+        <td>Username</td>
+        <td><input type="text" name="username" id="username"></td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td><input type="password" name="password" id="password"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="button" id="btnForm" value="Login"></td>
+      </tr>
+    </table>
+  </form>
+  <h1 id="response"></h1>
+
+  <hr>
+
+  <form action="#" name="register">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td colspan="2"><input type="text" name="name"></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td colspan="2"><input type="text" name="email"></td>
+      </tr>
+      <tr>
+        <td>Password</td>
+        <td colspan="2"><input type="password" name="password"></td>
+      </tr>
+      <tr>
+        <td>Attachment</td>
+        <td><input type="file" name="attachment"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Register">
+          &nbsp;
+          <input type="button" value="Register With File" id="registerWithFile">
+        </td>
+      </tr>
+    </table>
+  </form>
+  <h1 id="responseRegister"></h1>
+  <script>
+    /*
+      Fetch API
+      a. Fitur baru alternatif dari AJAX
+      b. Saat menggunakan AJAX kita perlu menggunakan callback untuk menerima response data dari server,
+        sedangkan fetch API sudah menggunakan promise sehingga penggunaan fetch API lebih mudah
+      c. Referensi: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
+      Fetch API Request
+      a. Saat kita mengirim request menggunakan Fetch API, kita perlu membuat object request
+      b. Hal ini menjadi lebih rapi dibanding menggunakan AJAX
+      c. Kita bisa membuat object request, lalu dikirim menggunakan fetch API
+      d. Saat membuat request kita bisa menentukan data yang ingin kita kirim
+      e. Referensi: https://developer.mozilla.org/en-US/docs/Web/API/request/request
+
+      Fetch API Response
+      a. Hasil dari fetch API adalah sebuah promise
+      b. Promise tersebut berisikan object
+      c. Referensi: https://developer.mozilla.org/en-US/docs/Web/API/response
+    */
+
+    /* doLogin */
+    function doLogin() {
+      const request = new Request("https://hookb.in/nP02bjD17ziZ7Qrr7NO7", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "accept": "application/json"
+        },
+        body: JSON.stringify({
+          "username": document.getElementById("username").value,
+          "password": document.getElementById("password").value
+        })
+      })
+
+      const response = fetch(request)
+      response
+        .then(response => response.json())
+        .then(function(json) {
+          document.getElementById("response").innerText = JSON.stringify(json)
+        })
+        .catch(function(error) {
+          document.getElementById("response").innerText = error
+        })
+    }
+    document.getElementById("btnForm").onclick = doLogin
+
+    /* doRegister */
+    const doRegister = (event) => {
+      event.preventDefault()
+      const params = {
+        "name": document.forms["register"]["name"].value,
+        "username": document.forms["register"]["email"].value,
+        "password": document.forms["register"]["password"].value
+      }
+      const request = new Request("https://hookb.in/nP02bjD17ziZ7Qrr7NO7",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(params)
+      })
+      const response = fetch(request)
+      response
+        .then((response) => {
+          const responseRegister = document.getElementById("responseRegister")
+          responseRegister.innerText = JSON.stringify(response.json)
+        })
+        .catch((error) => {
+          const responseRegister = document.getElementById("responseRegister")
+          responseRegister.innerText = error
+        })
+    }
+    document.forms["register"].addEventListener("submit", doRegister)
+
+    /* doRegisterWithFile */
+    const doRegisterWithFile = () => {
+      const params = new FormData()
+      params.append("name", document.forms["register"]["name"].value)
+      params.append("email", document.forms["register"]["email"].value)
+      params.append("password", document.forms["register"]["password"].value)
+      const files = document.forms["register"]["attachment"].files
+      const firstFile = files.item(0)
+      params.append("attachment", firstFile)
+      
+      const response = fetch("https://hookb.in/nP02bjD17ziZ7Qrr7NO7", {
+        method: "POST",
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        body: params
+      })
+
+      response
+        .then((response) => {
+          const responseRegister = document.getElementById("responseRegister")
+          responseRegister.innerText = JSON.stringify(response.json)
+        })
+        .catch((error) => {
+          const responseRegister = document.getElementById("responseRegister")
+          responseRegister.innerText = error
+        })
+    }
+    document.getElementById("registerWithFile").addEventListener("click", doRegisterWithFile)
+  </script>
+</body>
+</html>

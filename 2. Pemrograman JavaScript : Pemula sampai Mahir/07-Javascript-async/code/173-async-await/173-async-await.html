@@ -1,0 +1,72 @@
+<html>
+<head></head>
+<body>
+  <script>
+    /*
+      Async Await
+      a. Async Await adalah fitur di javascript yang digunakan untuk mempermudah pembuatan kode promise
+      b. Dengan async await kita bisa membuat kode asynchronous dengan gaya synchronous
+
+      Async
+      a. Async digunakan untuk menandakan bahwa function tersebut adalah async dan mengembalikan promise
+      b. Dengan menggunakan async, kita tidak perlu membuat promise secara manual lagi
+
+      Await
+      a. Await digunakan untuk mendapatkan value hasil dari promise
+      b. Await hanya bisa digunakan dalam async function
+    */
+
+    /* Get name promise */
+    function getNamePromise() {
+      return new Promise(function(resolve, reject){
+        resolve("Noval")
+      })
+    }
+    getNamePromise()
+      .then((response) => {
+        console.info(`getNamePromise: `, response)
+      })
+
+    async function getNameAsync() {
+      return "Noval"
+    }
+    getNameAsync()
+      .then((response) => {
+        console.info(`getNameAsync: `, response)
+      })
+
+    async function getNamePromiseInAsync() {
+      return new Promise(function(resolve, reject){
+        resolve("Noval")
+      })
+    }
+    getNamePromiseInAsync()
+      .then((response) => {
+        console.info(`getNamePromiseInAsync: `, response)
+      })
+
+
+    /* Get total */
+    async function totalData(...datas) {
+      return new Promise((resolve, reject) => {
+        if (datas.length != 0) {
+          let sum = 0
+          for (const data of datas) {
+            sum += data
+          }
+          resolve(sum)
+        } else {
+          reject(`Data is null`)
+        }
+      })
+    }
+    totalData(8, 3, 5, 8, 9, 5, 7, 9, 6, 9)
+      .then((response) => {
+        console.info(`totalData success: `, response)
+      })
+      .catch((error) => {
+        console.info(`totalData error: `, error)
+      })
+  </script>
+</body>
+</html>
