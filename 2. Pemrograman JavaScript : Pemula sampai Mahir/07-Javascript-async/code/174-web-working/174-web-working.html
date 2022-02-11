@@ -1,0 +1,51 @@
+<html>
+<head></head>
+<body>
+  <button id="buttonTask">CLick Me</button>
+  <script>
+    /*
+      Thread di Javascript 
+      a. Javascript adalah single thread (single process), artinya walaupun proses yang kita buat adalah async
+        tetap akan dijalankan dalah thread yang sama (proses yang sama)
+      b. Kemapuan satu thread dalam mengolah beberapa pekerjaan dinamakan concurrent
+      c. Kemampuan menjalankan beberapa thread untuk mengelola satu atau lebih pekerjaan dinamakan paralel
+      d. Dan untuk membuat proses secara paralel kita menggunaka web worker
+
+      Web Worker
+      a. Web Worker adalah kemampuan untuk menjalankan proses di Thread yang berbeda dibanding Main Thread
+      b. Keuntungan menggunakan Web Worker adalah jika terdapat proses yang membutuhkan waktu lama,
+        Web kita tidak akan freeze, karena proses tersebut kita jalankan di Thread yang berbeda dari Main Thread
+        (yang biasa digunakan oleh UI)
+      c. Referensi: https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
+
+      Worker
+      a. Untuk menggunakan Web Worker API, kita bisa membuat object Worker
+      b. https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API
+      c. Saat kita membuat object Worker, Worker tidak akan secara otomatis berjalan, melainkan kita
+        perlu memberi perintah dengan cara mengirim pesan
+      d. Untuk mengirim pesan, kita bisa gunakan method postMessage()
+      e. Sedangkan untuk menerima balasan dari worker, kita bisa menggunakan event listener onmessage
+      f. Data yang diterima adalah object MessageEvent
+      g.https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent
+    */
+
+    function showLog(total) {
+      for (let i = 0; i < total; i++) {
+        console.info(i)
+      }
+    }
+    const worker = new Worker("worker.js")
+    const worker2 = new Worker("worker.js")
+    const worker3 = new Worker("worker.js")
+    worker.addEventListener("message", function(message) {
+      console.info(message.data)
+    })
+    document.getElementById("buttonTask").onclick = function() {
+      console.info(`Start`)
+      //showLog(1000)
+      worker.postMessage(10000)
+      console.info(`End`)
+    }
+  </script>
+</body>
+</html>
