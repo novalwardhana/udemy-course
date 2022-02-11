@@ -2,6 +2,7 @@
 <head></head>
 <body>
   <button id="buttonTask">CLick Me</button>
+  <button id="buttonGetData">Click me</button>
   <script>
     /*
       Thread di Javascript 
@@ -35,17 +36,35 @@
       }
     }
     const worker = new Worker("worker.js")
-    const worker2 = new Worker("worker.js")
-    const worker3 = new Worker("worker.js")
     worker.addEventListener("message", function(message) {
       console.info(message.data)
     })
     document.getElementById("buttonTask").onclick = function() {
       console.info(`Start`)
       //showLog(1000)
-      worker.postMessage(10000)
+      worker.postMessage(100000)
       console.info(`End`)
     }
+
+    const worker2 = new Worker("worker2.js")
+    const worker3 = new Worker("worker3.js")
+    const worker4 = new Worker("worker4.js")
+    const getDataMessage = () => {
+      worker2.postMessage(100000)
+      worker3.postMessage(100000)
+      worker4.postMessage(100000)
+    }
+    worker2.addEventListener("message", (message) => {
+      console.info(message.data)
+    })
+    worker3.addEventListener("message", (message) => {
+      console.info(message.data)
+    })
+    worker4.addEventListener("message", (message) => {
+      console.info(message.data)
+    })
+    const buttonGetData = document.getElementById("buttonGetData")
+    buttonGetData.addEventListener("click", getDataMessage)
   </script>
 </body>
 </html>
