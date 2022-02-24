@@ -1,0 +1,8 @@
+import fs from "fs"
+import zlib from "zlib"
+
+const file = fs.readFileSync("compress-file.txt")
+const fileDecompress = zlib.unzipSync(file)
+
+console.info(fileDecompress.toString())
+fs.writeFileSync("decompress-file.txt", fileDecompress)
