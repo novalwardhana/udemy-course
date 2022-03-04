@@ -1,0 +1,13 @@
+const { createPool } = require("mysql");
+/** Connection pool creation - START */
+const db = createPool({
+  port: 3306,
+  host: "<YOUR DB SERVER>",
+  user: "<YOUR DB USERNAME>",
+  password: "<YOUR DB PASSWORD>",
+  database: "<YOUR DB NAME>",
+  connectionLimit: 10,
+});
+/** Connection pool creation - END */
+
+module.exports = db;

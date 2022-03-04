@@ -1,0 +1,26 @@
+Create MySQL Database in Heroku
+1. Buka heroku.com
+2. Login
+3. New -> Create new app
+4. Fill data
+    App name: noval-posts
+    Choose a region: United States
+    Click create app
+5. Open app -> Resources -> Find more add-ons
+6. Choose ClearDB MySQL
+7. Install ClearDB MySQL
+8. Config like this:
+    Add-on plan: Ignite - Free
+    App to provision to: noval-posts
+    Click submit order form
+9. Open app -> Settings -> Config vars -> Reveal Config Vars -> Copy environment CLEARDB_DATABASE_URL
+
+Alternatif Create MySQL Database in Heroku
+1. Install MariaDB
+2. Create database my-posts
+3. Create table like db.sql attachment
+
+Run in Local Machine
+1. Download MySQL Workbench (https://www.mysql.com/products/workbench/)
+2. Install
+3. Open MySQL Workbench
