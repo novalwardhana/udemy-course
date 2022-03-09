@@ -1,0 +1,15 @@
+Most important dependencies:
+1. Google Chrome's V8 Engine write in C++
+2. Libuv, write in C++
+  Libuv is a multi-platform support library with a focus on asynchronous I/O. It was developed for use by Node.JS, include:
+  a. File system events
+  b. Asynchronous DNS resolution
+  c. Asynchronous file and file system operations
+  d. Full-featured event loop
+  e. Threading
+
+Other Node.Js Dependencies:
+1. L|http - designed to not make any syscalls or allocations
+2. c-ares - For some asynchronous DNS requests
+3. OPenSSL - implementations of many cryptographic functions
+4. Zlib - For fast compression and decompression

@@ -1,0 +1,19 @@
+Thread
+A thread can be seen as a unit of operations that our CPU has to perform for us
+
+Event loop
+In therad, something called the event loop is generated.
+The role of this loop is to schedule which operations our only thread should be performing at any given point
+
+Event Loop Process:
+1. Step 1:
+  Everything scheduled with setTimeout() or setInterval() will be executed here.
+2. Step 2:
+  Pending OS taskas are executed, check for the callbaks that are ready to be called
+3. Step 3:
+  Pause the execution and wait for new events to occur
+4. Step 4:
+  Checks if function related to pending timers related to setImmediate() function are ready to be called
+5. Step 5:
+  Manage the close events
+

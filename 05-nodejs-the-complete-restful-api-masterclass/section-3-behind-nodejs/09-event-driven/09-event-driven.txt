@@ -1,0 +1,3 @@
+Event Driven
+
+Event Emitter -> Event Listener -> Callback functions

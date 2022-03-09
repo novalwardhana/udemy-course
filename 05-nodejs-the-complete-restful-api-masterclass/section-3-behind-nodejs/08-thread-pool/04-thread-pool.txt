@@ -1,0 +1,5 @@
+Thread Pool
+
+Single thread: The program initializes -> Requires all the modules -> Register the callbacks -> Start the event loop 
+->
+Execution in Thread Pool: Thread 1, Thread 2, Thread 3, Thread 4

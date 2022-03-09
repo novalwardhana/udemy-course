@@ -1,0 +1,10 @@
+Diagram
+
+Web ----> API
+Android ----> API
+Window ----> API
+Mac ----> API
+IOS ----> API
+
+Inside API
+DB -> JSON -> API -> Any Platforms

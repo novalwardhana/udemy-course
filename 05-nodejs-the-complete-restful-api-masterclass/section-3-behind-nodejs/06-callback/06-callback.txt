@@ -1,0 +1,3 @@
+Callback
+Callback is an asynchronous equivalent for a function. A callback function is called the completion
+of a given task. Node makes heavy use of callbacks.
