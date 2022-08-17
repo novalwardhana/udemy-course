@@ -1,0 +1,45 @@
+Create sample golang module
+1. Create folder test-golang-module
+2. cd test-golang-module
+3. Create repository in github, with url: github.com/novalwardhana/test-golang-module
+4. RUN go mod init github.com/novalwardhana/test-golang-module
+5. Create some golang function in test-golang-module
+6. RUN git init
+7. RUN git add .
+8. RUN git commit -m "Test"
+9. RUN git remote add origin git@github.com:novalwardhana/test-golang-module.git
+10. RUN git push -u origin master
+11. RUN git tag v1.0.0
+12. RUN git push origin v1.0.0
+
+Update sample golang module
+1. RUN git add .
+2. RUN git commit -m "Test"
+3. RUN git push -u origin master
+4. RUN git tag v1.1.0
+5. RUN git push origin v1.1.0
+
+Major Upgrade sample golang module
+1. Edit some function in test-golang-module
+2. EDIT from github.com/novalwardhana/test-golang-module -> github.com/novalwardhana/test-golang-module/v2 in go mod
+3. RUN git add .
+4. RUN git commit -m "test"
+5. RUN git push -u origin master
+6. RUN git tag v2.0.0
+7. RUN git push origin v2.0.0
+
+Add package dependency
+1. RUN go get module-name
+  example: RUN go get github.com/novalwardhana/test-golang-module
+  go get: package disimpan di GOPATH
+  go mod vendor: package disimpan di folder aplikasi
+
+Upgrade package dependency
+1. Change tag in go mod
+2. RUN go get 
+  go get will automatically download latest version
+
+Upgrade major package dependency
+1. Delete package in go mod file
+  example: require github.com/novalwardhana/test-golang-module v1.1.0
+2. go get github.com/novalwardhana/test-golang-module/v2

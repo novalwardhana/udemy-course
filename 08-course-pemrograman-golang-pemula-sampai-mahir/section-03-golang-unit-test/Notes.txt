@@ -1,0 +1,81 @@
+Unit Test
+1. Unit test akan fokus menguji bagian kode terkecil, biasanya menguji sebuah method
+2. Unit test biasanya dibuat kecil dan cepat, oleh karena itu biasanya kadang kode unit test lebih banyak
+   dari kode program aslinya, karena semua skenario pengujian akan dicoba di unit test
+3. Unit test bisa digunkan sebagai cara untuk meningkatkan kode program kita
+
+Testing Package
+1. Di bahasa pemrograma lain, biasanya untuk implementasi unit test kita butuh library atau framework khusus unit test
+2. Berbeda dengan Golang, di GOlang untuk unit test sudah disediakan package khusus bernama Testing
+
+testing.T
+1. Golang menyediakan sebuah struct yang bernama testing T
+2. Struct ini digunakan untuk unit test di Golang
+
+testing.M
+1. testing.M adalah struct yang desediakan golang untuk mengatur life cycle testing
+2. Akan selalu dijalankan secara otomatis saat eksekusi unit test di sebuah package
+3. Nama function harus TestMain(m *testing.M)
+
+testing.B
+1. testing.B adalah struct yang disediakan golang untuk melakukan benchmarking
+2. Di golang untuk melakukan benchmark (mengukur kecepatan program) pun sudah disediakan,
+   sehingga kita tidak perlu menggunakan library atau framework tambahan
+3. Cara kerjanya kita hanya perlu membuat perulangan sejumlah N attribute
+4. Secara otomatis golang akan melakukan eksekusi sejumlah perulangan yang ditentukan secara otomatis
+   , lalu mendeteksi berapa lama proses tersebut berjalan dan disimpulkan performa benchmark nya dalam waktu 
+5. Nama function harus diawali dengan kata Benchmark, misal BenchmarkHelloWorld
+6. Memiliki paramater (b *testing.B) dan tidak mengembalikan return value
+7. Menjalankan seluruh benchmark
+   go test -v -run=NotMatchUnitTest -bench=.
+8. Menjalankan spesifik benchmark
+   go test -v -run=NotMatchUnitTest -bench=BenchmarkTest
+9. Menjalankan spesifik sub benchmark
+   go test -v -run=NotMatchUnitTest -bench=BenchmarkTest/Sub
+
+Aturan File Unit Test
+1. Untuk membuat file unit test, kita harus menggunakan akhiran _test
+2. Jadi kita misal membuat file hello_world.go, artinya untuk membuat unit testnya. Kita harus membuat file hello_world_test.go
+3. Misal kita ingin mengetest function HelloWorld, maka kita akan membuat function unit test dengan nama TestHelloWorld
+4. Harus memiliki paramater (t *testing.T) dan tidak mengembalikan return value
+
+Menjalankan Unit Test
+1. go test: menjalankan unit test
+2. go test -v: menjalankan unit test dan melihat detail function apa saja yang sudah di running
+3. go test -v -run=TestingNameFunction: menjalankan unit test di salah satu function secara spesifik
+
+Mengagalkan Uni Test
+1. t.Fail(): mengagalkan unit test, namun tetap melanjutkan eksekusi unit test
+2. t.FailNow(): mengagalkan unit test saat ini juga
+3. t.Error(args...): mengagalkan unit test dan selanjutnya akan memanggil t.Fail(), namun tetap melanjutkan eksekusi unit test
+4. t.Fatal(args...): mengagalkan unit test dan selanjutnya akan memanggil t.FailNow() dengan menghentikan eksekusi saat ini juga
+
+Assertion
+1. Melakukan pengecekan unit test menggunakan if else sangatlah menyebalkan dan membutuhkan waktu lama sehingga disarankan menggunakan assertion
+2. Sayangnya di golang tidak menyediakan package assertion, sehingga kita butuh menambahkan library untuk melakukan assertion ini
+3. Library untuk melakukan assertion di golang adalah testify
+4. Menambahkan testify: go get github.com/stretchr/testify
+5. github.com/stretchr/testify/assertion: jika gagal akan memanggil t.Fail() dengan tetap melanjutkan eksekusi unit test
+6. github.com/stretchr/testify/require: jika gagal akan memanggil t.FailNow() dengan menghentikan eksekusi saat ini juga
+
+Skip Test
+1. Kadang dalam keadaan tertentu kita ingin membatalkan eksekusi unit test
+2. Untuk membatalkan bisa dengan menggunakan function t.Skip()
+
+Sub Test
+1. Golang mendukung pembuatan function unit test di dalam unit test
+2. Untuk membuat sub test, kita bisa menggunakan functon t.Run()
+3, Menjalankan hanya subtest: go test -v -run TestNamaFunction/NamaSubTest
+
+Table Test
+1. Sebenarnya dengan subtest, kita bisa membuat test secara dinamis
+2. Dengan fitur subtest ini, biasa digunakan oleh developer golang untuk membuat test dengan konsep table
+3. Table test yaitu dimana kita menyediakan data berupa slice yang berisi parameter dan ekspektasi
+4. Lalu slice tersebut kita iterasi dengan sub test
+
+Mock
+1. Mock adalah object yang sudah kita program dengan ekspektasi tertentu sehingga ketika dipanggil ia akan menghasilkan data
+   yang sudah kita program di awal
+2. Mock adalah salah satu teknik dalam unit testing dimana kita bisa membuat mock object dari suatu object yang memang sulit di testing
+3. Misal kita memanggil API third party service maka hal ini sangat sulit untuk di test sehingga perlu menggunakan mock object
+4. Untuk membuat mock object, kita menggunakan library testify

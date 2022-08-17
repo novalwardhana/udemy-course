@@ -1,0 +1,19 @@
+Goroutine
+1. Goroutine adalah sebuah thread ringan yang dikelola oleh Go Runtime.
+2. Ukuran goroutine sangat kecil sekitar 2kb, jauh leboh kecil dibandingkan Thread yang bisa sampai 1mb atau 1000kb
+3. Tidak seperti thread yang berjalan parallel, goroutine berjalan secara concurrent
+4. Goroutine sendiri ada dan dijalankan di dalam thread
+
+Cara kerja Goroutine
+1. Sebenarnya goroutine dijalankan oleh Go-Scheduler dalam thread, 
+   dimana jumlah thread nya sebanyakn GOMAXPROCS (biasanya sejumlah core CPU).
+   Kenapa mengikuti jumlah CPU?
+   Kita hanya bisa merunning thread secara bersamaan sejumlah CPU.
+   Contoh jika kita merunning 10 thread padahal komputer kita hanya 4 CPU, maka hanya 4 thread yang dijalankan secara bersamaan.
+2. Jadi sebenarnya tidak bisa dibilang Goroutine itu pengganti thread, karena Goroutine sendiri berjalan di atas thread
+3. Namun untuk mempermudah, kita tidak perlu melakukan manajemen thread secara manual, semua sudah diatur Go Scheduler
+4. Pada gambar 1 dan 2:
+   a. Masing-masing processor bisa memiliki beberapa thread golang
+   b. Local queue menempel pada masing-masing processor
+   c. Jika goroutine pada local queue sudah habis, maka thread akan mengambil goroutine dari global queue dan local queue di processor lain
+   d. Jika thread membutuhkan waktu terlalu lama untuk memproses goroutine, maka goroutine akan dikembalikan ke local queue dan mengambil goroutine yang lain untuk dieksekusi

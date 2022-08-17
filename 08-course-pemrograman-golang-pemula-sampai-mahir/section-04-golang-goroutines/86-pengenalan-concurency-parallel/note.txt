@@ -1,0 +1,46 @@
+Parallel Programming
+1. Saat ini kita hidup di era multicore, dimana jarang sekali processor single core
+2. Sederhananya adalah memecahkan suatu masalah dengan cara membaginya menjadi lebih kecil,
+   dan dijalankan secara bersamaan pada waktu yang bersamaan pula
+3. Contoh: menjalankan beberapa aplikasi sekaligus seperti office, editor, browser
+   Beberapa koki menyiapkan makanan di restoran, dimana tiap koki membuat makanan masing-masing
+   Antrian di bank, dimana tiap teller melayani nasabah nya maisng-masing
+
+Process vs Thread
+1. Process:
+    a. Process adalah sebuah eksekusi Program
+    b. Process mengkonsumsi memori besar
+    c. Process saling terisolasi dengan process lain
+    d. Process lama untuk dijalankan dan dihentikan
+2. Thread:
+    a. Thread adalah segmen dari process
+    b. Thread menggunakan memori kecil
+    c. Thread bisa saling berhubungan jika dalam process yang sama
+    d. Thread cepat untuk dijalankan dan dihentikan
+Analogi: Google chrome adalah process
+Tab google chrome adalah thread
+
+Parallel vs Concurency
+1. Jika parallel adalah mengerjakan pekerjaan secara bersamaan, 
+   maka concurency adalah mengerjakan pekerjaan secara bergantian
+2. Dalam parallel kita membutuhkan banyak thread, sedangkan concurency sedikit thread
+3. Default golang adalah concurency, tapi karena saat ini banyak processor multicore
+   maka golang adalah gabungan antara concurency dan parallel
+
+Contoh concurency:
+Saat kita di cafe, kita bisa makan, lalu ngobrol, lalu makan, ngobrol lagi, minum, makan lagi, dst...
+
+CPU Bound
+Banyak digunakan oleh data science dan machine learning engineer
+1. Banyak algoritma dibuat yang hanyak membutuhkan CPU untuk menjalankannya. Algoritma jenis ini biasanya sangat bergantung dengan kecepatan CPU
+2. Contohnya adalah amchine learning. Teknologi machine learning banyak menggunakan GPU karena memiliki core lebih banyak dibanding CPU biasanya
+3. Jenis algoritma ini kurang cock dengan concurency programming, namun bisa dibantu dengan parallel programming
+
+I/O Bound
+Banyak digunakan oleh software engineer
+1. I/O Bound adalah kebalikan dari CPU Bound, dimana biasanya algoritma sangat bergantung dengan kecepatan input output device yang digunakan
+2. Contoh seperti membaca database, data dari file, dll
+3. Kebanyakan saat ini, biasanya kita membuat aplikasi jenis ini
+4. Aplikasi I/O Bound, walaupun bisa terbantu dengan implementasi parallel programming, tapi benefitnya akan lebh baik jika menggunakan concurency programming
+5. Bayangkan kita membaca data dari database dan thread harus menunggu 1 detik untuk mendapat balasan dari database, padahal waktu 1 detik itu jika menggunakan
+   concurency programming bisa digunakan untuk melakukan hal lain

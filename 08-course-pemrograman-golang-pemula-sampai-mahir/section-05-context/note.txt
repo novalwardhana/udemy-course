@@ -1,0 +1,86 @@
+115 A. Pengenalan Context
+1. Context merupakan sebuah data yang membawa value, sinyal cancel, sinyal timeout, sinyal deadline
+2. Context biasanya dibuat per request (misal setiap ada request masuk ke server web melalui http request)
+3. Context digunakan untuk mempermudah kita meneruskan value dan sinyal antar proses 
+
+115 B. Kenapa Context perlu dipelajari
+1. Context di golang biasa digunakan untuk mengirim data request atau sinyal ke proses lain
+2. Dengan menggunakan context, ketika kita ingin membatalkan semua proses, kita cukup mengirim sinyal ke context 
+   maka secara otomatis semua proses akan dibatalkan
+3. Hampir semua bagian di golang manfaatkan context, seperti database, http server, http client dll
+4. Bahkan di google sendiri ketika menggunakan golang, context wajib digunakan dan selalu dikirim ke setiap function yang dikirim
+
+115 C. Penggunaan:
+Ada 3 goroutine: proses A, proses B, Proses C
+context di proses A dikirim ke proses B dan proses C
+Ketika context di proses A dibatalkan, maka context yang dikirim ke proses B dan C juga dibatalkan
+
+115 D. Package Context
+1. Context direpresentasikan di dalam sebuah interface Context
+2. Interface Context terdapat di dalam package context
+3. https://golang.org/pkg/context
+
+115 E. Interface Context
+type Context interface {
+  Deadline() (deadline time.Time, ok bool)
+  Done() <-chan struct{}
+  Err() error
+  Value(key interface{}) interface{}
+}
+
+116 A. Membuat Context
+1. Karena context adalah sebuah interface, untuk membuat context kita butuh sebuah struct yang sesuai dengan kontrak
+   interface context
+2. Di golang sudah ada function untuk membuat context
+
+116 B. Function untuk membuat Context
+1. context.Background()
+   Membuat context kosong. Tidak pernah timeout, tidak pernah cancel dan tidak memiliki value apapun.
+   Biasanya digunakan di main function atau dalam test, atau dalam awal proses request terjadi
+2. Context.Todo()
+   Membuat context kosong seperti Background(), namun biasanya menggunakan ini ketika belum jelas context apa yang ingin digunakan
+
+117 A. Parent Child Context
+1. Context menganut konsep parent Child
+2. Artinya, kita bisa membuat child context dari context yang sudah ada
+3. Parent child memiliki banyak cotext, sedangkan child context hanya punya satu parent
+4. Mirip dengan proses pewarisan di OOP
+
+117 B. Hubungan Parent Child Context
+1. Parent child context akan selalu terhubung
+2. Jika kita melakukan pembatalan di context A, maka child dan sub child dari context A akan dibatalkan
+3. Namun jika kita melakukan pembatalan di context B, hanya child dan sub child dari context B yang dibatalkan
+   Parent dari context B tidak dibatalkan
+4. Jika kita menyisipkan data di contex A, semua child dan sub childnya bisa mendapatkan data tersebut
+5. Jika kita enyisipkan data di context B, semua child dan sub child dari context B bisa mendapat data,
+   tetapi parent context B tidak akan mendapt data
+
+117 C. Immutable Context
+1. Context merupakan object yang immutable, artinya setelah dibuat dia tidak bisa berubah lagi
+2. Ketika kita menambahkan value ke dalam context, pengaturan timeout dan yang lainnya maka secara otomatis akan
+   membentuk child context baru bukan merubah context tersebut
+
+118. Context With Value
+1. Pada saat awal membuat context, context tidak memiliki value
+2. Kita bisa menambah sebuah value dengan data Pair (key - value) ke dalam context
+3. Saat kita menambah value ke context, secara otomatis akan tercipta child context baru
+   artinya original context nya tidak akan berubah sama sekali
+4. Untuk membuat dan menambahkan value ke context, kita bisa menggunakan function:
+   context.WithValue(parent, key, value)
+
+119. Context With cancel
+Kapan sinyal cancel diperlukan?
+1. Biasanya ketika kita menjalankan proses lain, dan kita ingin memberi sinyal cancel ke proses tersebut
+2. Biasanya proses ini berupa goroutine yang berbeda, sehingga dengan mudah jika kita ingin membatalkan eksekusi 
+   goroutine, kita bisa mengirim sinyal cancel ke contextnya
+3. Goroutine yang menggunakan context tetap harus melakukan pengecekan terhadap contextnya
+4. context.WithCancel(parent)
+
+120. Context With timeout
+1. Dengan menggunakan timeout, kita tidak perlu melakukan eksekusi cancel secara manual. Cancel akan otomatis jika waktu timeout terlewati
+2. Penggunaan context timeout sangat cocok ketika melakukan query ke database atau http api, namun ingin menetukan batas timeoutnya
+3. context.WithTimeout(parent, duration)
+
+121. Context With Deadline
+1. Jika timeout diberi waktu dari sekarang, maka deadline ditentukan waktu timeoutnya misal jam 12 siang hari ini
+2. context.WithDeadline(parent, time)

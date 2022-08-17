@@ -1,0 +1,98 @@
+124. Pengenalan Golang Database
+Cara kerja:
+Aplikasi -> Database Interface -> Database Driver -> DBMS
+
+125. Database Driver
+- Driver: https://golang.org/s/sqldrivers
+- Rekomendasi mysql: https://github.com/go-sql-driver/mysql
+
+126. Membuat Koneksi Database
+- Membuat object sql.DB menggunakan function sq.Open(driver, dataSourceName)
+- dataSourceName: username:password@host:port/database_name
+- Jika sql.DB sudah tidak digunakan disarankan untuk menutupnya menggunakan function Close()
+
+127. Database Pooling
+- sql.DB di golang sebenarnya bukanlah koneksi ke database melainkan sebuah pool
+- di sql.DB, golang melakukan management koneksi ke database secara otomatis.
+  Hal ini menjadikan kita tidak perlu melakukan management koneksi secara manual
+- Dengan pooling kita bisa menetukan jumlah minimal dan maksimal koneksi yang dibuat golang
+- DB SetMaxIdle(number): Jumlah koneksi minimal
+- DB SetMaxOpenConns(number): Jumlah koneksi maksimal
+- DB SetConnMaxIdleTime(duration): Pengaturan koneksi yang tidak digunakan boleh dihapus
+- DB SetConnMaxLifetime(duration): Pengaturan berapa lama koneksi boleh digunakan, 
+  jika yang dihapus adalah koneksi minimum maka akan dibuat pool baru
+
+128. Eksekusi Perintah SQL
+- Eksekusi: function (DB) ExecContext(context, sql, params)
+- Ketika mengirim perintah SQL, kita butuh mengirimkan context. Dengan context kita bisa mengirim cancel
+  jika ingin membatalkan perintah SQL nya
+
+129. Query SQL
+- Untuk operasi SQL yang tidak membutuhkan hasil, kita bisa menggunakan exec. Namun jika kita membutuhkan result untuk query select
+  kita harus menggunakan function yang berbeda
+- Eksekusi: (DB) QueryContext(context, sql, params)
+- Hasil QueryContext adalah sql.Rows
+- Kita bisa menggunakan rows.Next() untuk melakukan iterasi. Jika return data false maka sudah tidak ada di dalam result
+- Untuk membaca data kita bisa menggunakan rows.Scan(...columns...)
+
+130 A. Column Type
+Mapping Tipe Data
+- Varchar, char: string
+- Int, bigint: int32, int64
+- Float, double: float32, float64
+- Boolean: bool
+- Date, datetime, time, timestamp: time.Time
+- Secara default query tipe data Date, Datetime, Timestamp menjadi []byte/[]uint8
+  Dimana ini bisa dikonversi menjadi string, lalu di parsing menjadi time.Time
+- Namun hal ini merepotkan jika dilakukan manual, kita bisa meminta driver mysql untuk golang 
+  secara otomatis melakukan parsing dengan menambahkan parameter parseTime=true
+
+130 B. Nullable Type
+- Golang database tidak mengerti tipe data null
+- Konversi secara otomatis NULL tidak didukung oleh driver Mysql Golang
+- Oleh karena itu, khusus tipe kolom yang bisa NULL kita perlu menggunakan tipe data 
+  yang ada dalam package sql
+- Tipe data nullable:
+  string: database/sql.NullString
+  bool: database/sql.NullBool
+  float64: database/sql.NullFLoat64
+  int32: database/sql.NullInt32
+  int64: database/sql.NullInt64
+  time.Time: database/sql.NullTime
+
+131 A. SQL Injection
+- SQL Injection adalah sebuah teknik yang menyalahgunakan sebuah celah keamanan yang terjadi dalam lapisan basis data sebuah Aplikasi
+- Biasanya SQL injection dilakukan dengan mengirim input dari user dengan perintah yang salah,
+  sehingga menyebabkan hasil SQL yang kita buat menjadi tidak valid
+- SQL injection sangat berbahaya, jika sampai kita salah membuat SQL bisa jadi data kita tidak aman
+
+131 B. Solusi SQL Injection
+- Jangan membuat query SQL secara manual dengan menggabungkan string secara bulat-bulat
+- Jika kita membutuhkan parameter ketika membuat SQL, kita bisa menggunakan function Execute atau Query dengan parameter
+
+132. SQL Parameter
+- Function exec dan query memiliki parameter tambahan yang bisa kita gunakan untuk mensubtitusi parameter
+- Untuk menandai sebuah SQL membutuhkan parameter, kita bisa gunakan karakter (?)
+
+133. Auto Increament
+- Untuk mengambil ID auto increament yang sudah kita insert ke dalam Mysql, kita bisa menggunakan 
+  SELECT LAST_INSERT_ID
+- Namun di golang ada cara lebih mudah yaitu
+  Result.LastInserId() untuk mendapatkan id terakhir yang dibuat secara auto increment
+- Result adalah object yang dikembalikan ketika kita menggunakan function Exec
+
+134 A. Prepare Statement
+- Function Query dan Exec yang menggunakan parameter, sebenarnya implementasi di bawhanya menggunakan prepare Statement
+- Jadi tahap pertama statement nya disiapkan terlebih dahulu, setelah itu baru diisi dengan parameter
+- Kadang ada kasus kita ingin melakukan beberapa hal sekaligus, hanya berbeda parameternya. Misal insert data langsung banyak
+- Pembuatan prepare statement bisa dilakukan dengan manual tanpa harus menggunakan Query atau Exec dengan parameter
+
+134 B. Prepare Statement
+- Saat membuat prepare statement, secara otomatis akan mengenali koneksi database yang digunakan
+- Sehingga kita eksekusi perpare statement berkali-kali, maka akan menggunakan koneksi yang sama dan lebih efisien karena pembuatan 
+  prepare statement nya hanya sekali di awal saja
+- Jika menggunakan Query dan Exec dengan parameter, kita tidak bisa menjamin bahwa koneksi yang digunakan akan sama
+  , Oleh karena itu bisa jadi prepare statement akan selalu dibuat berkali-kali walaupun kita menggunakan sql yang sama
+- Membuat prepare statement DB Prepare(context, sql)
+- Statement harus di close ketika sudah tidak digunakan
+lanjut ke menit 2:15

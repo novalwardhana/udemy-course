@@ -1,0 +1,180 @@
+89. Membuat Goroutine
+1. Cukup menambah perintah go sebelum memanggil function yang akan kita jalankan dalam goroutine
+2. Saat sebuah function kita jalankan dalam goroutine, function tersebut akan berjalan secara asynchronous.
+   Artinya tidak akan ditunggu sampai function tersebut selesai
+3. Aplikasi akan lanjut berjalan ke kode program selanjutnya tanpa menunggu goroutine yang kita buat selesai
+
+90. Goroutine Sangat Ringan
+1. Kita bisa membuat ribuan, bahkan sampai jutaan goroutine tanpa takut boros memory
+2. Tidak seperti thread yang ukurannya berat, goroutine sangtlah ringan
+
+91 A. Pengenalan Channel
+1. Channel adalah tempat komunikasi secara synchronous yang bisa dilakukan goroutine
+2. Di channel terdapat pengirim dan penerima, biasanya pengirim dan penerima adalah goroutine yang berbeda
+3. Saat melakukan pengiriman data ke channel, goroutine akan terblock, sampai ada yang menerima
+4. Maka dari itu, channel disebut alat komunikasi synchronous (blocking)
+5. Channel cocok sekali sebagai alternatif seperti mekanisme async await yang terdapat di bahasa pemrograman lain
+
+91 B. Contoh Mekanisme Channel 
+1. jika goroutine mengirim data ke channel A, tapi data di channel A belum diambil oleh gorutine lain
+  Maka gorutine yang mengirim data tersebut akan menunggu/blocking
+2. Setiap gorutine pengirim hanya bisa mengirim satu data ke channel
+3. Setiap goroutine penerima hanya bisa menerima satu data dari sebuah channel
+4. Goroutine penerima juga menunggu/blocking sampai ada data di dalam channel
+
+91 C. Karakteristik Channel
+1. Secara default channel hanya bisa menampung satu data, jika kita ingin menambahkan data lagi maka 
+   harus menunggu data yang ada di channel diambil
+2. Channel hanya bisa menerima satu jenis data
+3. Channel bisa diambil lebih dari satu goroutine
+4. Channel harus di close jika tidak digunakan, atau bisa menyebabkan memory leak
+
+92 A. Membuat Channel
+1. Channel di golang direperentasikan dengan tipe data channel
+2. Untuk membuat channel kita bisa menggunakan make() dan menentukan tipe data ke dalam channel tersebut
+   contoh: make(chan string), make(chan int), make(chan float64), dll
+
+92 B. Mengirim dan Menerima Data dari Channel
+1. Mengirim ke channel: channel <- data
+2. Menerima dari channel: data <- channel
+3. Jika sudah maka dilakukan close(channel)
+
+93. Channel Sebagai Parameter
+1. Dalam pembuatan aplikasi, seringnya kita mengirim channel ke function lain via Parameter
+2. Default golang, paramater adalah pass by value, artinya value akan diduplikasi lalu dikirim ke function parameter.
+   Sehingga jika ingin mengirim data asli harus menggunakan pointer
+3. Berbeda dengan channel, kita tidak perlu melakukan hal tersebut
+
+94. Channel In Out
+1. Saat kita mengirim channel, isi function tersebut bisa mengirim dan menerima data dari channel tersebut
+2. Kadang kita ingin memberi tahun function, misal bahwa channel tersebut hanya digunakan untuk mengirim data,
+   atau hanya dapat digunakan untuk menerima data
+3. Hal ini bisa kita lakukan di parameter dengan cara menandai apakah channel ini digunakan untuk in(mengirim data) atau out(menerima data)
+
+95 A. Buffered Channel
+1. Secara default channel hanya bisa menerima 1 data, sehingga jika kita menambah data ke-2 maka kita akan diminta menunggu sampai data ke-1 ada yang mengambil
+2. Kadang-kadang ada kasus dimana pengirim lebih cepat dari penerima, dalam hal ini kita menggunakan channel, maka otomatis pengirim akan ikut lambat juga
+3. Untuk itu ada Buffered Channel yaitu buffer yang bisa digunakan untuk menampung data antrian di channel
+
+95 B. Buffer Capacity
+1. Kita bisa memasukkan beberapa jumlah kapasitas antrian di dalam buffer
+2. Jika kita set misal 5, artinya kita bisa menerima 5 buffer
+3. Jika kita mengirim data ke-6, maka kita diminta untuk menunggu sampai buffer ada yang kosong
+4. Ini cocok sekali ketika memang goroutine yang menerima data lebih lambat dari yang mengirim data
+
+96. Range Channel
+1. Terkadang ada kasus sebuah channel dikirim secara terus menerus oleh pengirim
+2. Kadang kita tidak jelas kapan channel tersebut akan berhenti mengirim data
+3. Salah satu yang bisa dilakukan adalah dengan menggunakan perulangan range ketika menerima data dari channel
+4. Ketika sebuah channel di close maka secara otomatis perulangan tersebut akan berhenti
+5. Ini lebih sederhana daripada kita melakukan pengecekan channel secara manual
+
+97. Select Channel
+1. Kadang ada kasus dimana kita membuat beberapa channel dan menjalankan beberapa goroutine
+2. Lalu kita ingin mendapatkan data dari semua channel tersebut
+3. Untuk melakukan hal tersebut, kita bisa menggunakan select channel di golang
+4. Dengan select channel kita bisa memilih data tercepat dari beberapa channel,
+   jika data datang secara bersamaan dari beberapa channel maka akan dipilih secara random
+
+98. Default Select
+1. Apa yang terjadi jika kita melakukan select terhadap channel yang tidak ada datanya?
+   Maka kita akan menunggu sampai data ada
+2. Dalam select kita bisa menambahkan default, dimana ini akan dieksekusi jika memang di semua channel yang kita select tidak ada datanya
+
+99. Race Condition
+1. Saat menggunakan goroutine, dia tidak hanya berjalan secara concurrent tapi bisa parallel karena bisa ada beberapa thread yang berjalan secara parallel
+2. Hal ini sangat berbahaya ketika kita melakukan manipulasi data variable yang sama oleh beberapa goroutines secara bersamaan
+3. Hal ini bisa menyebabkan masalah yang namanya race condition
+
+100. Mutex (Mutual Exclusion)
+1. Untuk mengatasi race condition, golang mempunyai fitur sync.Mutex
+2. Mutex bisa digunakan untuk melakukan locking dan unlocking, dimana ketika kita melakukan locking terhadap mutex,
+   maka tidak ada yang bisa melakukan locking sampai kita melakukan unlock
+3. Dengan demikian jika ada beberapa goroutine yang melakuakn lock terhadap Mutex, maka hanya satu goroutine yang diperbolehkan,
+   setelah goroutine tersebut melakukan unlock, baru goroutine lain diperbolehkan melakukan lock lagi
+4. Ini sangat cocok sebagai solusi masalah race condition
+
+101. RWMutex (Read Write Mutex)
+1. Kadang ada kasus dimana kita ingin melakukan locking tidak hanya pada proses mengubah data, tapi juga membaca data
+2. Kita sebenarnya bisa menggunakan Mutex saja, namun masalahnya nanti akan rebutan antara proses membaca dan mengubah
+3. Di Golang telah disediakan struct RWMutex untuk menangani hal ini, dimana mutex jenis ini  memiliki dua lock, lock untuk Read dan lock untuk Write
+
+102. Deadlock
+1. Deadlock adalah keadaan dimana sebuah proses goroutine saling menunggu lock sehingga tidak ada satupun goroutine yang bisa jalan
+
+103. Waitgroup
+1. Waitgroup adalah fitur yang bisa digunakan untuk menunggu sebuah proses selesai dilakukan
+2. Digunakan ketika kita ingin menjalankan beberapa proses menggunakan goroutine, tapi kita ingin semua proses selesai terlebih dahulu sebelum aplikasi kita selesai
+3. Untuk menandai bahwa ada proses goroutine, kita bisa menggunakan method Add(int), setelah proses selesai kita bisa menggunakan method Done()
+4. Untuk menunggu semua proses selesai, kita bisa menggunakan method Wait().
+
+104. Once
+1. Once adalah fitur di golang yang bisa kita gunakan untuk memastikan sebuah function dieksekusi hanya sekali
+2. Jadi berapapun goroutine yang mengakses, hanya goroutine goroutine yang pertama yang mengeksekusi
+3. Goroutine yang lain akan dihirukan, sehingga hanya akan dieksekusi sekali
+
+105. Sync Pool
+1. Pool adalah implementasi des ign pattern bernama object pool pattern
+2. Sederhananya, design pattern pool ini digunakan untuk menyimpan data,
+   selanjutnya untuk menggunakan datanya kita bisa menggunakan dari Pool,
+   dan setelah selesai menyimpan datanya kita bisa menyimpan kembali di Pool nya
+3. Implementasi Pool di golang ini sudah aman dari problem race condition
+4. Sering digunakan untuk manage koneksi ke database
+
+106. Sync Map
+1. Golang memiliki sebuah struct bernama sync.Map
+2. Map ini mirip golang map, namun yang membedakan map ini aman untuk menggunakan concurrent maupun goroutine
+3. Ada beberapa function yang bisa kita gunakan di map:
+   a. Store(key, value) untuk menyimpan data
+   b. Load(key) untuk mengambil data
+   c. Delete(key) untuk menghapus data
+   d. Range(function(key, value)) untuk melakukan iterasi seluruh data di Map
+
+107. Sync Cond
+1. Adalah implementasi locking berbasis kondisi
+2. Cond membutuhkan locker (Mutex atau RWMutex) untuk implementasi lockingnya,
+   Namun berbeda dengan locker biasanya, di Cond terdapat function Wait() untuk menunggu
+   atau tidak
+3. Signal(): memberitahu goroutine agar menunggu
+4. Broadcast(): memberitahu goroutine agar tidak perlu menunggu
+5. Untuk membuat Cond, kita bisa menggunakan function sync.NewCond(locker)
+
+108. Atomic
+1. Atomic merupakan package yang digunakan untuk menggunakan data primitive secara aman
+   dalam proses concurrent
+2. Contoh sebelumnya kita menggunakan mutex untuk melakukan locking ketika ingin menaikkan angka di counter.
+   Hal ini sebenarnya bisa digunakan menggunakan atomic package
+3. Link: https://golang.org/pkg/sync/atomic
+4. Alternatif dari Mutex locking unlocking 
+
+109 A. Time Timer
+1. Timer adalah representasi satu kejadian
+2. Ketika waktu timer sudah expired, maka event akan dikirim ke dalam channel
+3. Untuk membuat Timer, kita bisa menggunakan time.NewTimer(duration)
+
+109 B. Time After
+1. Kadang kita hanya butuh channelnya saja, tidak butuh data Timer nya
+2. Untuk itu kita bisa menggunakan time.After(duration)
+
+109 C. After function
+1. Kadang ada kebutuhan kita ingin mengirim sebuah function dengan delay waktu tertentu
+2. Kita bisa menggunakan function time.AfterFunc()
+3. Kita tidak perlu lagi menggunakan channel-nya, cukup mengirimkan function yang akan dipanggil ketika Timer mengirim kejadiannya
+
+110 A. Time Ticker
+1. Ticker adalah representasi kejadian yang berulang
+2. Ketika ticket sudah expire, maka event akan dikirim ke dalam channel
+3. Membuat ticker: time.NewTicker(duration)
+4. Menghentikan ticker: Ticker.Stop()
+5. Mirip time scheduler / time interval di javascript
+
+110 B. Time Tick
+1. Kadang kita tidak butuh data ticker-nya, hanya butuh channel-nya saja
+2. Jika demikian kita bisa menggunakan function timer.Tick(duration), function ini tidak akan mengembalikan ticker,
+   Hanya mengembalikan timer nya saja
+
+111. Gomaxprocs
+1. Untuk mengetahui berapa jumlah thread, kita bisa menggunakan GOMAXPROCS yaitu sebuah function di package runtime yang bisa
+   kita gunakan untuk mengubah jumlah thread atau mengambil jumlah thread
+2. Secara default, jumlah thread di golang sebanyak jumlah CPU di komputer kita
+3. Kita bisa melihat berapa jumlah CPU kita dengan menggunakan function runtime.NumCpu()
