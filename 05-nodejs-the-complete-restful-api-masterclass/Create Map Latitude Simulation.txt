@@ -1,0 +1,10 @@
+PLatform: https://developer.mapquest.com/
+username: wardhana
+email: kangnovalishere@gmail.com
+password: -----
+
+Manage key: https://developer.mapquest.com/user/me/apps
+Consumer Key: PcapAyKUVBxjI36j04cPzoM9RbgH4qZD
+Consumer Secret: 	c7OL218PQmU50m1H
+Key Issued: Sat, 03/12/2022 - 20:32
+Key Expires: Never
