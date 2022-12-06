@@ -95,4 +95,33 @@ Mapping Tipe Data
   , Oleh karena itu bisa jadi prepare statement akan selalu dibuat berkali-kali walaupun kita menggunakan sql yang sama
 - Membuat prepare statement DB Prepare(context, sql)
 - Statement harus di close ketika sudah tidak digunakan
-lanjut ke menit 2:15
+
+135. Database Transaction
+- Secara default, semua perintah SQL yang kita kirim di Golang akan otomatis di commit, atau auto commit
+- Namun kita bisa menambahkan perintah agar SQL tidak secara otomatis di commit di database
+- Untuk memulai transaksi, kita bisa menggunakan function (DB) Begin(), dimana akan menghasilkan
+  struct Trx yang merupakan representasi Transaction
+- Struct Tx ini yang kita gunakan sebagai pengganti DB untuk melakukan transaksi, dimana hampir semua function di DB ada di Trx
+  seperti Exec, Query, dan Prepare
+- Setelah proses transaksi selesai, kita bisa gunakan function (Tx) Commit untuk melakukan commit atau Rollback()
+
+136 A. Repository Pattern
+- Dalam buku domain-driven designs, Eric Evans menjelaskan bahwa repository adalah mekanisme untuk enkapsulasi storage
+- Pattern repository ini biasanya digunakan sebagai jembatan antar business logic aplikasi kita dengan semua perintah SQL database
+- Jadi semua perintah SQL akan ditulis di repository, sedangkan business logic kode program kita hanya cukup menggunakan repository tersebut 
+ 
+136 B. Entity / Model
+- Dalam OOP, biasanya sebuah tabel di database akan selalu dibuat representasinya sebagai class Entity atau Model
+  , namun di Golang karena tidak mengenal class jadi kita akan representasikan dalam bentuk struct
+- Ini bisa mempermudah ketika membuat kode program
+- Misal ketika kita query ke repository, dibanding mengembalikan array, alangkah baiknya Repository
+  melakukan konversi terlebih dahulu ke struct Entity / Model sehingga kita tinggal menggunakan objectnya
+
+136 C. Contoh
+package entity
+
+type Comment struct {
+  ID int32
+  Email string
+  Comment string
+}

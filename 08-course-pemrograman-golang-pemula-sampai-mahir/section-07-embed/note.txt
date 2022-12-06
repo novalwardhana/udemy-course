@@ -1,0 +1,34 @@
+139. Pengenalan Embed
+- Untuk membaca file sehingga tidak perlu membuka file terlebih dahulu
+- Untuk melakukan embed file ke variabel, kita bisa mengimport package embed terlebih dahulu
+- Selanjutnya kita bisa tambahkan //go:embed diikuti dengan nama file nya, diatas variabel yang kita tuju
+- Variabel yang dituju tersebut secara otomatis akan berisi konten file yang kita inginkan secara otomatis
+  ketika kode golang di compile
+- Variabel yng dituju tidak bisa disimpan dalam function
+  Tidak bisa menyimpan golang embed di sebuah function
+
+140. Embed File ke String
+- Embed file bisa kita lakukan ke variabel dengan tipe data String
+- Secara otomatis isi file akan dibaca sebagai text dan masukkan ke variabel tersebut
+
+141. Embed File ke Byte
+- Selain ke tipe String, embed file juga bisa dilakukan ke variable tipe data []Byte
+- Ini cocok sekali jika kita ingin embed file dalam bentuk binary, seperti gambar dan lain lain
+
+142. Embed Multiple Files
+- Kadang ada kebutuhan kita ingin melakukan embed beberapa file sekaligus
+- Hal ini bisa kita lakukan dengan menggunakan embed package
+- Kita bisa menambahkan komentar //go:embed lebih dari satu baris
+- Selain itu variabel nya bisa kita gunakan tipe data embed.FS
+
+143. Embed Path Matcher
+- Untuk membaca multiple file agar tidak manual kita bisa menggunakan path matcher
+- Ini sangat cocok ketika misal kita punya pola jenis file yang kita inginkan untuk kita baca
+- Caranya, kita perlu menggunakan path matcher seperti pada package function path.Match
+
+144. Embed Compile
+- Hasil embed yang dilakukan oleh package embed adalah permanent dan
+  data file yang dibaca disimpan dalam binary file golang nya
+- Artinya bukan dilakukan secara realtime membaca file yang ada diluar
+- Hal ini menjadikan jika binary file golang sudah di compile, kita tidak butuh lagi file externalnya,
+  dan bahkan jika diubah file externalnya, isi variabel ya tidak akan berubah lagi
