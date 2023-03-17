@@ -1,0 +1,119 @@
+147. Pengenalan Web
+- Web merupakan kumpulan informasi yang tersedia dalam sebuah komputer yang terkoneksi secara terus menerus melalui internet
+
+148. Client & Server
+- Web adalah aplikasi berbasis client dan Server
+- CLient ----- request -----> Server
+- Aplikasi client bertugas mengirim request ke server dan menerima response dari server
+- Aplikasi server bertugas menerima requets dari client, memproses data, dan mengembalikan hasil proses data ke client
+
+149. Golang Web
+- Golang sudah tersedia package untuk membuat web, bahkan di sertakan package untuk implementasi unit testing
+- Web browser akan melakukan HTTP request ke Web server
+- Golang menerima HTTP request, lalu mengeksekusi request tersebut sesuai dengan yang diminta
+- Setelah melakukan eksekusi request, Golang akan mengembalikan data dan di render sesuai dengan kebutuhannya
+- Golang akan mengembalikan content hasil render tersebut sebagai HTTP response ke web browser
+- Web browser menerima content dari web server, lalu merender content tersebut sesuai dengan tipe content nya
+- Menggunakan package net/http
+- Untuk membuat web skala besar direkomendasikan menggunakan framework
+
+150. Server
+- Server adalah struct yang terdapat di package net/http yang digunakan sebagai representasi Web server di Golang
+- Setelah membuat server, kita bisa menjalankan server tersebut dengan menggunakan function ListenAndServer()
+
+151. Handler
+- Server hanya bertugas untuk web server, sedangkan untuk menerima HTTP request kita membutuhkan Handler
+- Handler di golang diimplementasikan dalm interface, dimana dalam kontraknya terdapat sebuah function bernama ServeHTTP()
+  yang digunakan sebagai function yang akan di eksekusi ketika menerima HTTP request
+- Salah satu implementasi dari interface Handler adalah HandlerFunc
+- Kita bisa menggunakan HandlerFUnc untuk membuat function handler HTTP
+
+152. ServeMux
+- HandlerFunc tidak mendukung banyak endpoint
+- ServerMux adalah implementasi Handler yang bisa mendukung multiple endpoint
+
+153. Request
+- Request adalah struct yang merepresentasikan HTTP request yang dikirim oleh web browser
+- Semua informasi request yang dikirim bisa kita dapatkan di request
+- seperti URL, http method, http header, http body, dll
+
+154. HTTP Test
+- Golang sudah membuat package khusus untuk unit test terhadap fitur web yang kita buat
+- net/http/httptest -> golang.org/pkg/net/http/httptest
+- Dengan package ini, kita bisa testing handler web di golang tanpa harus menjalankan aplikasi web nya
+- Kita bisa langsung fokus terhadap handler function yang ingin kita test
+- Function yang digunakan 1: httptest.NewRequest(method, url, body)
+  Selain itu kita bisa menambahkan header, ccokie, dan lain-lain
+- Function yang digunakan 2: httptest.NewRecorder()
+  Untuk membuat ResponseRecorder() yang merupakan struct bantuan untuk merekan HTTP response hasil testing yang kita lakukan
+
+155 A. Query Parameter
+- Query parameter biasanya digunakan untuk mengirim data dari client ke server
+- Query parameter ditempatkan pada URL
+- Untuk menambahkan query parameter, kita bisa menggunakan ?nama=value pada URL nya
+- Dalam parameter Request, terdapat attribute URL yang berisi url.URL
+- Dari data URL ini, kita bisa mengambil data query parameter yang dikirim dari client dengan method Query yang akan mengembalikan map
+- Syntax: request.URL.Query().Get("name")
+- Untuk menambahkan query parameter, kita bisa gunakan tanda & lalu diikuti dengan query parametr berikutnya
+  example: http://localhost:8080?name=noval&address=bantul
+
+155 B. Multiple Value Query Parameter
+- Sebenarnya URL untuk melakukan parsing query parameter dan menyimpannya dalam map[string]string
+- Artinya dalam satu key query parameter kita bisa memasukkan beberapa value
+- Kita bisa menambahkan query parametr dengan nama sama, namun value berbeda
+  Contoh: name=Noval&name=Wardhana
+
+156. Header
+- Selain query parameter, dalam HTTP juga ada yang bernama Header
+- Header adalah informasi tambahan yang biasa dikirim dari client ke server atau sebaliknya
+- Tidak hanya HTTP request, HTTP response juga bisa ditambahkan header
+- Syntax: request.Header, ResponseWriter.Header()
+- Mirip seperti query parameter, isinya adalah map[string]string
+
+157. Form Post
+- Submit form bisa menggunakan method GET atau POST
+- Jika menggunakan GET maka hasilnya semua data akan menjadi query parameter
+- Jika menggunakan POST maka semua data di form akan dikirim via body HTTP request
+- Semua data akan disimpan dalam sttribute Request.PostForm
+- Alur Request.ParseForm() -----> Request.PostForm, untuk memastikan data bisa di parsing dan tidak menyebabkan error
+
+158. Response Code 
+- Dalam HTTP ada response code yang merupakan representasi kode response
+- Secara default jika tidak menyebutkan response code, maka response code nya adalah 200 OK 
+- Jika ingin mengubahnya kita bisa menggunakan ResponseWriter.WriteHeader(int)
+
+159. Cookie
+- HTTP merupakan stateless antara client dan server, artinya server tidak menyimpan data apapun 
+  untuk mengingat setiap request dari client
+- Hal ini bertujuan agar mudah melakukan scalability di sisi server
+- Lantas bagaimana cara agar server bisa mengingat sebuah client?
+  Misal ketika kita sudah login di website, server otomatis harus tahu jika client sudah login, 
+  sehingga request selanjutnya tidak perlu diminta login lagi
+- Untuk melakukan hal itu kita bisa menggunakan cookie 
+- Cookie adalah fitur di HTTP dimana server bisa memberi response cookit (key-value) dan client akan menyimpan cookie tersbut di browser
+- Request selanjutnya, client akan membawa cookie tersebut secara otomatis
+- Dan server secara otomatis akan selalu menerima data cookit yang dibawa oleh client setiap kali client mengirim request
+- Script: http.SetCookie()
+
+160. File Server (go1.18)
+- Golang memiliki sebuah fitur bernama file server
+- Dengan ini kita bisa membuat handler di golang web yang digunakan sebagai static file server
+- Dengan menggunakan fil serverm kita tidak perlu manual me-load file lagi
+- FileServer adalah Handler, jadi kita bisa tambahkan ke dalam http.Server atau http.ServerMux
+- Di golang 1.16 terdapat fitur embed
+- Dalam golang embed, kita bisa embed ke dalam binary distribution, hal ini mempermudah sehingga kita tidak perlu mengcopy static file lagi
+- Golang embed juga memiliki fitur embed.FS, fitur ini diintegrasikan dengan FileServer
+
+161. ServeFile
+- Kadang ada kasus misal kita hanya ingin menggunakan static file sesuai dengan yang kita inginkan
+- Hal ini bisa dilakukan menggunakan function http.ServeFile()
+- Dengan menggunakan function ini, kita bisa menentukan file mana yang ingin kita tulis ke http response
+
+162 A. Template
+- Di golang terdapat fitur HTML template, yaitu fitur template yang bisa kita gunakan untuk membuat HTML yang dinamis
+- Fitur HTML template terdapat di package html/template
+- Bagian dinamis pada HTML template adalah bagian menggunakan {{}}
+
+162 B. Template Directory
+- Golang template mendukung proses load template dari Directory
+- Hal ini memudahkan kita, sehingga tidak perlu menyebutkan nama file nya satu per satu
