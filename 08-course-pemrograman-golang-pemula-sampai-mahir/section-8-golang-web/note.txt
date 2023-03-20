@@ -9,13 +9,14 @@
 
 149. Golang Web
 - Golang sudah tersedia package untuk membuat web, bahkan di sertakan package untuk implementasi unit testing
-- Web browser akan melakukan HTTP request ke Web server
-- Golang menerima HTTP request, lalu mengeksekusi request tersebut sesuai dengan yang diminta
-- Setelah melakukan eksekusi request, Golang akan mengembalikan data dan di render sesuai dengan kebutuhannya
-- Golang akan mengembalikan content hasil render tersebut sebagai HTTP response ke web browser
-- Web browser menerima content dari web server, lalu merender content tersebut sesuai dengan tipe content nya
-- Menggunakan package net/http
-- Untuk membuat web skala besar direkomendasikan menggunakan framework
+- Cara kerja Golang Web
+  a. Web browser akan melakukan HTTP request ke Web server
+  b. Golang menerima HTTP request, lalu mengeksekusi request tersebut sesuai dengan yang diminta
+  c. Setelah melakukan eksekusi request, Golang akan mengembalikan data dan di render sesuai dengan kebutuhannya
+  d. Golang akan mengembalikan content hasil render tersebut sebagai HTTP response ke web browser
+  e. Web browser menerima content dari web server, lalu merender content tersebut sesuai dengan tipe content nya
+- Di Golang sudah disediakan package untuk membuat web bernama package net/http
+- Walaupun sudah ada package net/http untuk membuat web namun untuk membuat web skala besar direkomendasikan menggunakan framework
 
 150. Server
 - Server adalah struct yang terdapat di package net/http yang digunakan sebagai representasi Web server di Golang
@@ -26,11 +27,17 @@
 - Handler di golang diimplementasikan dalm interface, dimana dalam kontraknya terdapat sebuah function bernama ServeHTTP()
   yang digunakan sebagai function yang akan di eksekusi ketika menerima HTTP request
 - Salah satu implementasi dari interface Handler adalah HandlerFunc
-- Kita bisa menggunakan HandlerFUnc untuk membuat function handler HTTP
+- Kita bisa menggunakan HandlerFunc untuk membuat function handler HTTP
 
 152. ServeMux
-- HandlerFunc tidak mendukung banyak endpoint
+- HandlerFunc tidak mendukung banyak multiple endpoint
 - ServerMux adalah implementasi Handler yang bisa mendukung multiple endpoint
+- Aturan router
+  Misal ada dua router "/images/" dan "/images/thumbnails/" maka:
+  a. Jika user mangakses /images dan /images/ maka akan masuk ke router /images/
+  b. Jika user mengakses /images/test dan /images/test/abc maka akan masuk ke router /images/
+  c. Jika user mengakses /images/thumbnails/ dan /images/thumbnails maka akan masuk ke router /images/thubnalis/
+  d. Jika user mengakses /images/thumbnails/test dan /images/thumbnails/test/abc maka akan masuk ke router /images/thumbnails/
 
 153. Request
 - Request adalah struct yang merepresentasikan HTTP request yang dikirim oleh web browser
