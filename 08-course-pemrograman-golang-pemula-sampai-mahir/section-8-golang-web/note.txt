@@ -49,10 +49,12 @@
 - net/http/httptest -> golang.org/pkg/net/http/httptest
 - Dengan package ini, kita bisa testing handler web di golang tanpa harus menjalankan aplikasi web nya
 - Kita bisa langsung fokus terhadap handler function yang ingin kita test
-- Function yang digunakan 1: httptest.NewRequest(method, url, body)
-  Selain itu kita bisa menambahkan header, ccokie, dan lain-lain
-- Function yang digunakan 2: httptest.NewRecorder()
-  Untuk membuat ResponseRecorder() yang merupakan struct bantuan untuk merekan HTTP response hasil testing yang kita lakukan
+- Function yang digunakan 
+  a. httptest.NewRequest(method, url, body)
+    kita bisa menambahkan header, cookie, dan lain-lain
+  b. httptest.NewRecorder()
+    Untuk membuat ResponseRecorder() yang merupakan struct bantuan untuk merekan HTTP response hasil testing yang kita lakukan
+  
 
 155 A. Query Parameter
 - Query parameter biasanya digunakan untuk mengirim data dari client ke server
@@ -75,14 +77,16 @@
 - Header adalah informasi tambahan yang biasa dikirim dari client ke server atau sebaliknya
 - Tidak hanya HTTP request, HTTP response juga bisa ditambahkan header
 - Syntax: request.Header, ResponseWriter.Header()
-- Mirip seperti query parameter, isinya adalah map[string]string
+- Header mirip seperti query parameter, isinya adalah map[string]string
+- Berbeda dengan query parameter yang key nya case sensitive. Header key tidaklah case sensitive
 
 157. Form Post
 - Submit form bisa menggunakan method GET atau POST
 - Jika menggunakan GET maka hasilnya semua data akan menjadi query parameter
 - Jika menggunakan POST maka semua data di form akan dikirim via body HTTP request
 - Semua data akan disimpan dalam sttribute Request.PostForm
-- Alur Request.ParseForm() -----> Request.PostForm, untuk memastikan data bisa di parsing dan tidak menyebabkan error
+- Alur Request.ParseForm() -----> Request.PostForm, 
+  untuk memastikan data bisa di parsing dan tidak menyebabkan error
 
 158. Response Code 
 - Dalam HTTP ada response code yang merupakan representasi kode response
