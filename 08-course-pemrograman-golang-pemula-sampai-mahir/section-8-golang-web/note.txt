@@ -92,6 +92,12 @@
 - Dalam HTTP ada response code yang merupakan representasi kode response
 - Secara default jika tidak menyebutkan response code, maka response code nya adalah 200 OK 
 - Jika ingin mengubahnya kita bisa menggunakan ResponseWriter.WriteHeader(int)
+- Status codes:
+  a. Informational: 100 - 199
+  b. Success: 200 - 299
+  c. Redirect: 300 - 399
+  d. Client error: 400 - 499
+  d. Server error: 500 - 599
 
 159. Cookie
 - HTTP merupakan stateless antara client dan server, artinya server tidak menyimpan data apapun 
