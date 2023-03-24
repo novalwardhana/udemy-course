@@ -115,7 +115,7 @@
 160. File Server (go1.18)
 - Golang memiliki sebuah fitur bernama file server
 - Dengan ini kita bisa membuat handler di golang web yang digunakan sebagai static file server
-- Dengan menggunakan fil serverm kita tidak perlu manual me-load file lagi
+- Dengan menggunakan file server kita tidak perlu manual me-load file lagi
 - FileServer adalah Handler, jadi kita bisa tambahkan ke dalam http.Server atau http.ServerMux
 - Di golang 1.16 terdapat fitur embed
 - Dalam golang embed, kita bisa embed ke dalam binary distribution, hal ini mempermudah sehingga kita tidak perlu mengcopy static file lagi
@@ -126,11 +126,15 @@
 - Hal ini bisa dilakukan menggunakan function http.ServeFile()
 - Dengan menggunakan function ini, kita bisa menentukan file mana yang ingin kita tulis ke http response
 
-162 A. Template
-- Di golang terdapat fitur HTML template, yaitu fitur template yang bisa kita gunakan untuk membuat HTML yang dinamis
-- Fitur HTML template terdapat di package html/template
-- Bagian dinamis pada HTML template adalah bagian menggunakan {{}}
+162.Template
+- Template string
+  a. Di golang terdapat fitur HTML template, yaitu fitur template yang bisa kita gunakan untuk membuat HTML yang dinamis
+  b. Fitur HTML template terdapat di package html/template
+  c. Bagian dinamis pada HTML template adalah bagian menggunakan {{}}
+- Template dari file
+  a. Saat membuat template menggunakan file, secara otomatis nama file akan menjadi nama template
+  b. Misal file simple.gohtml, maka nama template nya adalah simple.gohtml
 
-162 B. Template Directory
-- Golang template mendukung proses load template dari Directory
-- Hal ini memudahkan kita, sehingga tidak perlu menyebutkan nama file nya satu per satu
+163. Template data
+- Saat membuat template kita bisa menambahkan banyak data dinamis menggunakan data struct atau map
+- Kita bisa menggunakan cara seperti ini {{.NamaField}}
