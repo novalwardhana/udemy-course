@@ -1,0 +1,61 @@
+<html>
+<head>{{.Title}}</head>
+<body>
+
+  {{/* IF ELSE-IF ELSE */}}
+  {{if .Name}}
+    <h3>Name: {{.Name}}</h3>
+  {{else if .Name2}}
+    <h3>Name2: {{.Name2}}</h3>
+  {{else}}
+    <h3>Name3: {{.Name3}}</h3>
+  {{end}}
+
+  {{/* Comparator eqeual */}}
+  {{if eq .Value1 .Value2}}
+    {{.Value1}} == {{.Value2}}
+  {{else if ne .Value1 .Value2}}
+    {{.Value1}} != {{.Value2}}
+  {{else}}
+    Undefined
+  {{end}}
+
+  {{/* Comparator gt lt */}}
+  {{if gt .Value1 .Value2}}
+    {{.Value1}} is greater than {{.Value2}}
+  {{else if lt .Value1 .Value2}}
+    {{.Value1}} is lower than {{.Value2}}
+  {{else}}
+    Undefined
+  {{end}}
+
+  {{/* Comparator ge le */}}
+  {{if ge .Value1 .Value2}}
+    {{.Value1}} is greater or equal than {{.Value2}}
+  {{else if le .Value1 .Value2}}
+    {{.Value1}} is lower or equal thean {{.Value2}}
+  {{else}}
+    Undefined
+  {{end}}
+
+  {{/* Range */}}
+  {{range $index, $element := .clubs}}
+    {{$index}}: {{$element}}
+  {{else}} 
+    Clubs not found
+  {{end}}
+  {{range $index, $element := .leagues}}
+    {{$index}}: {{$element}}
+  {{else}}
+    Leagues not found
+  {{end}}
+
+  {{/* With */}}
+  {{with .MyData}}
+    <h4>Email: {{.Email}}</h4>
+    <h4>Username: {{.Username}}</h4>
+  {{else}}
+    Data user not found
+  {{end}}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+{{range $index, $element := .Clubs}}
+  <h3>{{$index}}: {{$element}}</h3>
+{{else}}
+  <h3>Club data not found</h3>
+{{end}}
+<br>
+<br>
+{{range $index, $element := .Foods}}
+  <h3>{{$index}}: {{$element}}</h3>
+{{else}}
+  <h3>Food data not found</h3>
+{{end}}
+</body>
+</html>

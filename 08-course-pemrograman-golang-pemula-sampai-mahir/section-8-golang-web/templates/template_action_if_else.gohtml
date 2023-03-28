@@ -1,0 +1,13 @@
+<html>
+<head>
+</head>
+<body>  
+{{if .Name}}
+  <h3>Hello {{.Name}}</h3>
+{{else if .Title}}
+  <h3>{{.Title}}</h3>
+{{else}}
+  <h3>Data not found</h3>
+{{end}}
+</body>
+</html>

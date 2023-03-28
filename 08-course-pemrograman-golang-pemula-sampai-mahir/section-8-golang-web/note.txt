@@ -138,3 +138,30 @@
 163. Template data
 - Saat membuat template kita bisa menambahkan banyak data dinamis menggunakan data struct atau map
 - Kita bisa menggunakan cara seperti ini {{.NamaField}}
+
+164. Template Action
+- IF ELSE:
+  a. {{if.Value}}T1{{end}}, jika Value tidak kosong maka T1 akan dieksekusi. Jika kosong maka tidak dieksekusi
+  b. {{if.Value}}T1{{else}}T2{{end}}, jika value tidak kosong maka T1 akan dieksekusi. Jika kosong T2 yang akan dieksekusi
+  c. {{if.Value}}T1{{else if.Value2}}T2{{else}}T3{{end}}, jika value tidak kosong maka T1 akan dieksekusi. Jika kosong maka Value2 akan dieksekusi dan jika Value2 tidak kosong maka T2 akan diekskeusi.
+      JIka tidak semusnya maka T3 yang akan dieksekusi
+- Operator Perbandingan:
+  a. eq artinya arg1 == arg2 -> {{eq arg1 arg2}}
+  b. ne artinya arg1 != arg2 -> {{ne arg1 arg2}}
+  c. lt artinya arg1 < arg2  -> {{lt arg1 arg2}}
+  f. le artinya arg1 <= arg2 -> {{le arg1 arg2}}
+  g. gt artinya arg1 > arg2  -> {{gt arg1 arg2}}
+  h. ge artinya arg1 >= arg2 -> {{ge arg1 arg2}}
+  Kenapa operator ada di depan?
+  Jadi saat kita mengguanakn {{eq arg1 arg2}} sebenarnya dia akan memanggil function eq dengan parameter arg1 dan arg2: eq(arg1, arg2)
+- Range:
+  a. Range digunakan untuk iterasi data template
+  b. Range untuk mengiterasi tiap data array, slice, map atau channel
+  c. {{range $index, $element := .Value}}T1{{end}}, jika value memiliki data maka T1 akan dieksekusi sebanyak element value
+     $index untuk memgakses index dan $element untuk mengakses element
+  d. {{range $index, $element := .Value}}T1{{else}}T2{{end}}, jika value memiliki data maka T1 akan dieksekusi jika tidak maka T2 lah yang akan dieksekusi
+- With:
+  a. Untuk implementasi nested struct kita bisa mengaksesnya menggunakan .Value.NestedValue
+  b. Di gohtml template terdapat action with, yang bisa digunakan untuk mengubah scope dot menjadi object yang kita mau
+  c. {{with.Value}}T1{{end}}, jika value tidak kosong, di T1 semua dot akan merefer ke value
+  d. {{with.Value}}T1{{else}}T2{{end}}, jika value kosong maka T2 yang akan diseksekusi
