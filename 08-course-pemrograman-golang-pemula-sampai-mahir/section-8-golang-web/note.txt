@@ -165,3 +165,32 @@
   b. Di gohtml template terdapat action with, yang bisa digunakan untuk mengubah scope dot menjadi object yang kita mau
   c. {{with.Value}}T1{{end}}, jika value tidak kosong, di T1 semua dot akan merefer ke value
   d. {{with.Value}}T1{{else}}T2{{end}}, jika value kosong maka T2 yang akan diseksekusi
+
+165. Template Layout
+- Saat membuat halaman website, kadang ada beberapa bagian yang selalu sama misal header dan footer
+- Best practice nya jika terdapat bagian yang selalu sama, disarankan untuk disimpan pada template terpisah agar bisa digunakan di template lain
+- Golang template mendukung import dari template lain
+- Syntax:
+  a. {{template "nama"}}, artinya kita mengimport templlate "nama" tanpa memberikan value
+  b. {{template "nama".Value}}, artinya kita mengimport template "nama" dengan memberikan data value
+- Template Name:
+  a. Saat kita membuat template dari file, secara otomatis nama file nya akan menjadi nama template
+  b. Namun jika kita ingin mengubah nama template nya, kita bisa menggunakan perintah {{define "nama"}}TEMPLATE{{end}},
+     artinya kita membuat template dengan nama "nama"
+
+166. Template Function
+- Selain mengakses field, dalam template, function juga bisa diakses
+- Cara mengakses function sama seperti mengakses field, namun jika function tersebut memiliki parameter kita bisa tambahkan parameter ketika memanggil temoplate nya
+- {{.FunctionTest}}, memanggil field FunctionTest atau function FunctionTest()
+- {{.FunctionTest "noval", "wardhana"}}, memanggil function FunctionTest("noval", "wardhana")
+- Global Function:
+  a. Global function adalah function yang bisa digunakan secara langsung tanpa menggunakan tempate data
+  b. Funtion bawaan gohtml
+- Menambah Global function:
+  a. Untuk menambah global function, kita bisa menggunakan method Funcs pada template
+  b. Perlu diingat, bahwa menambahkan global function harus dilakukan sebelum melakukan parsing template
+- Function Pipelines:
+  a. Golang template mendukung pipelines, artinya hasil dari function bisa dikirim ke function berikutnya
+  b. Untuk menggunakan function pipelines kita bisa menggunakan tanda | 
+  c. {{sayHello .Name | upper}} artinya akan memanggil global function sayHello(name) hasil dari sayHello(name) akan dikirim ke function upper(hasil)
+  d. Kita bisa menambahkan function pipelines lebih dari satu

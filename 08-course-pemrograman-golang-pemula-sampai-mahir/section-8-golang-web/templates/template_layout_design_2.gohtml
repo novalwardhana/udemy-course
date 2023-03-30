@@ -1,0 +1,19 @@
+{{template "template_layout_design_1.gohtml" .}}
+<body>
+  {{with .Article}}
+    <h3>{{.Title}}}</h3>
+    <p>{{.Text}}}</p>
+  {{end}}}
+</body>
+{{template "template_Layout_design_3.gohtml" .}}
+
+{{define "body"}}
+{{template "header" .}}
+<body>
+  {{with .Article}}
+    <h3>{{.Title}}</h3>
+    <p>{{.Text}}</p>
+  {{end}}
+</body>
+{{template "footer" .}}
+{{end}}

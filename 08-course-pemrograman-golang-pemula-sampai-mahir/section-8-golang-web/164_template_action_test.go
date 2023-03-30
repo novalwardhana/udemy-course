@@ -139,7 +139,7 @@ func templateActionAllSyntax(writer http.ResponseWriter, request *http.Request) 
 		},
 		"MyData": map[string]interface{}{
 			"Email":    "noval@gmail.com",
-			"username": "novalwardhana",
+			"Username": "novalwardhana",
 		},
 	})
 }

@@ -1,0 +1,34 @@
+{{define "templateFunction"}}
+<html>
+<title>{{.Title}}</title>
+<body>
+{{.Title}}
+{{len .Title}}
+<br>
+{{.Name}}
+{{len .Name}}
+<br>
+value1: {{.Value1}}
+value2: {{.Value2}}
+{{if le .Value1 .Value2}}
+Value1 is lower than Value2
+{{end}}
+<br>
+
+Value3: {{.Value3}}
+Value4: {{.Value4}}
+{{if le .Value3 .Value4}}
+Value3 is lower than Value4
+{{else if ge .Value3 .Value4}}
+Value3 is greater than Value4
+{{end}}
+
+<ul>
+{{range $index, $element := .Clubs}}
+  <li>{{$element}}</li>
+{{end}}
+</ul>
+
+</body>
+</html>
+{{end}}

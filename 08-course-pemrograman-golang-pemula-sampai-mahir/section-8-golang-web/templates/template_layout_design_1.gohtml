@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>{{.Title}}</title>
+<ul>
+  {{range $index, $element := .Menus}}
+    <li>{{$element}}</li>
+  {{end}}
+</ul>
+</head>
+
+{{define "header"}}
+  <html>
+    <head>
+      <title>{{.Title}}</title>
+    </head>
+    <ul>
+      {{range $index, $element := .Menus}}
+        <li>{{$element}}</li>
+      {{end}}
+    </ul>
+  </html>
+{{end}}
