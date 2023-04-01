@@ -194,3 +194,29 @@
   b. Untuk menggunakan function pipelines kita bisa menggunakan tanda | 
   c. {{sayHello .Name | upper}} artinya akan memanggil global function sayHello(name) hasil dari sayHello(name) akan dikirim ke function upper(hasil)
   d. Kita bisa menambahkan function pipelines lebih dari satu
+
+167. Template Caching
+- Idealnya template hanya melakukan parsing satu kali diawal ketika aplikasinya berjalan
+- Selanjutnya data template akan di caching(disimpan di memory), sehingga kita tidak perlu parsing lagi
+- Hal ini akan membuat web kita semakin cepat
+
+168. XSS - Cross Site Scripting
+- XSS adalah salah satu security issue yang biasa terjadi ketika membuat web
+- XSS adalah celah keamanan, dimana orang bisa secara sengaja memasukkan parameter yang mengandung javascript agar bisa dirender oleh halaman website kita
+- Biasanya tujuan dari XSS adalah mencuri cookie browser pengguna yang mengakses website kita
+- XSS bisa menyebabkan account pengguna kita diambil alih jika tidak ditangani dengan baik
+- Auto Escape:
+  a. Berbeda dengan bahasa pemrograman lain seperti PHP, pada Golang template masalah XSS sudah diatasi secara otomatis
+  b. Golang tenplate memiliki fitur Auto Escape dimana dia bisa mendeteksi data yang perlu ditampilkan di template
+     Jika mengandung tag-tag html atau script, secara otomatis akan di Escape
+  c. Render template harus menggunakan html/template
+- Mematikan Auto Escape:
+  a. Jika ingin mematikan auto escape, kita perlu memberi tahu template secara explisit ketika kita menambahkan template data
+  b. template.HTML, jika ini adalah data html
+  c. template.CSS, jika ini adalah data css
+  d. template.JS, jika ini adalah data javascript
+
+169. Redirect
+- Saat membuat website, kadang kita butuh melakukan redirect seperti setelah selesai login akan diredirect ke halaman dashboard
+- Di golang kita hanya perlu membuat response code 3xx dan menambah header location
+- Namun untungnya di golang ada function yang bisa kita gunakan untuk mempermudah ini
