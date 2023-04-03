@@ -220,3 +220,18 @@
 - Saat membuat website, kadang kita butuh melakukan redirect seperti setelah selesai login akan diredirect ke halaman dashboard
 - Di golang kita hanya perlu membuat response code 3xx dan menambah header location
 - Namun untungnya di golang ada function yang bisa kita gunakan untuk mempermudah ini
+
+170. Upload File
+- Saat membuat web, selain menerima input data berupa form dan query param, kadang kita juga menerima input data berupa file dari client
+- Multipart:
+  a. Saat menerima upload file, kita perlu melakukan parsing terlebih dahulu menggunakan Request.ParseMultipartForm(size)
+     atau Request.FormFile(name), di dalamnya secara otomatis melakukan parsing terlebih dahulu
+  b. Hasilnya merupakan data-data yang terdapat pada package multipart, seperti multipart.File sebegai representasi file nya 
+     dan multipart.FileHeader sebagai representasi informasi file nya
+
+171. Download File
+- Golang sudah menyediakan FileServer dan ServeFile
+- Dan jika ingin memaksa file di download tanpa di render browser kita bisa menggunakan header Content-Disposition
+- Content Disposition:
+  a. Content-Disposition: inline -> content di render dulu oleh browser
+  b. Content-Disposition: attachment -> content tidak perlu di render oleh browser
