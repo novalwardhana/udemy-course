@@ -235,3 +235,22 @@
 - Content Disposition:
   a. Content-Disposition: inline -> content di render dulu oleh browser
   b. Content-Disposition: attachment -> content tidak perlu di render oleh browser
+
+172. Middleware
+- Dalam pembuatan web, ada konsep yang bernama middleware atau filter atau interceptor
+- Middleware adalah sebuah fitur dimana kita bisa menambahkan kode sebelum dan setelah sebuah handler dieksekusi
+- Golang web tidak ada middleware
+- Namun karena struktur handler yang baik menggunakan interface, kita bisa membuat middleware sendiri menggunakan handler
+- Error middleware:
+  a. Kadang middleware juga biasa digunakan untuk melakukan error handler
+  b. Hal ini sehingga jika terjadi panic di Handler, kita bisa melakukan recover di middleware dan mengubah panic tersebut menjadi error response
+  c. Dengan ini, kita bisa menjaga aplikasi kita tidak berhenti dijalan
+
+173. Routing Library
+- Golang sudah menyediakan ServeMux sebagai handler yang bisa menghandle beberapa endpoint,
+  tapi kebanyakan programmer golang biasanya menggunakan library untuk melakukan Routing
+- Hal ini dikarenakan ServerMux tidak memiliki advanced fitur seperti path variable, auto binding parameter, dan middleware
+- Contoh library:
+  a. github.com/julienschmidt/httprouter
+  b. github.com/gorilla/mux
+  c. github.com/julienschmidt/go-http-routing-benchmark
