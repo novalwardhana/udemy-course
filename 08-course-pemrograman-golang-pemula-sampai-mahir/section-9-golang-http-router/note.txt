@@ -1,0 +1,57 @@
+Section 9 Golang HTTP Router
+
+176. Pengenalan HTTP Router
+- HttpRouter merupakan salah satu open source library yang populer untuk HTTP Handler di Golang
+- HttpRouter terkenal dengan kecepatannya dan juga sangat minimalis
+- Hal ini dikarenakan HttpRouter hanya memiliki fitur untuk routing saja, tidak memiliki fitur apapun selain itu
+- Contoh library: github.com/julienschmidt/httprouter
+  go get github.com/julienschmidt/httprouter
+  go get github.com/stretchr/testify
+
+177. Router
+- Inti dari library HttpRouter adalah struct Router
+- Router ini merupakan implementasi dari Http.Handler, sehingga kita bisa dengan mudah menambahkan ke dalam http.Server
+- Untuk membuat Router, kita bisa menggunakan function httprouter.New(), yang akan mengembalikan Router pointer
+- HTTP Method:
+  a. Router mirip dengan ServeMux, dimana kita bisa menambahkan router ke dalam Router
+  b. Kelebihan dibanding dengan ServeMux adalah pada Router, kita bisa menentukan HTTP Method yang ingin kita gunakan
+     misal: GET, POST, PUT, dan lain-lain
+  c. Cara menambahkan route ke dalam ROuter adalah gunakan function yang sama dengan HTTP Method nya
+     misal: router.GET(), router.POST()
+- httprouter.Handle:
+  a. Saat kita menggunakan ServerMux kita menambah route, kita bisa menambahkan http.Handler
+  b. Berbeda dengan library Router, pada library Router kita tidak menggunakan http.Handler lagi, melainkan menggunakan type httprouter.Handle
+  c. Perbedaan dengan http.Handler adalah, pada httprouter.Handle terdapat parameter ketiga yaotu Params
+     http.Handler: func(writer http.ResponseWriter, request *http.Request)
+     httprouter.Handle: func(writer http.ResponseWriter, request *http.Request, Params)
+
+178. Params
+- httprouter.Handle memiliki parameter ketiga yaitu Params
+- Params bukan merupakan tempat menyimpan parametr yang dikirim client dan juga bukan query parameter
+- Params merupakan parametr di url
+  contoh: /product/1, /product/2
+- ServerMux tidak mendukung hal tersebut, namun Router mendukung
+- Namun agar Router tahu, kita harus memberi tahu ketika menambahkan Route, dibagian mana kita akan buat URL path nya menjadi dinamis
+
+179. Router Pattern
+- Named Parameter:
+  a. Named parameter adalah pola pembuatan parameter dengan menggunakan nama
+  b. Setiap parameter harus diawali dengan :(titik dua), lalu diikuti parameter
+  c. contoh pattern /user/:namaUser
+     /user/eko -> match
+     /user/you -> match
+     /user/eko/profile -> no match
+     /user/ -> no match
+- Catch All Parameter:
+  a. Catch all parameter adalah menangkap semua parameter
+  b. Harus diawali dengan *(bintang) lalu diikuti nama parameter
+  c. Harus berada di posisi akhir URL
+  d. Contoh pattern /src/*filepath
+    /src/ -> no match
+    /src/somefile -> match
+    /src/subdir/somefile -> match
+
+180. Serve File
+- Router mendukung serve static file menggunakan function ServeFiles(Path, FileSystem)
+- Parameter Path kita menggunakan catch all parameter
+- Parameter FileSystem kita bisa load dari folder menggunakan golang embed
