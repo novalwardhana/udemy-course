@@ -55,3 +55,23 @@ Section 9 Golang HTTP Router
 - Router mendukung serve static file menggunakan function ServeFiles(Path, FileSystem)
 - Parameter Path kita menggunakan catch all parameter
 - Parameter FileSystem kita bisa load dari folder menggunakan golang embed
+
+181. Panic Handler
+- Jika terjadi panic maka logic handler akan berhenti dan web akan berhenti mengembalikan response
+- Namun di router sudah disediakan method untuk menangani panic, caranya dengan menggunakan attribute:
+  PanicHandler: func(http.ResponseWriter, *http.Request, interface{})
+
+182. Not Found Handler
+- Not found handler adalah handler yang dieksekusi ketika client mencoba melakukan request URL yang memang tidak terdapat di router
+- Secara default, jika tidak ada route yang ditemukan, Router akan melanjutkan request ke http.NotFound, namun kita bisa mengubahnya
+- router.NotFound = http.Handler
+
+183. Method Not Allowed
+- Saat menggunakan ServerMux, kita tidak bisa menetukan HTTP method apa yang digunakan untuk handler
+- Namun pada router, kita bisa menentukan HTTP method yang ingin kita gunakan
+- Router juga bisa melakukan handling saat HTTP method tidak sesuai dengan yang kita tentukan
+- router.MethodNotAllowed
+
+184. Middleware
+- HttpRouter hanyalah library untuk http router saja, tidak ada fitur lain selain router
+- Dan karena router merupakan implementasi dari http.Handler, jadi untuk middleware kita bisa membuat sendiri seperti pada golang web

@@ -34,7 +34,7 @@ func TestServeFile(t *testing.T) {
 // TestMultipleServeFile:
 func TestMultipleServeFile(t *testing.T) {
 	wg := sync.WaitGroup{}
-	wg.Add(2)
+	wg.Add(3)
 
 	go func() {
 		defer wg.Done()
