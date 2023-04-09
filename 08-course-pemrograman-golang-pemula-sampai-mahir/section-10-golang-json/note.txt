@@ -1,0 +1,51 @@
+Golang JSON
+
+187. Pengenalan JSON
+- JSON = JavaScript Object Notation merupakan struktur format data yang bentuknya seperti object di Javascript
+- JSON merupakan strktur format data yang paling banyak digunakan saat kita membuat restful API 
+- Contoh: 
+  {
+    "firstName": "noval",
+    "lastName": "wardhana",
+    "address": {
+      "city": "Bantul",
+      "State": "Indonesia",
+      "postalCode": 55198
+    }
+  }
+- Golang sudah menyediakan package json, dimana kita bisa menggunakan package ini untuk melakukan konversi data ke JSON (encode) atau sebaliknya (decode)
+
+188. Encode JSON
+- Golang telah menyediakan function untuk melakukan konversi data ke JSON, yaitu menggunakan json.Marshal(interface{})
+- Karena parameternya interface{}, maka kita bisa masukan tipe data apapun ke dalam function Marshal
+
+189. JSON Object
+- Konversi dari Struct ke JSON Object
+- Walaupun kita bisa melakukan encode string, number, boolean, dan tipe data primitif lainnya karena sesuai dengan kontrak interface{}
+  Namun tidak sesuai dengan kontrak JSON
+- Jika mengikuti kontrak json.org, data JSON bentuknya Object dan Array
+- Struct:
+  a. JSON Object di Golang direpresentasikan dengan tipe data Struct
+  b. Dimana tiap attribute di JSON Object merupakan attribute Struct
+
+190. Decode JSON
+- Konversi dari JSON Object ke Struct
+- Untuk melakukannya konversi dari JSON ke tipe data di Golang, kita bisa menggunakan function json.Unmarshal(byte[], interface{})
+- Dimana byte[] adalah data JSON, sedangkan interface{} adalah tempat menyimpan hasil konversi berupa pointer
+
+191. JSON Array
+- Selain tipe dalam bentuk Object, biasanya dalam JSON kita bisa menggunakan tipe data Array
+- Array di JSON mitip dengan Array di JavaScript, dia bisa berisikan tipe data primitif atau tipe data kompleks (Object atau Array)
+- Di Golang, JSON Array direpresentasikan ke dalam bentuk slice
+- Konversi dari JSON atau ke JSON dilakukan secara otomatis oleh package json mengunakan tipe data slice
+- Decode JSON Array:
+  a. Selain menggunakan Array pada attribute di Object kita juga bisa melakukan encode atau decode langsung JSON Array nya
+  b. Encode dan Decode JSON Array bisa menggunakan tipe data slice
+
+192. JSON Tag
+- Secara default attribut yang terdapat di Struct dan JSON akan di mapping sesuai dengan nama atribut yang sama (case sensitive)
+- Kadang ada style yang berbeda antara penamaan atribut di Struct dan di JSON, misal di JSON kita ingin menggunakan 
+  first_name(snake_case), tapi di struct kita ingin menggunakan firstName(PascalCase)
+- Untungnya package json mendukung Tag Reflection
+- Kita bisa menambahkan tag reflection dengan nama json, lalu diikuti dengan atribut yang kita inginkan ketika konversi dari atau ke JSON
+- Contoh: FirstName string `json:"first_name"`
