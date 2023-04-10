@@ -1,0 +1,36 @@
+{
+	"Customer1": {
+		"FirstName": "Deni",
+		"MiddleName": "Eka",
+		"LastName": "Nugraha",
+		"Age": 30,
+		"Marriage": true,
+		"Hobbies": [
+			"Photography",
+			"Motovlog"
+		]
+	},
+	"Customer2": {
+		"FirstName": "Novan",
+		"MiddleName": "Arif",
+		"LastName": "Kardianto",
+		"Age": 30,
+		"Marriage": false,
+		"Hoobies": [
+			"Design",
+			"Photography"
+		],
+		"Addresses": [
+			{
+				"Street": "Berbah",
+				"Country": "Indonesia",
+				"PostalCode": "55199"
+			},
+			{
+				"Street": "Gunung Kidul",
+				"Country": "Indonesia",
+				"PostalCode": "212515"
+			}
+		]
+	}
+}

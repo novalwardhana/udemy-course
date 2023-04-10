@@ -49,3 +49,25 @@ Golang JSON
 - Untungnya package json mendukung Tag Reflection
 - Kita bisa menambahkan tag reflection dengan nama json, lalu diikuti dengan atribut yang kita inginkan ketika konversi dari atau ke JSON
 - Contoh: FirstName string `json:"first_name"`
+
+193. MAP
+- Saat menggunakan JSON, kadang mungkin kita menemukan kasus data JSON nya dynamic
+- Artinya atribut nya tidak menentu, bisa bertambah, bisa berkurang
+- Jika menggunakan struct{} akan menyulitkan sehingga kita sebaiknya menggunakan map[string]interface{}
+- Tipe data Map tidak mendukung JSON tag lagi
+
+194. Streaming Decoder
+- Di materi sebelumnya kita sudah belajar package json dengan melakukan konversi JSON yang sudah dalam bentuk variable dengan tipe data string atau []byte
+- Pada kenyataannya, kadang data JSON nya berasal dari input berupa io.Reader (File, Network, RequestBody)
+- Kita bisa saja membaca semua datanya terlebih dahulu, lalu disimpan di variable kemudian baru lakukan konversi dari JSON.
+  Namun tidak perlu karena package json memiliki fitur untuk membaca data dari Stream
+- json.Decoder:
+  a. Untuk membuat json Decoder, kita bisa menggunakan json.NewDecoder(reader)
+  b. Selanjutnya untuk membaca isi input reader dan konversikan secara langsung ke data di Golang cukup gunakan function Decode(interface{})
+
+195. Streaming Encoder
+- Selain decoder, package json juga mendukung membuat encoder yang bisa digunakan untuk menulis langsung JSON nya ke io.Writer
+- Dengan begitu, kita tidak perlu menyimpna JSON datanya terlebih dahulu ke dalam variable string atau []byte, kita bisa langsung tulis ke io.Writer
+- json.Encoder:
+  a. Untuk membuat encoder, kita bisa menggunakan function json.NewEncoder(writer)
+  b. Untuk menulis data sebagai JSON langsung ke writer, kita bisa gunakan function Encode(interface{})
