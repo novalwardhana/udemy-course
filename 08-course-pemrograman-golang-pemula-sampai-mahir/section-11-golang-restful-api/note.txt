@@ -1,0 +1,14 @@
+Belajar Golang Restful API
+
+- Membuat Aplikasi CRUD untuk data category
+- Membuat API:
+  a. Create category
+  b. Get category
+  c. List category
+  d. Update category
+  e. Delete category
+- Semua API ditambahkan authentication berupa API-key
+- Dependency
+  a. Driver Mysql: github.com/go-sql-driver/mysql
+  b. HTTP ROuter: github.com/julienschmidt/httprouter
+  c. Validation: github.com/go-playground/validator
