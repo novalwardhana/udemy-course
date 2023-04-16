@@ -51,6 +51,7 @@ func (repository *CategoryRepositoryImpl) FindByID(ctx context.Context, tx *sql.
 	sql := "select id, name from category where id = ?"
 	rows, err := tx.QueryContext(ctx, sql, categoryID)
 	helper.PanicIfError(err)
+	defer rows.Close()
 
 	category := domain.Category{}
 	if rows.Next() {

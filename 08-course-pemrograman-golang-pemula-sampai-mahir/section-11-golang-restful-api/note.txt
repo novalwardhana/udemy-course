@@ -10,5 +10,6 @@ Belajar Golang Restful API
 - Semua API ditambahkan authentication berupa API-key
 - Dependency
   a. Driver Mysql: github.com/go-sql-driver/mysql
-  b. HTTP ROuter: github.com/julienschmidt/httprouter
+  b. HTTP Router: github.com/julienschmidt/httprouter
   c. Validation: github.com/go-playground/validator
+  d. Unit test: github.com/stretchr/testify

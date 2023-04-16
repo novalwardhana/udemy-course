@@ -1,0 +1,35 @@
+### Get all categories
+GET http://localhost:3000/api/categories
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Get category by id
+GET http://localhost:3000/api/categories/5
+X-API-Key: RAHASIA
+Accept: application/json
+
+### Create new category
+POST http://localhost:3000/api/categories
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Taka"
+}
+
+### Update category
+PUT http://localhost:3000/api/categories/5
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Casca"
+}
+
+### Delete category
+DELETE http://localhost:3000/api/categories/6
+X-API-Key: RAHASIA
+Accept: application/json
+Content-Type: application/json
