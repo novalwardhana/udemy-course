@@ -1,0 +1,35 @@
+### GET all user
+GET http://localhost:8080/api/users
+Accept: "application/json"
+
+### GET user by id
+GET http://localhost:8080/api/users/9
+Accept: "application/json"
+
+### Create new user
+POST http://localhost:8080/api/users
+Accept: "application/json"
+Content-Type: "application/json"
+
+{
+  "email": "noval@gmail.com",
+  "username": "novalwardhana",
+  "password": "secret123",
+  "full_name": "Novalita"
+}
+
+### Update user data
+PUT http://localhost:8080/api/users/10
+Accept: "application/json"
+Content-Type: "application/json"
+
+{
+  "email": "deni@gmail.com",
+  "username": "denieka",
+  "password": "secret123",
+  "full_name": "Deni Eka NUgraha"
+}
+
+### Delete user data
+DELETE http://localhost:8080/api/users/35
+Accept: "application/json"

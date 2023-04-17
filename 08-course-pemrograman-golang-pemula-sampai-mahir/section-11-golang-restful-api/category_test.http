@@ -4,7 +4,7 @@ X-API-Key: RAHASIA
 Accept: application/json
 
 ### Get category by id
-GET http://localhost:3000/api/categories/5
+GET http://localhost:3000/api/categories/123
 X-API-Key: RAHASIA
 Accept: application/json
 
