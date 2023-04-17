@@ -7,7 +7,6 @@ import (
 )
 
 func UserErrorHandler(writer http.ResponseWriter, request *http.Request, error interface{}) {
-	writer.WriteHeader(http.StatusInternalServerError)
 
 	if checkUserNotFoundError(writer, request, error) {
 		return
@@ -17,6 +16,7 @@ func UserErrorHandler(writer http.ResponseWriter, request *http.Request, error i
 		return
 	}
 
+	writer.WriteHeader(http.StatusInternalServerError)
 	webResponse := web.WebResponse{
 		Code:   http.StatusInternalServerError,
 		Status: "INTERNAL SERVER ERROR",
@@ -32,6 +32,7 @@ func checkUserNotFoundError(writer http.ResponseWriter, request *http.Request, e
 			Status: "NOT FOUND",
 			Data:   userNotFoundError,
 		}
+		writer.WriteHeader(http.StatusNotFound)
 		helper.UserWriteResponseBody(writer, webResponse)
 	}
 
@@ -46,6 +47,7 @@ func checkUserValidationError(writer http.ResponseWriter, request *http.Request,
 			Status: "BAD REQUEST",
 			Data:   userValidationError,
 		}
+		writer.WriteHeader(http.StatusBadRequest)
 		helper.UserWriteResponseBody(writer, webResponse)
 	}
 
