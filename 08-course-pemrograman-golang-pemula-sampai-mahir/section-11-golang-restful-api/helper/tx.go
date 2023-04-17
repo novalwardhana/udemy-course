@@ -13,3 +13,15 @@ func CommitOrRollback(tx *sql.Tx) {
 		PanicIfError(errCommit)
 	}
 }
+
+func UserCommitOrRollback(tx *sql.Tx) {
+	err := recover()
+	if err != nil {
+		errRollback := tx.Rollback()
+		UserPanicIfError(errRollback)
+		panic(err)
+	} else {
+		errTx := tx.Commit()
+		UserPanicIfError(errTx)
+	}
+}

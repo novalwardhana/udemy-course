@@ -47,7 +47,7 @@ func main() {
 
 			server := http.Server{
 				Addr:    "localhost:8080",
-				Handler: router,
+				Handler: middleware.NewUserMiddleware(router),
 			}
 			err := server.ListenAndServe()
 			if err != nil {
