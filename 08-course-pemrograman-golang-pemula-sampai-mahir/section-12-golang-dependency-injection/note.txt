@@ -1,0 +1,152 @@
+Dependency Injection
+
+223. Pengenalan Dependency Injection
+- Dalam pembuatan perangkat lunak, dependency injection merupakan sebuah teknik dimana sebuah object menerima object lain
+  yang dibutuhkan (dependencies) ketika pembuatan object itu sendiri
+- Biasanya object yang menerima dependencies disebut client, proses pengiriman dependencies ke object tersebut biasa dibilang inject
+- Dependency injection sebenarnya sudah sering kita lakukan, misal membuat object Controller
+  yang membutuhkan dependencies object service.
+  Object service yang membutuhkan object repositories
+- Funtion sebagai constructor (1)
+  a. Dalam bahasa pemrograman OOP, ada istilah constructor yaitu sebuah function yang digunakan ketika sebuah object dibutuhkan
+  b. Di Golang, biasanya kita juga membuat sebuah function untuk membuat object, dan ini mirip seperti constructor tugasnya
+     yaitu membuat object baru
+  c. Contoh script:
+     Inject service ke Controller
+     func NewUserController(userService service.UserService) UserController {
+        return &UserControllerImpl{
+          UserService: userService
+        }
+      }
+- Function sebagai Constructor (2)
+  a. Biasanya kita akan membuat object dengan memanggil function Constructor tersebut, lalu mengirimkan dependencies yang dibutuhkan pada Constructor tersebut
+  b. Cara seperti ini mudah dilakukan ketika kode program aplikasi kita tidak terlalu besar
+  c. Namun saat kode program aplikasi kita semakin besar, akan semakin sulit melakukan hal ini,
+     terutama kita tahu urutan object mana yang harus dibuat terlebih dahulu
+  d. Oleh karena itu, proses dependency injection sebenarnya bisa kita permudah dengan memanfaatkan library
+  e. Contoh manual dependency injection:
+    db := app.NewDB()
+    validate := validator.New()
+    userRepository := repository.NewUserRepository()
+    userService := service.NewUserService(userRepository, db, validate)
+    userController := controller.NewUserController(userService)
+    router := app.NewRouter(userController)
+    server := http.Server {
+      Addr: "localhost:3000",
+      Handler := middleware.NewAuthMIddleware(router)
+    }
+  f; Kelemahan: ketika object terlalu banyak dan dilakukan secara manual maka akan sulit dimaintain
+
+224. Library Dependency Injection
+- Library:
+  a. https://github.com/google/wire
+  b. https://github.com/uber-go/fx
+  c. https://github.com/golobby/container
+- Google wire
+  a. Pada kelas ini kita akan menggunakan google wire
+  b. Google wire adalah library paling populer untuk melakukan dependency injection di Golang
+  c. Google wire dependency injection berbasis compile, artinya kodenya akan digenerate bukan menggunakan refletion
+  d. Hal ini membuat Google Wire menjadi cepat, karena hasil kompilasi nya adalah kode yang sudah di generate Dependency Injection
+     Tanpa perlu reflection
+
+225. Membuat Project
+- Copy project belajar-golang-restful-api
+- Tambahkan google wire: go get github.com/google/wire
+
+226. Menginstall Wire
+- Google wire membutuhkan aplikasi command line wire untuk melakukan generate kode Dependency injection ketika kita nanti membuat kode
+- Program ini perlu kita install manual di komputer kita dengan perintah:
+  go install github.com/google/wire/cmd/wire@latest
+- Secara otomatis akan ada file binary di $GOPATH/bin/wire
+- Agar aplikasi command line wire bisa diakses, jangan lupa masukkan $PATH ke sistem operasi kita.
+  Seperti yang pernah kita lakukan ketika belajar setting $PATH Golang
+- Cara Install:
+  a. Buka CMD atau terminal
+  b. RUN go install github.com/google/wire/cmd/wire@latest
+  c. RUN env | grep GOPATH
+  d. RUN cd /home/aino/go
+  e. RUN cd bin
+  f. Copy binary wire ke dalam file project
+  g. Masuk ke folder project
+  h. RUN wire help
+
+227. Provider
+- Untuk melakukan dependency injection, kita perlu buat dalam bentuk function constructor
+- Dalam Google Wire, function constructor tersebut kita sebut dengan Provider
+- Script:
+  type SimpleRepository struct{
+    ...
+  }
+  type SimpleService struct {
+    *SimpleRepository
+  }
+
+228. Injector
+- Setelah kita membuat provider untuk nanti kita gunakan, selanjutnya kita perlu membuat Injector
+- Injector sendiri adalah sebuah function constructor, namun isinya berupa konfigurasi yang kita beritahukan ke Google Wire
+- Injector ini sendiri sebenarnya tidak akan digunakan oleh kode program kita, Injector adalah function yang akan digunakan oleh 
+  Google Wire untuk melakukan auto generate kode Dependency Injection
+- Khusus ketika membuat injector, pada file nya kita perlu tambahkan komentar penanda:
+  go:build wireinject
+  +build wireinject
+
+229. Dependency Injection
+- Setelah membuat injector dan provider yang perlu dilakukan adalah menggunakan aplikasi command line Google Wire untuk 
+  melakukan auto generate kode Dependency Injection
+- Syntax: wire gen nama_package
+  RUN wire gen belajar-golang-restful-api/simple
+  atau
+  RUN wire (masuk ke direktori injector)
+- Secara otomatis aplikasi Google Wire akan mencari kode Injector di package tersebut, lalu membuat file wire_gen.go
+  yang isinya adalah kode otomatis dependency injection
+
+230. Error
+- Google Wire juga bisa mendeteksi jika terjadi error pada provider kita
+- Jika terdapat error, secara otomatis akan mengembalikan error ketika kita melakukan dependency injection
+- Caranya sederhana, kita cukup buat di Provider return value kedua berupa error, dan di injector nya juga perlu
+  kita tambahkan return value kedua berupa error
+
+231. Injector Parameter
+- Saat membuat injector, kadang kita membutuhkan parametr yang dinamis
+- Dengan Google Wire, kita juga bisa mengirim parameter pada injector yang akan digenerate secara otomatis
+- Secara otomatis jika ada Provider yang membutuhkan data dengan tipe parametr yang sama, secara otomatis data di parameter akan digunakan
+
+232. Multiple Binding
+- Saat melakukan dependency injection, kadang ada kasus kita membuat beberapa Provider dengan tipe yang sama
+- Hal ini akan membuat error proses auto generate kode dependency injection, karena Google Wire tidak mendukung multiple binding dengan tipe yang sama
+- Pada kasus ini, kita bisa membuat tipe alias untuk multiple binding
+
+233. Provider Set
+- Google Wire memiliki fitur yang bernama Provider Set, fitur ini digunakan untuk melakukan grouping provider
+- Provider set sangat berguna ketika kode program kita sudah banyak, dan Providernya sudah banyak, 
+  sehingga akan lebih mudah untuk dibaca ketika kita grouping data Provider nya
+
+234. Binding Interface
+- Dalam pembuatan aplikasi, sering sekali kita biasanya menggunakan interface sebagai kontrak struct
+- Secara default, Google Wire akan menggunakan tipe data asli untuk melakukan dependency injection, 
+  jadi jika terdapat parameter berupa interface dan tidak ada Provider yang mengembalikan interface tersebut, maka akan dianggap error
+- Pada kasus ini, kita bisa memberi tahu Google Wire jika kita ingin melakukan binding interface, yaitu memberi tahu untuk sebuah interface akan menggunakan provider dengan tipe apa
+
+235. Struct Provider
+- Membuat injector tanpa harus membuat provider
+- Kita juga bisa membuat Struct Provider, yaitu Struct yang bisa kita jadikan provider
+- Secara otomatis Struct yang kita sebutkan akan menjadi Provider
+- Dan kita juga bisa melakukan dependency injection terhadap field yang terdapat didalam Struct tersebut,
+  kita cukup menyebutkan field mana yang akan di inject, atau jika ingin melakukan injection ke semua field,
+  kita bisa gunakan karakter * (bintang).
+
+236. Binding Values & Interface Values
+- Binding Values
+  a. Kadang ada kasus dimana kita ingin melakukan dependency injection terhadap value yang sudah ada, tapa harus membuat Provider terlebih dahulu
+  b. Untuk kasus seperti ini, kita bisa langsung sebutkan value dari objectnya tanpa menggunakan Provider
+- Interface Value
+  a. Jika kita ingin menggunakan value berupa interface, maka kita perlu melakukan interface Binding seperti yang sudah dibahas
+  b. Atau ada cara yang lebih mudah, kita bisa binding value sekaligus menyebutkan interface yang digunakan oleh value tersebut
+
+237. Struct Field Provider
+- Google Wire juga mendukung pembuatan Provider dari Field sebuah struct
+- Misal pada kondisi kita ingin menggunakan sebuah Field dari struct yang dijadikan dependency untuk Provider lain
+
+238. Cleanup Function
+- Jika provider membuat object yang membutuhkan proses cleanup setelah object dibuat, maka provider kita bisa mengembalikan closure
+- Closure secara otomatis akan dipanggil dalam proses cleanup oleh Google Wire
