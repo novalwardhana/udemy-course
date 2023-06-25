@@ -1,0 +1,6 @@
+=== RUN   TestEntry
+{"level":"info","msg":"Hello logging","time":"2023-05-10T23:29:56+07:00","username":"novalwardhana"}
+{"level":"info","msg":"Hello entry","time":"2023-05-10T23:29:56+07:00"}
+--- PASS: TestEntry (0.00s)
+PASS
+ok  	belajar-golang-logging	0.001s
